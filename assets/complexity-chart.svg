@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="w2"><feTurbulence baseFrequency="0.02" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <!-- Axes -->
+  <g stroke="#9AA7BD" stroke-width="2" filter="url(#w2)">
+    <line x1="70" y1="370" x2="660" y2="370"/>
+    <line x1="70" y1="370" x2="70"  y2="40"/>
+    <polygon points="660,370 650,365 650,375" fill="#9AA7BD"/>
+    <polygon points="70,40 65,50 75,50" fill="#9AA7BD"/>
+  </g>
+
+  <text x="660" y="395" font-size="13" fill="#9AA7BD" text-anchor="end">n  (input size)</text>
+  <text x="60"  y="35"  font-size="13" fill="#9AA7BD" text-anchor="end">time</text>
+
+  <!-- Curves -->
+  <g fill="none" stroke-width="3" filter="url(#w2)" stroke-linecap="round">
+    <path d="M70 365 L660 360" stroke="#5FE388"/>
+    <path d="M70 365 Q200 340 660 320" stroke="#3DD9D6"/>
+    <path d="M70 365 L660 220" stroke="#FFD93D"/>
+    <path d="M70 365 Q300 320 660 80" stroke="#FF8C42"/>
+    <path d="M70 365 Q200 280 350 80 Q400 50 660 45" stroke="#FF5C5C"/>
+    <path d="M70 365 Q150 200 200 50 Q250 45 660 42" stroke="#B388FF"/>
+  </g>
+
+  <!-- Curve labels -->
+  <g font-size="14" font-weight="600" font-family="'JetBrains Mono', monospace">
+    <text x="610" y="355" fill="#5FE388">O(1)</text>
+    <text x="600" y="313" fill="#3DD9D6">O(log n)</text>
+    <text x="600" y="213" fill="#FFD93D">O(n)</text>
+    <text x="600" y="100" fill="#FF8C42">O(n log n)</text>
+    <text x="590" y="58"  fill="#FF5C5C">O(n^2)</text>
+    <text x="200" y="40"  fill="#B388FF">O(2^n)</text>
+  </g>
+
+  <!-- Quality labels -->
+  <g font-family="'Caveat', cursive" font-size="20">
+    <text x="180" y="350" fill="#5FE388">Excellent</text>
+    <text x="320" y="280" fill="#FFD93D">OK</text>
+    <text x="450" y="180" fill="#FF8C42">Slow</text>
+    <text x="450" y="130" fill="#FF5C5C">Don't</text>
+  </g>
+</svg>

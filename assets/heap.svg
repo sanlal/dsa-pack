@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="wH"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="29"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <text x="360" y="36" font-family="'Caveat', cursive" font-size="28" fill="#B388FF" text-anchor="middle">Min-heap - smallest on top</text>
+
+  <!-- Tree -->
+  <g filter="url(#wH)" stroke="#9AA7BD" stroke-width="2" fill="none">
+    <line x1="360" y1="100" x2="240" y2="180"/>
+    <line x1="360" y1="100" x2="480" y2="180"/>
+    <line x1="240" y1="180" x2="180" y2="260"/>
+    <line x1="240" y1="180" x2="300" y2="260"/>
+    <line x1="480" y1="180" x2="420" y2="260"/>
+    <line x1="480" y1="180" x2="540" y2="260"/>
+  </g>
+
+  <g stroke-width="3">
+    <circle cx="360" cy="90"  r="28" fill="#FFD93D" stroke="#FFD93D"/>
+    <circle cx="240" cy="190" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+    <circle cx="480" cy="190" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+    <circle cx="180" cy="270" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+    <circle cx="300" cy="270" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+    <circle cx="420" cy="270" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+    <circle cx="540" cy="270" r="28" fill="rgba(255,217,61,0.20)" stroke="#FFD93D"/>
+  </g>
+
+  <g font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" fill="#0F1A2E" text-anchor="middle">
+    <text x="360" y="96">2</text>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="16" fill="#FFD93D" text-anchor="middle">
+    <text x="240" y="196">5</text>
+    <text x="480" y="196">7</text>
+    <text x="180" y="276">9</text>
+    <text x="300" y="276">8</text>
+    <text x="420" y="276">12</text>
+    <text x="540" y="276">11</text>
+  </g>
+
+  <!-- Operations -->
+  <g font-family="'Caveat', cursive" font-size="20" fill="#3DD9D6">
+    <text x="40" y="120">peek</text>
+    <text x="40" y="145" font-family="'JetBrains Mono', monospace" font-size="13" fill="#9AA7BD">O(1)</text>
+  </g>
+  <g font-family="'Caveat', cursive" font-size="20" fill="#FF8C42">
+    <text x="40" y="190">push</text>
+    <text x="40" y="215" font-family="'JetBrains Mono', monospace" font-size="13" fill="#9AA7BD">O(log n)</text>
+  </g>
+  <g font-family="'Caveat', cursive" font-size="20" fill="#FF5C5C">
+    <text x="40" y="260">pop</text>
+    <text x="40" y="285" font-family="'JetBrains Mono', monospace" font-size="13" fill="#9AA7BD">O(log n)</text>
+  </g>
+
+  <text x="360" y="340" font-family="'JetBrains Mono', monospace" font-size="13" fill="#9AA7BD" text-anchor="middle">array layout: [2, 5, 7, 9, 8, 12, 11]   |   parent(i)=(i-1)/2   |   children=2i+1, 2i+2</text>
+</svg>

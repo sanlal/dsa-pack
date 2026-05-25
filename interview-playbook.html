@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="The behavioural side of interviews + India-specific campus placement strategy. Service co's, mid-tier product, FAANG &mdash; what each round actually tests." />
+
+  <meta property="og:title" content="Interview Playbook - DSA Pack" />
+  <meta property="og:description" content="Communication, projects, HR rounds, company-tier strategy, prep schedule, day-of, negotiation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/ip-hero.svg" />
+
+  <title>Interview Playbook - DSA Pack</title>
+  <link rel="icon" type="image/svg+xml" href="assets/ip-hero.svg" />
+  <link rel="stylesheet" href="dsa.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand bare">
+      <span class="brand-dot"></span>
+      <span>DSA Pack</span>
+    </a>
+
+    <nav class="nav-tabs" aria-label="Pack navigation">
+      <a class="nav-tab"        href="dsa.html">DSA Patterns</a>
+      <a class="nav-tab"        href="system-design.html">System Design</a>
+      <a class="nav-tab active" href="interview-playbook.html">Interview Playbook</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="lang-switcher" role="group" aria-label="Code language">
+        <button data-lang="cpp">C++</button>
+        <button data-lang="java">Java</button>
+        <button data-lang="python">Py</button>
+      </div>
+      <button class="btn" id="expand-all">Expand all</button>
+      <button class="btn" id="collapse-all">Collapse</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <p class="eyebrow">Behaviour + strategy for placements</p>
+  <h1>Land the <span class="accent2">offer</span>,<br>not just the <span class="accent">algorithm</span></h1>
+  <p class="lede">
+    DSA gets you to the interview. <em>This</em> gets you the offer.
+    The communication script, the company-tier playbook, the HR rounds, the day-of routine, and the negotiation moves &mdash; in plain English.
+  </p>
+  <img src="assets/ip-hero.svg" alt="Whiteboard interview" class="hero-mascot" />
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">10</span><span class="label">lessons</span></div>
+    <div class="hero-stat"><span class="num orange">~45 min</span><span class="label">read time</span></div>
+    <div class="hero-stat"><span class="num green">India-specific</span><span class="label">+ FAANG playbook</span></div>
+  </div>
+</section>
+
+<!-- ============== TOC ============== -->
+<nav class="toc" id="contents" aria-label="Contents">
+  <div class="toc-head">
+    <h2>How to actually win</h2>
+    <div class="toc-controls">
+      <a class="btn" href="dsa.html">&larr; DSA</a>
+      <a class="btn" href="system-design.html">&larr; System Design</a>
+    </div>
+  </div>
+  <ol>
+    <li><a href="#ip-1"><span class="title">The communication loop while coding</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-2"><span class="title">Clarifying-question checklist</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-3"><span class="title">Edge cases everyone forgets</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-4"><span class="title">Time management in 45 minutes</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-5"><span class="title">Projects round &amp; STAR</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-6"><span class="title">HR round &mdash; survival kit</span> <span class="badge behavior">behaviour</span></a></li>
+    <li><a href="#ip-7"><span class="title">Company-tier playbook (India)</span> <span class="badge placement">placement</span></a></li>
+    <li><a href="#ip-8"><span class="title">The week before D-day</span> <span class="badge placement">placement</span></a></li>
+    <li><a href="#ip-9"><span class="title">Day-of &mdash; on-site &amp; virtual</span> <span class="badge placement">placement</span></a></li>
+    <li><a href="#ip-10"><span class="title">Negotiation &amp; offer evaluation</span> <span class="badge placement">placement</span></a></li>
+  </ol>
+</nav>
+
+<main class="lessons">
+
+<!-- ============== IP 1 - Communication loop ============== -->
+<details class="lesson" id="ip-1" open>
+  <summary>
+    <span class="num">01</span>
+    <span class="heading">
+      <span class="title">The communication loop while coding</span>
+      <span class="subtitle">Silence is the candidate's #1 killer.</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Interviewers don't grade your code. They grade <em>your thinking</em>, inferred from what you say. Talk in a loop: <em>think out loud &rarr; type &rarr; explain &rarr; check</em>.</div>
+
+    <h3>The 4-beat cadence</h3>
+    <ol class="steps">
+      <li><strong>Think out loud.</strong> "OK, I'm noticing the array is sorted. That makes me think two pointers&hellip;"</li>
+      <li><strong>Announce intent.</strong> "Let me code the two-pointer version. I'll initialise <code>l = 0, r = n - 1</code>."</li>
+      <li><strong>Narrate as you type.</strong> "Inside the loop, I check if the sum equals target&hellip;"</li>
+      <li><strong>Check in.</strong> Every 2-3 minutes: "Does this look right so far?" or "Should I keep going or pause here?"</li>
+    </ol>
+
+    <h3>Phrases that earn you points</h3>
+    <div class="cols-2">
+      <div class="col-card do">
+        <h4>Use these</h4>
+        <p>"My first instinct is&hellip; but let me think if there's a better way."</p>
+        <p>"Before I code, let me make sure I understand the contract."</p>
+        <p>"I'd like to walk through an example to verify my approach."</p>
+        <p>"This is O(n) time, O(n) space &mdash; could I do it in O(1) space?"</p>
+        <p>"Let me dry-run the code with the example."</p>
+      </div>
+      <div class="col-card dont">
+        <h4>Avoid these</h4>
+        <p>Silence for &gt; 60 seconds.</p>
+        <p>"This is easy" (almost always wrong).</p>
+        <p>"I memorised this one."</p>
+        <p>"I've never seen this before" (just say "let me reason through it").</p>
+        <p>Asking the interviewer to confirm every line.</p>
+      </div>
+    </div>
+
+    <div class="callout tip"><strong>The hint protocol</strong> If you're stuck, say "I'm considering X but worried about Y" &mdash; this invites a hint without sounding lost. Interviewers <em>want</em> to help; you just need to give them an opening.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> The candidate who codes silently and the candidate who narrates the <em>same</em> solution often get different verdicts. Verbalising is free points.</div>
+  </div>
+</details>
+
+<!-- ============== IP 2 - Clarifying questions ============== -->
+<details class="lesson" id="ip-2">
+  <summary>
+    <span class="num">02</span>
+    <span class="heading">
+      <span class="title">Clarifying-question checklist</span>
+      <span class="subtitle">5 questions you should ask before you write a single character.</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">4 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Most "wrong solutions" weren't wrong &mdash; they were solving the wrong problem. Asking 90 seconds of questions prevents 20 minutes of dead end.</div>
+
+    <h3>The universal 5</h3>
+    <ol>
+      <li><strong>Input type &amp; size.</strong> "Is the input an array of ints or longs? What's the max length? Can it be empty?"</li>
+      <li><strong>Output format.</strong> "Return indices or values? In any order or sorted? In place or new array?"</li>
+      <li><strong>Constraints.</strong> "Are values unique? Sorted? Positive only? Range?"</li>
+      <li><strong>Edge cases the problem ignores.</strong> "What if no solution exists &mdash; return -1, throw, or empty?"</li>
+      <li><strong>Performance expectation.</strong> "Should I aim for O(n) or is O(n log n) acceptable?"</li>
+    </ol>
+
+    <h3>Question patterns that signal seniority</h3>
+    <ul>
+      <li>"Should I optimise for time or space?"</li>
+      <li>"Can the input have duplicates? What should happen to them?"</li>
+      <li>"Is this a one-shot call or will it be invoked repeatedly with new queries?" (huge swing &mdash; preprocess vs not).</li>
+      <li>"What does the API return on invalid input &mdash; throw or sentinel value?"</li>
+    </ul>
+
+    <div class="callout warn"><strong>Don't over-ask</strong> 5 quick questions, max 2 minutes. If you're still asking at minute 8, the interviewer thinks you're stalling.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Treat the problem statement as a draft &mdash; your questions edit it into something you can actually solve. The interviewer expects this.</div>
+  </div>
+</details>
+
+<!-- ============== IP 3 - Edge cases ============== -->
+<details class="lesson" id="ip-3">
+  <summary>
+    <span class="num">03</span>
+    <span class="heading">
+      <span class="title">Edge cases everyone forgets</span>
+      <span class="subtitle">The bug-hunt checklist you run before saying "done".</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">4 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Before declaring victory, run the same 10 edge cases mentally. It catches ~80% of bugs.</div>
+
+    <h3>The standard 10</h3>
+    <ul>
+      <li><strong>Empty input.</strong> <code>nums = []</code>, <code>s = ""</code>.</li>
+      <li><strong>Single element.</strong> <code>nums = [5]</code>, <code>head = single node</code>.</li>
+      <li><strong>All same.</strong> <code>nums = [3, 3, 3, 3]</code>.</li>
+      <li><strong>Already sorted / reverse sorted.</strong> Often hits worst-case in your algorithm.</li>
+      <li><strong>Duplicates.</strong> Easy to skip incorrectly.</li>
+      <li><strong>Negatives.</strong> Sign-flipping bugs, overflow in absolute value.</li>
+      <li><strong>Boundary values.</strong> <code>INT_MIN</code>, <code>INT_MAX</code>, 0, 1.</li>
+      <li><strong>Overflow.</strong> <code>int</code> sum of two big ints in Java &rarr; use <code>long</code>.</li>
+      <li><strong>Cycle / loop.</strong> Linked list with a cycle &rarr; your traversal hangs.</li>
+      <li><strong>Unicode / special chars.</strong> Strings with spaces, emoji, accents. <code>'A'.toLowerCase()</code> is fine; <code>'\u0130'</code> isn't.</li>
+    </ul>
+
+    <h3>The "tracer bullet" pattern</h3>
+    <p>After you finish coding, pick one normal example AND one edge case. Walk both through the code line-by-line, narrating: "OK, l is 0, r is 4, mid is 2&hellip;". Bugs reveal themselves.</p>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> "I'd like to test with a small empty case&hellip;" &mdash; the interviewer's smile widens. Edge-case awareness is one of the cheapest senior-signals to fake.</div>
+  </div>
+</details>
+
+<!-- ============== IP 4 - Time mgmt ============== -->
+<details class="lesson" id="ip-4">
+  <summary>
+    <span class="num">04</span>
+    <span class="heading">
+      <span class="title">Time management in 45 minutes</span>
+      <span class="subtitle">Minute-by-minute spending plan.</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">4 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> A typical 45-minute coding round = 5 understand + 5 examples + 5 brute + 10 optimise + 15 code + 5 test. Sprinting through "understand" because you "have to start coding" is the #1 cause of bombing.</div>
+
+    <div class="illustration">
+      <img src="assets/interview-clock.svg" alt="Pie chart of 45-minute interview" />
+      <div class="caption">Spend the right number of minutes on each phase.</div>
+    </div>
+
+    <h3>The schedule</h3>
+    <ol class="steps">
+      <li><strong>0-5 min &mdash; Understand &amp; clarify.</strong> 5 questions, restate the problem.</li>
+      <li><strong>5-10 min &mdash; Examples.</strong> Walk the given example. Invent 1 edge case.</li>
+      <li><strong>10-15 min &mdash; Brute force.</strong> State it; only code if there's time pressure or it's not obvious.</li>
+      <li><strong>15-25 min &mdash; Optimise.</strong> Find the inefficiency in brute. Propose the optimal. Get a thumbs-up before coding.</li>
+      <li><strong>25-40 min &mdash; Code.</strong> Clean variable names, tight loops, narrate as you type.</li>
+      <li><strong>40-45 min &mdash; Test.</strong> Dry-run example + 1 edge case. State complexity.</li>
+    </ol>
+
+    <h3>If you're behind schedule</h3>
+    <ul>
+      <li><strong>Stuck on optimal?</strong> Code the brute force at minute 20. Partial credit beats no credit.</li>
+      <li><strong>Bug at minute 35?</strong> Don't fix in head. Add a print statement / dry-run a tiny case.</li>
+      <li><strong>5 minutes left, no test?</strong> Say "I'll walk through the example now &mdash; nums = [1,2,3]&hellip;". A confidently spoken trace counts as testing.</li>
+    </ul>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Interviewers respect candidates who manage time like seniors: explicit phases, clean transitions, no panic at minute 40.</div>
+  </div>
+</details>
+
+<!-- ============== IP 5 - Projects & STAR ============== -->
+<details class="lesson" id="ip-5">
+  <summary>
+    <span class="num">05</span>
+    <span class="heading">
+      <span class="title">Projects round &amp; STAR</span>
+      <span class="subtitle">How to make a college project sound like real engineering.</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> "Walk me through your project" is asked in 95% of placement interviews. Pre-write 2 narratives using the <strong>STAR</strong> structure: Situation, Task, Action, Result. Practice out loud.</div>
+
+    <h3>The STAR template</h3>
+    <ul>
+      <li><strong>Situation</strong> (15 sec) &mdash; the context. "Our college's event-registration site crashed during fest week, took 4 minutes per registration."</li>
+      <li><strong>Task</strong> (10 sec) &mdash; what was your responsibility. "I was the backend lead, in a team of 3."</li>
+      <li><strong>Action</strong> (60 sec) &mdash; what <em>you</em> did. Use "I" not "we" for your part. Mention specifics: language, framework, the key technical decision.</li>
+      <li><strong>Result</strong> (15 sec) &mdash; numbers. "Registration time dropped to 12 seconds, 8k students registered in 2 days, zero downtime."</li>
+    </ul>
+
+    <h3>What interviewers actually probe</h3>
+    <ul>
+      <li><strong>Trade-offs you made.</strong> "Why MongoDB and not Postgres?" Have a real answer.</li>
+      <li><strong>The hardest bug.</strong> What was it, how did you find it, what did you learn.</li>
+      <li><strong>What you'd do differently now.</strong> Self-awareness signal. Don't say "nothing".</li>
+      <li><strong>Your specific contribution.</strong> If you say "I built the auth", be ready to defend down to the JWT format.</li>
+    </ul>
+
+    <h3>Project red flags &mdash; avoid these phrases</h3>
+    <div class="cols-2">
+      <div class="col-card dont">
+        <h4>Don't say</h4>
+        <p>"It's a CRUD app for&hellip;"</p>
+        <p>"I used the MERN stack" (generic, no signal).</p>
+        <p>"My friend handled that part."</p>
+        <p>"I followed a YouTube tutorial."</p>
+      </div>
+      <div class="col-card do">
+        <h4>Do say</h4>
+        <p>"The main technical challenge was&hellip;"</p>
+        <p>"I picked &lt;tech&gt; because &lt;trade-off&gt;."</p>
+        <p>"I owned X end-to-end."</p>
+        <p>"I extended an open-source library by&hellip;"</p>
+      </div>
+    </div>
+
+    <div class="callout tip"><strong>Build 1 "interview-grade" project</strong> Pick something with a real engineering decision: a rate limiter, a mini-chat, a URL shortener, a Kafka-style queue. 2 weeks of focused work beats a year of forgettable apps.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Pre-record yourself doing a 90-second STAR walkthrough. Play it back. If you'd hire that candidate, you're set.</div>
+  </div>
+</details>
+
+<!-- ============== IP 6 - HR ============== -->
+<details class="lesson" id="ip-6">
+  <summary>
+    <span class="num">06</span>
+    <span class="heading">
+      <span class="title">HR round &mdash; survival kit</span>
+      <span class="subtitle">The questions are predictable. Your answers shouldn't be.</span>
+    </span>
+    <span class="meta"><span class="badge behavior">behaviour</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> HR rounds filter on culture-fit, attitude, and lying. Have crisp answers to the 8 evergreens below, and never lie about something you can't follow up on.</div>
+
+    <h3>The 8 evergreens (have an answer for each)</h3>
+    <ol>
+      <li><strong>"Tell me about yourself."</strong> 60 seconds: who you are, what you've built, what you're looking for. Not your life story.</li>
+      <li><strong>"Why this company?"</strong> Cite a specific product / tech / value. Generic = -1.</li>
+      <li><strong>"Why should we hire you?"</strong> One sentence per: skill, project, attitude.</li>
+      <li><strong>"What's your biggest strength?"</strong> A concrete one with a story.</li>
+      <li><strong>"What's your biggest weakness?"</strong> Real but improving. Not "I work too hard". Try: "I tend to over-engineer; I now timebox my designs."</li>
+      <li><strong>"Where do you see yourself in 5 years?"</strong> A direction, not a job title. "Growing into a senior engineer who&hellip;".</li>
+      <li><strong>"Why are you leaving your current role / why this branch?"</strong> Honest, positive framing. Never bash old company.</li>
+      <li><strong>"Any questions for us?"</strong> Always have 2. Ask about team, mentorship, growth, the next 6 months. Never ask salary first.</li>
+    </ol>
+
+    <h3>Salary conversation (the awkward one)</h3>
+    <ul>
+      <li>If asked for your expectation: "Based on my research for similar roles in this city, I'm targeting X to Y &mdash; though I'm open to discuss the full package."</li>
+      <li>If they say "we offer fixed CTC for freshers": "Understood, I'd like to know the breakdown &mdash; base, joining bonus, ESOPs/RSUs, benefits."</li>
+      <li>Don't quote a number with no homework. Use Glassdoor, AmbitionBox, LinkedIn for ranges.</li>
+    </ul>
+
+    <h3>Lies that come back to haunt</h3>
+    <ul>
+      <li>"I'm proficient in C++" but stutter on virtual destructors.</li>
+      <li>"I built the backend solo" but the GitHub history shows 4 contributors.</li>
+      <li>Inflated CGPA, inflated internship duration. Background checks are real.</li>
+    </ul>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> HR is a filter for "would I want to work with this person?". Answer like a calm, curious adult and you sail through.</div>
+  </div>
+</details>
+
+<!-- ============== IP 7 - Company tier ============== -->
+<details class="lesson" id="ip-7">
+  <summary>
+    <span class="num">07</span>
+    <span class="heading">
+      <span class="title">Company-tier playbook (India)</span>
+      <span class="subtitle">What each tier actually tests &mdash; and how to prep for each.</span>
+    </span>
+    <span class="meta"><span class="badge placement">placement</span><span class="reading-time">10 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Three tiers, three different games. Don't waste FAANG-level DSA prep on a TCS interview, and don't show up to Google with only college projects.</div>
+
+    <div class="illustration">
+      <img src="assets/company-pyramid.svg" alt="Company tier pyramid" />
+      <div class="caption">CTC roughly: 3-5L (service) -&gt; 10-25L (mid) -&gt; 30L+ (top).</div>
+    </div>
+
+    <h3>Tier 1 - Service companies (TCS, Infosys, Wipro, Cognizant, Capgemini, Accenture)</h3>
+    <p><strong>Hires:</strong> bulk, often hundreds per campus. CTC ~3.5-7 LPA.</p>
+    <p><strong>Process:</strong></p>
+    <ol>
+      <li><strong>Aptitude test</strong> (online proctored): quant, logical reasoning, English, basic coding.</li>
+      <li><strong>Technical interview</strong> (~30 min): DSA easy/medium (arrays, strings, basic OOP), language fundamentals, project walkthrough.</li>
+      <li><strong>HR / Managerial:</strong> the 8 evergreens, willingness to relocate, joining bond.</li>
+    </ol>
+    <p><strong>What to prep:</strong> aptitude (IndiaBix / PrepInsta), CS fundamentals (OS / DBMS / OOP / Networks for 1 week), &lt;50 LeetCode easy/medium. Don't over-study DP.</p>
+
+    <h3>Tier 2 - Mid-tier product (Zoho, Freshworks, ThoughtWorks, Flipkart, Walmart, P&amp;G, GE)</h3>
+    <p><strong>Hires:</strong> selective, ~20-50 per campus. CTC ~10-25 LPA.</p>
+    <p><strong>Process:</strong></p>
+    <ol>
+      <li><strong>Online coding round:</strong> 2-3 problems, mostly medium difficulty.</li>
+      <li><strong>Technical 1:</strong> 1-2 DSA mediums + project deep-dive.</li>
+      <li><strong>Technical 2:</strong> 1 hard or LLD round ("design a TinyURL class").</li>
+      <li><strong>Behavioural / Bar-raiser:</strong> motivation, culture fit, situational questions.</li>
+    </ol>
+    <p><strong>What to prep:</strong> top 150 LeetCode interview list (Neetcode 150 / Striver 79), 1 polished project with real engineering, OOP / SOLID, basic LLD (parking lot / library).</p>
+
+    <h3>Tier 3 - Big product / FAANG (Google, Microsoft, Amazon, Adobe, Atlassian, Uber)</h3>
+    <p><strong>Hires:</strong> very selective. CTC ~30 LPA+ (often much more with stock).</p>
+    <p><strong>Process:</strong></p>
+    <ol>
+      <li><strong>Online assessment:</strong> 2 medium-hard problems in ~75 min.</li>
+      <li><strong>Phone screen:</strong> 1-2 DSA problems with a real engineer.</li>
+      <li><strong>On-site / virtual loop:</strong> 4-5 rounds &mdash; 2 DSA (medium-hard), 1 LLD, 1 HLD (for SDE-1 sometimes scaled-down), 1 behavioural / bar-raiser.</li>
+    </ol>
+    <p><strong>What to prep:</strong> ~300 LeetCode (Neetcode 250+, Blind 75, then company tag), LLD deep (design patterns + walkthroughs), behavioural with STAR. For Amazon &mdash; the 16 Leadership Principles.</p>
+
+    <div class="callout tip"><strong>Don't skip the basics on tier 3</strong> The hardest questions are still graph/DP. Two pointers and sliding window show up <em>more</em> in tier-3 interviews than in tier-1 because they're cleaner.</div>
+
+    <h3>How to allocate prep time (40 hrs/week, 3 months)</h3>
+    <div class="cols-3">
+      <div class="col-card"><h4>If aiming Tier 1</h4>
+        <p>50% aptitude.</p>
+        <p>30% CS fundamentals.</p>
+        <p>20% DSA easy/medium.</p>
+      </div>
+      <div class="col-card"><h4>If aiming Tier 2</h4>
+        <p>20% aptitude.</p>
+        <p>15% CS fundamentals.</p>
+        <p>50% DSA medium.</p>
+        <p>15% projects + LLD.</p>
+      </div>
+      <div class="col-card"><h4>If aiming Tier 3</h4>
+        <p>5% aptitude.</p>
+        <p>60% DSA medium-hard.</p>
+        <p>20% LLD/HLD.</p>
+        <p>15% behavioural + projects.</p>
+      </div>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Pick your target tier <em>before</em> the prep starts. Trying to be everything-to-everyone wastes time &mdash; the prep diverges sharply at tier 2/3.</div>
+  </div>
+</details>
+
+<!-- ============== IP 8 - Week before ============== -->
+<details class="lesson" id="ip-8">
+  <summary>
+    <span class="num">08</span>
+    <span class="heading">
+      <span class="title">The week before D-day</span>
+      <span class="subtitle">Revision, sleep, no new tricks.</span>
+    </span>
+    <span class="meta"><span class="badge placement">placement</span><span class="reading-time">4 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> The week before is for <em>consolidation</em>, not learning. Re-do problems you've already solved, review pattern templates, sleep 8 hours.</div>
+
+    <h3>The 7-day plan</h3>
+    <ul>
+      <li><strong>Day -7 to -5:</strong> Re-do 2 problems from each pattern. Time yourself. Goal: muscle memory.</li>
+      <li><strong>Day -4 to -3:</strong> Review templates (two pointers, sliding window, DP recurrence, BFS, DFS). Rewrite each from memory in your interview language.</li>
+      <li><strong>Day -2:</strong> 1 mock interview with a friend or Pramp. Practice talking out loud.</li>
+      <li><strong>Day -1:</strong> Light review only. Read your STAR notes. Pack your bag / set up your home rig. <em>Sleep early.</em></li>
+      <li><strong>Day 0:</strong> Light breakfast, on time, glass of water, deep breath. You've earned this.</li>
+    </ul>
+
+    <div class="callout warn"><strong>Don't learn new patterns the night before</strong> A pattern you "kinda remember" is more dangerous than one you confidently don't know &mdash; you'll force it where it doesn't fit.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> The interview is a performance. Athletes don't train hard the day before a race; they taper. Do the same.</div>
+  </div>
+</details>
+
+<!-- ============== IP 9 - Day-of ============== -->
+<details class="lesson" id="ip-9">
+  <summary>
+    <span class="num">09</span>
+    <span class="heading">
+      <span class="title">Day-of &mdash; on-site &amp; virtual</span>
+      <span class="subtitle">Logistics that prevent dumb misses.</span>
+    </span>
+    <span class="meta"><span class="badge placement">placement</span><span class="reading-time">4 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Plan the boring stuff in advance so the day-of leaves bandwidth for the interview itself.</div>
+
+    <h3>On-site / placement-drive checklist</h3>
+    <ul>
+      <li>Reach venue 30 minutes early. Locate water + restroom.</li>
+      <li>Carry: ID card, hall ticket / token, water bottle, 2 pens, charger, a printed resume copy.</li>
+      <li>Eat a light meal &mdash; nothing heavy that will make you sleepy.</li>
+      <li>Phone on silent. Don't doom-scroll while waiting.</li>
+    </ul>
+
+    <h3>Virtual interview checklist (now the default)</h3>
+    <ul>
+      <li><strong>Background:</strong> plain wall or tidy room. No "I'm in college" vibes.</li>
+      <li><strong>Lighting:</strong> face the window or a lamp. Avoid backlight (silhouette).</li>
+      <li><strong>Audio:</strong> wired headphones &gt; AirPods &gt; laptop mic. Test 10 min before.</li>
+      <li><strong>Internet:</strong> wired or 4G hotspot as backup. Restart router 30 min before.</li>
+      <li><strong>Browser:</strong> close 30 tabs. Only the meeting + coding editor.</li>
+      <li><strong>Camera angle:</strong> eye level. Stack books under laptop if needed.</li>
+      <li><strong>Coding editor:</strong> increase font size to 18+. Use the editor the interviewer suggests (CoderPad, HackerRank, etc).</li>
+    </ul>
+
+    <h3>Proctored online tests</h3>
+    <ul>
+      <li>Read instructions twice &mdash; some platforms allow scratch paper, some don't.</li>
+      <li>Don't leave the tab; don't open another. Auto-disqualification.</li>
+      <li>Keep face in frame the whole time.</li>
+      <li>If a question loads slowly, screenshot the timer and report at the end &mdash; many systems give time back.</li>
+    </ul>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Logistics is a free win. The 10 minutes you spend testing your mic saves you from the only thing worse than failing &mdash; failing because of bad audio.</div>
+  </div>
+</details>
+
+<!-- ============== IP 10 - Negotiation ============== -->
+<details class="lesson" id="ip-10">
+  <summary>
+    <span class="num">10</span>
+    <span class="heading">
+      <span class="title">Negotiation &amp; offer evaluation</span>
+      <span class="subtitle">CTC, base, ESOPs, bonuses &mdash; reading the offer letter without getting fooled.</span>
+    </span>
+    <span class="meta"><span class="badge placement">placement</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> CTC is marketing, not money. Look at <em>take-home base</em>, vesting schedule for stock, joining bonus terms, and notice period &mdash; these decide what you'll actually receive.</div>
+
+    <h3>Decoding the offer</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Component</th><th>What it means</th><th>Watch out for</th></tr></thead>
+      <tbody>
+        <tr><td>Base salary</td>      <td>Monthly take-home (post-deductions).</td>                <td>This is the real number. Demand 60-70% of CTC.</td></tr>
+        <tr><td>Joining bonus</td>    <td>One-time payout in month 1-3.</td>                       <td>Usually clawback if you leave in &lt; 1-2 yrs.</td></tr>
+        <tr><td>Performance bonus</td><td>Annual, % of base, tied to rating.</td>                   <td>Often 0-15%. Treat the bottom end as real.</td></tr>
+        <tr><td>ESOPs / RSUs</td>     <td>Stock that vests over 4 years (often 25/25/25/25).</td>  <td>"Cliff" of 1 year &mdash; nothing if you leave early.</td></tr>
+        <tr><td>Retention bonus</td>  <td>Paid if you stay N years.</td>                            <td>You can't deposit a promise. Discount it.</td></tr>
+        <tr><td>Variable / target</td><td>Theoretical max bonuses.</td>                            <td>Marketing. Assume actuals are 60-70%.</td></tr>
+        <tr><td>Benefits</td>         <td>Insurance, PF, meal cards, gym, learning budget.</td>    <td>Add ~50-80k/yr value &mdash; not nothing.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Negotiation moves that work for freshers</h3>
+    <ul>
+      <li><strong>Use competing offers.</strong> "Company X offered me Y. I'd prefer you &mdash; can you close the gap?" The single most effective move.</li>
+      <li><strong>Ask for joining bonus or relocation</strong> when base is fixed (common for tier-1 bulk hires). These are easier to flex than base.</li>
+      <li><strong>Negotiate level, not just rupees.</strong> SDE-1 vs SDE-2 at FAANG = a 30-50% CTC swing. Worth pushing if you have signals.</li>
+      <li><strong>Always negotiate in writing.</strong> Verbal promises evaporate.</li>
+      <li><strong>Stay polite, never threaten.</strong> "If you can do X, I'm ready to sign today" &gt; "I'll go elsewhere".</li>
+    </ul>
+
+    <h3>Evaluating offer A vs offer B</h3>
+    <p>Don't compare CTCs blindly. Compare:</p>
+    <ol>
+      <li><strong>2-year cash.</strong> Sum of base + bonus + vested stock through year 2. Most freshers leave within 2-3 years &mdash; that's your real horizon.</li>
+      <li><strong>Growth ceiling.</strong> Promo cadence, mentorship, tech stack relevance.</li>
+      <li><strong>WLB &amp; manager quality.</strong> Talk to current employees on LinkedIn. The "bad team / good company" trap is real.</li>
+      <li><strong>Brand on resume.</strong> A 6-month FAANG stint can outweigh a 2-year unknown-startup tenure on future applications.</li>
+      <li><strong>City / commute / family.</strong> The cost of a stressful 1-hour commute is real.</li>
+    </ol>
+
+    <div class="callout warn"><strong>The notice-period trap</strong> Many service companies require 60-90 day notice + bond. Read it carefully; calculate the cost if you want to switch jobs in year 2. Don't sign a 2-year bond casually.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> You worked 3 years to get this offer. Spend 3 days evaluating it. The difference between accepting blindly and negotiating well is often a year's worth of senior-engineer salary.</div>
+  </div>
+</details>
+
+</main>
+
+<!-- ============== SIGN-OFF ============== -->
+<section class="signoff">
+  <h2>You're prepared &mdash; now go ship the offer.</h2>
+  <p>Patterns + design + behaviour. You have all three. Now do reps, mock, sleep, repeat.</p>
+
+  <div class="takeaways">
+    <div class="takeaway-pill"><strong>Talk out loud</strong> Verbalising thought = free signal.</div>
+    <div class="takeaway-pill"><strong>Right tier, right prep</strong> Don't over-prep DP for TCS, don't under-prep behaviour for FAANG.</div>
+    <div class="takeaway-pill"><strong>Logistics matter</strong> Audio, lighting, internet. Free wins.</div>
+    <div class="takeaway-pill"><strong>Negotiate, politely</strong> "If you can do X, I'm ready to sign" beats "I'll go elsewhere".</div>
+  </div>
+
+  <div class="next-up">
+    <a class="btn" href="dsa.html">&larr; DSA Patterns</a>
+    <a class="btn" href="system-design.html">&larr; System Design</a>
+  </div>
+</section>
+
+<footer class="footer-meta">
+  <span>DSA Pack &middot; Interview Playbook</span>
+  <span>Press <kbd>E</kbd> to expand all, <kbd>C</kbd> to collapse</span>
+</footer>
+
+<script src="dsa.js"></script>
+</body>
+</html>

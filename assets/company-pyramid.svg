@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="wCP"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="57"/><feDisplacementMap in="SourceGraphic" scale="1.3"/></filter>
+  </defs>
+
+  <text x="350" y="34" font-family="'Caveat', cursive" font-size="28" fill="#B388FF" text-anchor="middle">Where you land - and what each tier asks</text>
+
+  <!-- Pyramid -->
+  <g filter="url(#wCP)" stroke-width="2.5">
+    <polygon points="350,70 420,150 280,150"  fill="rgba(255,122,182,0.18)" stroke="#FF7AB6"/>
+    <polygon points="280,160 420,160 490,260 210,260" fill="rgba(255,140,66,0.15)" stroke="#FF8C42"/>
+    <polygon points="210,270 490,270 580,400 120,400" fill="rgba(95,227,136,0.12)" stroke="#5FE388"/>
+  </g>
+
+  <g font-family="'Caveat', cursive" font-size="24" fill="#FF7AB6" text-anchor="middle">
+    <text x="350" y="120">FAANG / Big-Product</text>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#FF7AB6">
+    <text x="510" y="105">Google, Meta</text>
+    <text x="510" y="120">Amazon, MSFT</text>
+    <text x="510" y="135">Atlassian, Uber</text>
+  </g>
+
+  <g font-family="'Caveat', cursive" font-size="22" fill="#FF8C42" text-anchor="middle">
+    <text x="350" y="215">Mid-tier Product</text>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#FF8C42">
+    <text x="510" y="200">Zoho, Freshworks</text>
+    <text x="510" y="215">Flipkart, Walmart</text>
+    <text x="510" y="230">ThoughtWorks, PG</text>
+  </g>
+
+  <g font-family="'Caveat', cursive" font-size="22" fill="#5FE388" text-anchor="middle">
+    <text x="350" y="335">Service Companies</text>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#5FE388">
+    <text x="510" y="320">TCS, Infosys</text>
+    <text x="510" y="335">Wipro, Capgemini</text>
+    <text x="510" y="350">Accenture, Cognizant</text>
+  </g>
+
+  <!-- Bullets on left -->
+  <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#9AA7BD" text-anchor="end">
+    <text x="270" y="100">DSA hard +</text>
+    <text x="270" y="115">behavioural +</text>
+    <text x="270" y="130">HLD/LLD</text>
+
+    <text x="200" y="200">DSA medium +</text>
+    <text x="200" y="215">LLD/OOP +</text>
+    <text x="200" y="230">project deep-dive</text>
+
+    <text x="110" y="320">aptitude +</text>
+    <text x="110" y="335">MCQ + basic coding +</text>
+    <text x="110" y="350">HR fit-check</text>
+  </g>
+
+  <text x="350" y="428" font-family="'Caveat', cursive" font-size="16" fill="#9AA7BD" text-anchor="middle">CTC roughly: 3-5L (service)  -&gt;  10-25L (mid)  -&gt;  30L+ (top)</text>
+</svg>

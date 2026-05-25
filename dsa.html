@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="The 14 patterns + the universal framework that solve 90% of campus-placement and interview DSA problems. C++, Java &amp; Python side-by-side." />
+
+  <meta property="og:title" content="DSA Pack - Patterns &amp; Approach for Campus Placements" />
+  <meta property="og:description" content="The 14 patterns + the universal framework that solve 90% of DSA interview problems. C++, Java and Python." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/dsa-hero.svg" />
+
+  <title>DSA Pack - Patterns &amp; Approach</title>
+  <link rel="icon" type="image/svg+xml" href="assets/dsa-hero.svg" />
+  <link rel="stylesheet" href="dsa.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand bare">
+      <span class="brand-dot"></span>
+      <span>DSA Pack</span>
+    </a>
+
+    <nav class="nav-tabs" aria-label="Pack navigation">
+      <a class="nav-tab active" href="dsa.html">DSA Patterns</a>
+      <a class="nav-tab"        href="system-design.html">System Design</a>
+      <a class="nav-tab"        href="interview-playbook.html">Interview Playbook</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="lang-switcher" role="group" aria-label="Code language">
+        <button data-lang="cpp">C++</button>
+        <button data-lang="java">Java</button>
+        <button data-lang="python">Py</button>
+      </div>
+      <button class="btn" id="expand-all">Expand all</button>
+      <button class="btn" id="collapse-all">Collapse</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <p class="eyebrow">DSA for placements &amp; interviews</p>
+  <h1>Crack <span class="accent">any</span> coding round<br>with <span class="accent2">14 patterns</span></h1>
+  <p class="lede">
+    Stop solving 500 random problems. Learn the small set of patterns that recur
+    in 90% of interviews, plus a universal framework to attack the rest.
+    Every example shown in <strong>C++</strong>, <strong>Java</strong>, and <strong>Python</strong> &mdash; pick your weapon.
+  </p>
+  <img src="assets/dsa-hero.svg" alt="DSA brain with patterns" class="hero-mascot" />
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">16</span><span class="label">lessons</span></div>
+    <div class="hero-stat"><span class="num orange">~90 min</span><span class="label">read time</span></div>
+    <div class="hero-stat"><span class="num green">3 langs</span><span class="label">tab to switch</span></div>
+    <div class="hero-stat"><span class="num purple">~80</span><span class="label">curated problems</span></div>
+  </div>
+</section>
+
+<!-- ============== TOC ============== -->
+<nav class="toc" id="contents" aria-label="Contents">
+  <div class="toc-head">
+    <h2>What you'll master</h2>
+    <div class="toc-controls">
+      <a class="btn" href="system-design.html">Then: System Design &rarr;</a>
+    </div>
+  </div>
+  <ol>
+    <li><a href="#lesson-1"><span class="title">The 5-step framework</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-2"><span class="title">Big-O in plain English</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-3"><span class="title">Data-structure cheat sheet</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-4"><span class="title">Pattern: Two Pointers</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-5"><span class="title">Pattern: Sliding Window</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-6"><span class="title">Pattern: Fast &amp; Slow Pointers</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-7"><span class="title">Pattern: Modified Binary Search</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-8"><span class="title">Pattern: BFS &amp; DFS</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-9"><span class="title">Pattern: Backtracking &amp; Subsets</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-10"><span class="title">Pattern: Dynamic Programming</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-11"><span class="title">Pattern: Greedy</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-12"><span class="title">Pattern: Top-K with Heap</span> <span class="badge pattern">pattern</span></a></li>
+    <li><a href="#lesson-13"><span class="title">Pattern: Union-Find (DSU)</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-14"><span class="title">Pattern: Graph Algorithms</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-15"><span class="title">Pattern: Bit Manipulation</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-16"><span class="title">The optimisation playbook</span> <span class="badge wrap">wrap-up</span></a></li>
+  </ol>
+</nav>
+
+<main class="lessons">
+
+<!-- ============== LESSON 1 - 5 step framework ============== -->
+<details class="lesson" id="lesson-1" open>
+  <summary>
+    <span class="num">01</span>
+    <span class="heading">
+      <span class="title">The 5-step framework</span>
+      <span class="subtitle">How to attack ANY problem you've never seen before.</span>
+    </span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Don't start coding when the problem appears on screen. Walk it through 5 steps: <em>Understand &rarr; Examples &rarr; Brute force &rarr; Optimise &rarr; Code &rarr; Test</em>. The interviewer is scoring your <em>thought process</em>, not your typing speed.</div>
+
+    <h3>Why this matters more than memorising algorithms</h3>
+    <p>Every interviewer has seen 500 candidates jump straight into <code>for (int i=0; i&lt;n; i++)</code>. The ones who get offers do something visibly different: they slow down, ask, think out loud, and only type when they know what they're typing. This is the <em>thinking out loud</em> tax &mdash; it costs you 30 seconds and earns you the rest of the interview.</p>
+
+    <ol class="steps">
+      <li><strong>Understand.</strong> Repeat the problem in your own words. Confirm input type, output type, and any constraints (size of <code>n</code>, value range, can the array be empty, are values unique, sorted, signed). If anything is unclear, ask before guessing.</li>
+      <li><strong>Examples.</strong> Walk through the given example by hand. Then invent 2 more: a normal case and an edge case (empty, single element, duplicates, all same, negative, overflow). This step alone catches half of all bugs.</li>
+      <li><strong>Brute force.</strong> State the dumbest correct solution out loud. "I could check every pair, that's <code>O(n&sup2;)</code>." Even if you never code it, the interviewer now knows you understood the problem.</li>
+      <li><strong>Optimise.</strong> Look at the brute force's repeated work. Can a hash map remember it? Can sorting reveal structure? Can a pointer trick avoid a loop? This is the <em>insight</em> step &mdash; the moment you go from O(n&sup2;) to O(n log n) or O(n).</li>
+      <li><strong>Code, then test.</strong> Now type. Keep variable names long enough to read. After the last brace, run the example in your head line by line. Then try one edge case you invented in step 2.</li>
+    </ol>
+
+    <div class="callout tip"><strong>Tip</strong> Verbalise the brute force <em>before</em> you write any optimal trick. Even if you crack the optimal solution instantly, present brute first &mdash; it shows you can fall back if your fancy idea breaks.</div>
+
+    <h3>The framework on a real problem: "Two Sum"</h3>
+    <p>Given <code>nums = [2, 7, 11, 15]</code>, <code>target = 9</code>, return the indices of the two numbers that add to the target.</p>
+
+    <ul>
+      <li><strong>Understand:</strong> "Find two indices <em>i, j</em> with <code>nums[i] + nums[j] == target</code>. Indices, not values. Exactly one solution exists. Each input used once."</li>
+      <li><strong>Examples:</strong> <code>[2,7,11,15], 9 &rarr; [0,1]</code>. Edge: <code>[3,3], 6 &rarr; [0,1]</code> (duplicates).</li>
+      <li><strong>Brute force:</strong> "Two nested loops, check every pair. O(n&sup2;) time, O(1) space."</li>
+      <li><strong>Optimise:</strong> "For each <code>x</code>, I need <code>target - x</code>. A hash map gives me O(1) lookup of what I've already seen. One pass, O(n) time, O(n) space."</li>
+      <li><strong>Code, then test:</strong></li>
+    </ul>
+
+    <div class="code-tabs" data-snippet="two-sum">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+        <span class="tab-spacer"></span>
+        <span class="filename">two_sum</span>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+    unordered_map&lt;int,int&gt; seen;       // value -&gt; index
+    for (int i = 0; i &lt; (int)nums.size(); ++i) {
+        int need = target - nums[i];
+        auto it = seen.find(need);
+        if (it != seen.end()) return {it-&gt;second, i};
+        seen[nums[i]] = i;
+    }
+    return {};
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int[] twoSum(int[] nums, int target) {
+    Map&lt;Integer, Integer&gt; seen = new HashMap&lt;&gt;();
+    for (int i = 0; i &lt; nums.length; i++) {
+        int need = target - nums[i];
+        if (seen.containsKey(need)) return new int[]{ seen.get(need), i };
+        seen.put(nums[i], i);
+    }
+    return new int[0];
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def two_sum(nums, target):
+    seen = {}                           # value -&gt; index
+    for i, x in enumerate(nums):
+        need = target - x
+        if need in seen:
+            return [seen[need], i]
+        seen[x] = i
+    return []</code></pre>
+    </div>
+
+    <div class="complexity-row">
+      <span class="pill"><span class="k">time</span><span class="v">O(n)</span></span>
+      <span class="pill"><span class="k">space</span><span class="v">O(n)</span></span>
+      <span class="pill"><span class="k">passes</span><span class="v">1</span></span>
+    </div>
+
+    <div class="callout warn"><strong>Common mistake</strong> Adding the current number to the map <em>before</em> the lookup. With <code>[3,3], 6</code>, you'd return <code>[0,0]</code>. Always check, <em>then</em> insert.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> The 5 steps are training wheels you never take off. Even senior engineers do them &mdash; just faster and in their head.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 2 - Big O ============== -->
+<details class="lesson" id="lesson-2">
+  <summary>
+    <span class="num">02</span>
+    <span class="heading">
+      <span class="title">Big-O in plain English</span>
+      <span class="subtitle">The language of "how fast is this?"</span>
+    </span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Big-O measures <em>how the runtime grows</em> as input grows. You don't count exact operations &mdash; you count which term dominates when <code>n</code> is huge.</div>
+
+    <div class="illustration">
+      <img src="assets/complexity-chart.svg" alt="Big-O comparison curves" />
+      <div class="caption">Lower line = faster as n grows. Memorise the order.</div>
+    </div>
+
+    <h3>The complexity ladder (memorise this order)</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Complexity</th><th>Vibes</th><th>Typical algorithm</th><th>n = 10<sup>6</sup></th></tr></thead>
+      <tbody>
+        <tr><td><code>O(1)</code></td>          <td class="good">instant</td>      <td>hash lookup, array index</td>        <td class="good">~ns</td></tr>
+        <tr><td><code>O(log n)</code></td>      <td class="good">excellent</td>    <td>binary search, balanced BST op</td>  <td class="good">~20 steps</td></tr>
+        <tr><td><code>O(n)</code></td>          <td class="good">linear</td>       <td>one pass over data</td>              <td class="good">~1M steps</td></tr>
+        <tr><td><code>O(n log n)</code></td>    <td class="good">very good</td>    <td>sort, heap-based</td>                <td class="good">~20M steps</td></tr>
+        <tr><td><code>O(n&sup2;)</code></td>       <td class="meh">ok for n &lt; 10<sup>4</sup></td><td>two nested loops, naive DP</td><td class="bad">TLE</td></tr>
+        <tr><td><code>O(n&sup3;)</code></td>       <td class="bad">avoid</td>        <td>three nested loops</td>              <td class="bad">~10<sup>18</sup></td></tr>
+        <tr><td><code>O(2&#710;n)</code></td>      <td class="bad">brute subsets</td><td>backtracking subsets</td>            <td class="bad">won't finish</td></tr>
+        <tr><td><code>O(n!)</code></td>         <td class="bad">brute permute</td> <td>brute travelling salesman</td>       <td class="bad">won't finish</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>How to derive complexity in 30 seconds</h3>
+    <ol>
+      <li>Find every loop. A single loop over <code>n</code> is O(n). Nested loops multiply: 2 nested loops over <code>n</code> = O(n&sup2;).</li>
+      <li>Recursive calls: count the tree. If each call spawns 2 sub-calls and depth is <code>n</code>, you have O(2&#710;n).</li>
+      <li>Drop constants and lower-order terms: <code>5n + 100</code> is just O(n). <code>n&sup2; + n</code> is O(n&sup2;).</li>
+      <li>Space = the largest auxiliary data you keep (extra arrays, recursion stack, hash map size). The output usually doesn't count.</li>
+    </ol>
+
+    <h3>The 10<sup>8</sup> rule</h3>
+    <p>Competitive-programming heuristic: a modern judge does ~10<sup>8</sup> simple operations per second. Multiply your Big-O by the input size in the worst case &mdash; if the answer is bigger than ~10<sup>8</sup>, you'll TLE.</p>
+
+    <div class="cols-2">
+      <div class="col-card do">
+        <h4>Practical translation</h4>
+        <p><strong>n &le; 10:</strong> O(n!), O(2&#710;n) ok.</p>
+        <p><strong>n &le; 20:</strong> O(2&#710;n) ok (with memo).</p>
+        <p><strong>n &le; 5000:</strong> O(n&sup2;) ok.</p>
+        <p><strong>n &le; 10<sup>5</sup>:</strong> O(n log n).</p>
+        <p><strong>n &le; 10<sup>7</sup>:</strong> O(n).</p>
+        <p><strong>n &le; 10<sup>9</sup>:</strong> O(log n) or math.</p>
+      </div>
+      <div class="col-card dont">
+        <h4>Beginner traps</h4>
+        <p><strong>Hidden loops:</strong> <code>substring()</code>, <code>list.contains()</code>, <code>string +=</code> in a loop &mdash; each costs O(n).</p>
+        <p><strong>Sorting inside a loop</strong> = O(n&sup2; log n). Sort once, outside.</p>
+        <p><strong>Recursion stack</strong> = O(depth) space &mdash; don't forget.</p>
+        <p><strong>Amortised &ne; worst:</strong> a single <code>ArrayList.add</code> can be O(n); average is O(1).</p>
+      </div>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> When you write a solution, state <em>both</em> time and space complexity unprompted. It's the cheapest +1 on your scorecard.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 3 - DS cheat sheet ============== -->
+<details class="lesson" id="lesson-3">
+  <summary>
+    <span class="num">03</span>
+    <span class="heading">
+      <span class="title">Data-structure cheat sheet</span>
+      <span class="subtitle">Reach for the right tool in 5 seconds.</span>
+    </span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Every problem is solved by choosing the right data structure. Memorise the table once &mdash; you'll save hours of trial-and-error in interviews.</div>
+
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Structure</th><th>Reach for it when&hellip;</th><th>Access</th><th>Search</th><th>Insert</th><th>Delete</th></tr></thead>
+      <tbody>
+        <tr><td>Array / Vector</td>     <td>random index access; fixed size known</td>                <td class="good">O(1)</td><td>O(n)</td>     <td>O(n)</td>     <td>O(n)</td></tr>
+        <tr><td>Dynamic Array</td>      <td>unknown size; append-heavy</td>                            <td class="good">O(1)</td><td>O(n)</td>     <td class="good">O(1)*</td><td>O(n)</td></tr>
+        <tr><td>Linked List</td>        <td>frequent insert/delete in middle when you have the node</td><td>O(n)</td>            <td>O(n)</td>     <td class="good">O(1)</td><td class="good">O(1)</td></tr>
+        <tr><td>Stack</td>              <td>"undo", parentheses, monotonic, DFS</td>                  <td>&mdash;</td>           <td>&mdash;</td>  <td class="good">O(1)</td><td class="good">O(1)</td></tr>
+        <tr><td>Queue / Deque</td>      <td>BFS, sliding window max/min</td>                          <td>&mdash;</td>           <td>&mdash;</td>  <td class="good">O(1)</td><td class="good">O(1)</td></tr>
+        <tr><td>HashMap / HashSet</td>  <td>"have I seen this?" counting, dedup</td>                   <td class="good">O(1)</td><td class="good">O(1)</td><td class="good">O(1)</td><td class="good">O(1)</td></tr>
+        <tr><td>TreeMap / TreeSet</td>  <td>need sorted order or floor/ceiling queries</td>            <td>O(log n)</td>         <td>O(log n)</td><td>O(log n)</td><td>O(log n)</td></tr>
+        <tr><td>Heap (priority queue)</td><td>top-K, "best so far", Dijkstra</td>                      <td class="good">O(1) peek</td><td>O(n)</td><td>O(log n)</td><td>O(log n) pop</td></tr>
+        <tr><td>Trie</td>               <td>prefix queries, autocomplete, word search</td>            <td>O(L)</td>             <td>O(L)</td>     <td>O(L)</td>     <td>O(L)</td></tr>
+        <tr><td>Union-Find / DSU</td>   <td>"are these connected?", Kruskal MST</td>                  <td>&mdash;</td>           <td>~O(&alpha;)</td><td>~O(&alpha;)</td><td>&mdash;</td></tr>
+        <tr><td>Graph (adj-list)</td>   <td>nodes + edges</td>                                         <td>&mdash;</td>           <td>&mdash;</td>  <td>O(1)</td>    <td>O(deg)</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:0.86rem;color:var(--muted)">*amortised across resizes. L = length of the word/key. &alpha; = inverse Ackermann, essentially constant.</p>
+
+    <h3>Quick-recognition phrases</h3>
+    <ul>
+      <li>"How many distinct?" / "Have I seen this?" &rarr; <code>HashSet</code>.</li>
+      <li>"Frequency of each X" &rarr; <code>HashMap&lt;X, int&gt;</code> or <code>Counter</code>.</li>
+      <li>"Top K" / "K largest/smallest" &rarr; min-heap of size K.</li>
+      <li>"Next greater element" / "matching brackets" / "histogram" &rarr; monotonic stack.</li>
+      <li>"Shortest path on a grid/graph with weight 1" &rarr; BFS.</li>
+      <li>"All paths / combinations / subsets" &rarr; backtracking.</li>
+      <li>"Optimal &amp; overlapping subproblems" &rarr; DP.</li>
+      <li>"Are nodes in the same group?" / "merge components" &rarr; Union-Find.</li>
+      <li>"Prefix match on strings" &rarr; Trie.</li>
+      <li>"Sorted + need to add/remove fast" &rarr; <code>TreeSet</code> / SortedList.</li>
+    </ul>
+
+    <div class="callout tip"><strong>Tip</strong> In Java, <code>ArrayDeque</code> beats <code>Stack</code> and <code>LinkedList</code> for both stack and queue use. In Python, use <code>collections.deque</code>. In C++, use <code>std::stack</code> / <code>std::queue</code> / <code>std::deque</code> &mdash; never <code>std::list</code> for these.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Picking the right DS is 70% of the puzzle. The pattern lessons that follow are really just "the standard tricks that go with each structure".</div>
+  </div>
+</details>
+
+<div class="section-break"><span class="label">Patterns</span> <span class="sub">The recurring shapes you'll see again and again</span></div>
+
+<!-- ============== LESSON 4 - Two Pointers ============== -->
+<details class="lesson" id="lesson-4">
+  <summary>
+    <span class="num">04</span>
+    <span class="heading">
+      <span class="title">Pattern: Two Pointers</span>
+      <span class="subtitle">Walk a sorted array from both ends and skip the dumb work.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Two indices crawl toward each other (or in the same direction). Each step eliminates a chunk of the search space, so you get O(n) instead of O(n&sup2;).</div>
+
+    <div class="recognise"><strong>When to recognise</strong> The array (or string) is sorted, and you're asked for a pair / triplet / partition that satisfies a sum or comparison condition.</div>
+    <div class="fingerprint">
+      <span class="tag">sorted input</span>
+      <span class="tag">pair / triplet sum</span>
+      <span class="tag">in-place partition</span>
+      <span class="tag">palindrome check</span>
+      <span class="tag">remove duplicates</span>
+    </div>
+
+    <div class="illustration">
+      <img src="assets/two-pointers.svg" alt="Two pointers walking from both ends of a sorted array" />
+      <div class="caption">If sum &lt; target, push left right. If sum &gt; target, push right left.</div>
+    </div>
+
+    <h3>Template</h3>
+    <div class="code-tabs" data-snippet="two-pointers-template">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int l = 0, r = (int)a.size() - 1;
+while (l &lt; r) {
+    int s = a[l] + a[r];
+    if (s == target)      return {l, r};
+    else if (s &lt; target)  l++;          // need a bigger sum
+    else                  r--;          // need a smaller sum
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int l = 0, r = a.length - 1;
+while (l &lt; r) {
+    int s = a[l] + a[r];
+    if (s == target)      return new int[]{ l, r };
+    else if (s &lt; target)  l++;
+    else                  r--;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>l, r = 0, len(a) - 1
+while l &lt; r:
+    s = a[l] + a[r]
+    if s == target:    return [l, r]
+    elif s &lt; target:   l += 1
+    else:              r -= 1</code></pre>
+    </div>
+
+    <h3>Worked example - 3Sum (LC 15)</h3>
+    <p>Given <code>nums</code>, find all unique triplets <code>(a, b, c)</code> such that <code>a + b + c == 0</code>. Sort the array, fix <code>nums[i]</code>, then two-pointer the rest.</p>
+    <div class="code-tabs" data-snippet="three-sum">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
+    sort(nums.begin(), nums.end());
+    vector&lt;vector&lt;int&gt;&gt; out;
+    int n = nums.size();
+    for (int i = 0; i &lt; n - 2; ++i) {
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i-1]) continue;     // skip dup pivot
+        int l = i + 1, r = n - 1;
+        while (l &lt; r) {
+            int s = nums[i] + nums[l] + nums[r];
+            if (s == 0) {
+                out.push_back({nums[i], nums[l], nums[r]});
+                while (l &lt; r &amp;&amp; nums[l] == nums[l+1]) l++; // skip dup left
+                while (l &lt; r &amp;&amp; nums[r] == nums[r-1]) r--; // skip dup right
+                l++; r--;
+            } else if (s &lt; 0) l++;
+            else              r--;
+        }
+    }
+    return out;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+    Arrays.sort(nums);
+    List&lt;List&lt;Integer&gt;&gt; out = new ArrayList&lt;&gt;();
+    int n = nums.length;
+    for (int i = 0; i &lt; n - 2; i++) {
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i-1]) continue;
+        int l = i + 1, r = n - 1;
+        while (l &lt; r) {
+            int s = nums[i] + nums[l] + nums[r];
+            if (s == 0) {
+                out.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                while (l &lt; r &amp;&amp; nums[l] == nums[l+1]) l++;
+                while (l &lt; r &amp;&amp; nums[r] == nums[r-1]) r--;
+                l++; r--;
+            } else if (s &lt; 0) l++;
+            else              r--;
+        }
+    }
+    return out;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def three_sum(nums):
+    nums.sort()
+    out, n = [], len(nums)
+    for i in range(n - 2):
+        if i &gt; 0 and nums[i] == nums[i-1]:
+            continue                                  # skip dup pivot
+        l, r = i + 1, n - 1
+        while l &lt; r:
+            s = nums[i] + nums[l] + nums[r]
+            if s == 0:
+                out.append([nums[i], nums[l], nums[r]])
+                while l &lt; r and nums[l] == nums[l+1]: l += 1
+                while l &lt; r and nums[r] == nums[r-1]: r -= 1
+                l += 1; r -= 1
+            elif s &lt; 0: l += 1
+            else:       r -= 1
+    return out</code></pre>
+    </div>
+
+    <div class="complexity-row">
+      <span class="pill"><span class="k">time</span><span class="v">O(n&sup2;)</span></span>
+      <span class="pill"><span class="k">space</span><span class="v">O(1) extra</span></span>
+      <span class="pill"><span class="k">sort</span><span class="v">O(n log n)</span></span>
+    </div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Forgetting to skip duplicates &rarr; output has repeats.</li>
+        <li>Using a hash set "for safety" instead of skipping &rarr; O(n) extra space, slower constants.</li>
+        <li>Two-pointer on an <em>unsorted</em> array &mdash; the technique relies on the monotonic relationship.</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener">LC 167 &middot; Two Sum II <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener">LC 125 &middot; Valid Palindrome <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener">LC 15 &middot; 3Sum <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">LC 11 &middot; Container Most Water <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="noopener">LC 42 &middot; Trapping Rain Water <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> When you see "sorted + sum/comparison", two pointers should be the first thought, not nested loops.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 5 - Sliding Window ============== -->
+<details class="lesson" id="lesson-5">
+  <summary>
+    <span class="num">05</span>
+    <span class="heading">
+      <span class="title">Pattern: Sliding Window</span>
+      <span class="subtitle">A window grows and shrinks across the array &mdash; never rewinds.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Maintain a contiguous "window" <code>[L, R]</code>. Expand <code>R</code>, contract <code>L</code> when the window violates a constraint. Each index enters and leaves the window at most once &rarr; O(n).</div>
+
+    <div class="recognise"><strong>When to recognise</strong> "longest / shortest / count of subarrays/substrings satisfying X" where X is checkable in O(1) per move.</div>
+    <div class="fingerprint">
+      <span class="tag">contiguous subarray</span>
+      <span class="tag">longest substring</span>
+      <span class="tag">max sum of window K</span>
+      <span class="tag">distinct chars constraint</span>
+    </div>
+
+    <div class="illustration">
+      <img src="assets/sliding-window.svg" alt="Sliding window on an array" />
+      <div class="caption">Fixed window = slide K. Variable window = stretch R, then shrink L while invalid.</div>
+    </div>
+
+    <h3>Template - variable window (most common)</h3>
+    <div class="code-tabs" data-snippet="sliding-window-template">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int best = 0, L = 0;
+unordered_map&lt;char,int&gt; cnt;
+for (int R = 0; R &lt; (int)s.size(); ++R) {
+    cnt[s[R]]++;
+    while (/* window invalid, e.g. cnt.size() &gt; K */) {
+        if (--cnt[s[L]] == 0) cnt.erase(s[L]);
+        L++;
+    }
+    best = max(best, R - L + 1);
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int best = 0, L = 0;
+Map&lt;Character, Integer&gt; cnt = new HashMap&lt;&gt;();
+for (int R = 0; R &lt; s.length(); R++) {
+    cnt.merge(s.charAt(R), 1, Integer::sum);
+    while (/* invalid */ ) {
+        char c = s.charAt(L++);
+        if (cnt.merge(c, -1, Integer::sum) == 0) cnt.remove(c);
+    }
+    best = Math.max(best, R - L + 1);
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>from collections import defaultdict
+cnt = defaultdict(int)
+best = L = 0
+for R, ch in enumerate(s):
+    cnt[ch] += 1
+    while invalid(cnt):
+        cnt[s[L]] -= 1
+        if cnt[s[L]] == 0:
+            del cnt[s[L]]
+        L += 1
+    best = max(best, R - L + 1)</code></pre>
+    </div>
+
+    <h3>Worked example - Longest Substring Without Repeating Characters (LC 3)</h3>
+    <div class="code-tabs" data-snippet="lsws-repeat">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int lengthOfLongestSubstring(string s) {
+    unordered_map&lt;char,int&gt; last;     // char -&gt; last index seen
+    int L = 0, best = 0;
+    for (int R = 0; R &lt; (int)s.size(); ++R) {
+        if (last.count(s[R]) &amp;&amp; last[s[R]] &gt;= L) {
+            L = last[s[R]] + 1;       // jump past the previous occurrence
+        }
+        last[s[R]] = R;
+        best = max(best, R - L + 1);
+    }
+    return best;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int lengthOfLongestSubstring(String s) {
+    Map&lt;Character, Integer&gt; last = new HashMap&lt;&gt;();
+    int L = 0, best = 0;
+    for (int R = 0; R &lt; s.length(); R++) {
+        char c = s.charAt(R);
+        if (last.containsKey(c) &amp;&amp; last.get(c) &gt;= L) {
+            L = last.get(c) + 1;
+        }
+        last.put(c, R);
+        best = Math.max(best, R - L + 1);
+    }
+    return best;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def length_of_longest_substring(s):
+    last, L, best = {}, 0, 0
+    for R, ch in enumerate(s):
+        if ch in last and last[ch] &gt;= L:
+            L = last[ch] + 1            # jump past previous occurrence
+        last[ch] = R
+        best = max(best, R - L + 1)
+    return best</code></pre>
+    </div>
+
+    <div class="complexity-row">
+      <span class="pill"><span class="k">time</span><span class="v">O(n)</span></span>
+      <span class="pill"><span class="k">space</span><span class="v">O(min(n, &Sigma;))</span></span>
+    </div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Re-iterating to recompute window sum &rarr; you wrecked the O(n).</li>
+        <li>Forgetting to shrink the window when it becomes invalid (infinite loop or wrong answer).</li>
+        <li>Fixed-window problems: forgetting to <em>drop</em> the element falling out of the left.</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">LC 3 &middot; Longest Substring no Repeat <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/maximum-average-subarray-i/" target="_blank" rel="noopener">LC 643 &middot; Max Avg Subarray <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/minimum-size-subarray-sum/" target="_blank" rel="noopener">LC 209 &middot; Min Size Subarray Sum <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/permutation-in-string/" target="_blank" rel="noopener">LC 567 &middot; Permutation in String <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="noopener">LC 76 &middot; Min Window Substring <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> If brute force is "try every subarray" (O(n&sup2;)), there's a 70% chance a sliding window collapses it to O(n).</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 6 - Fast & Slow Pointers ============== -->
+<details class="lesson" id="lesson-6">
+  <summary>
+    <span class="num">06</span>
+    <span class="heading">
+      <span class="title">Pattern: Fast &amp; Slow Pointers</span>
+      <span class="subtitle">Two pointers, different speeds &mdash; expose cycles and midpoints.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> <em>slow</em> moves 1 step, <em>fast</em> moves 2 steps. If they meet &rarr; cycle. When fast reaches the end &rarr; slow is at the middle. O(n) time, O(1) space.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> Linked-list cycle detection, finding the middle, "happy number" style loops, palindromic linked list.</div>
+
+    <div class="illustration">
+      <img src="assets/fast-slow.svg" alt="Floyd's tortoise and hare on a linked list" />
+      <div class="caption">Floyd's tortoise &amp; hare &mdash; the geometry guarantees they meet inside the cycle.</div>
+    </div>
+
+    <h3>Template - cycle detection</h3>
+    <div class="code-tabs" data-snippet="cycle-detect">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>bool hasCycle(ListNode* head) {
+    ListNode *slow = head, *fast = head;
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (slow == fast) return true;
+    }
+    return false;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>boolean hasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) return true;
+    }
+    return false;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def has_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            return True
+    return False</code></pre>
+    </div>
+
+    <h3>Why the math works (LC 142 - find the cycle start)</h3>
+    <p>Let <code>L</code> = distance from head to cycle start, <code>C</code> = cycle length, <code>k</code> = distance from cycle start to the meet point. When they meet: slow walked <code>L + k</code>, fast walked <code>2(L + k) = L + k + n&middot;C</code>. So <code>L = n&middot;C - k</code>. Reset slow to head; move both one step at a time. They re-meet exactly at the cycle's start.</p>
+
+    <div class="complexity-row">
+      <span class="pill"><span class="k">time</span><span class="v">O(n)</span></span>
+      <span class="pill"><span class="k">space</span><span class="v">O(1)</span></span>
+    </div>
+
+    <div class="callout warn"><strong>Common mistake</strong> Forgetting the <code>fast.next != null</code> check &rarr; null-pointer crash on even-length lists.</div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">LC 141 &middot; Linked List Cycle <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank" rel="noopener">LC 876 &middot; Middle of List <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">LC 142 &middot; Cycle Start <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/happy-number/" target="_blank" rel="noopener">LC 202 &middot; Happy Number <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="noopener">LC 287 &middot; Find Duplicate <span class="diff med">med</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> When the problem says "without extra space" on a linked list, the answer is almost always fast-slow pointers.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 7 - Modified Binary Search ============== -->
+<details class="lesson" id="lesson-7">
+  <summary>
+    <span class="num">07</span>
+    <span class="heading">
+      <span class="title">Pattern: Modified Binary Search</span>
+      <span class="subtitle">Halve the answer space, not just sorted arrays.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Whenever you can ask "is <code>X</code> too small / just right / too big?" in O(f(n)), you can binary search the answer in O(log range &middot; f(n)).</div>
+
+    <div class="recognise"><strong>When to recognise</strong> Sorted array, <em>or</em> the answer is a number in a monotonic range (search the answer), <em>or</em> rotated/peak-shaped arrays.</div>
+    <div class="fingerprint">
+      <span class="tag">sorted array</span>
+      <span class="tag">first/last position</span>
+      <span class="tag">rotated array</span>
+      <span class="tag">search the answer</span>
+      <span class="tag">peak / valley</span>
+    </div>
+
+    <div class="illustration">
+      <img src="assets/binary-search.svg" alt="Binary search halving" />
+      <div class="caption">Every comparison kills half the candidates.</div>
+    </div>
+
+    <h3>Template - "first true" (most bug-proof variant)</h3>
+    <div class="code-tabs" data-snippet="bsearch-firsttrue">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>// Find the smallest x in [lo, hi] such that ok(x) is true.
+// Assumes ok(x) is monotonic: false, false, ..., true, true.
+int lo = 0, hi = n;        // hi is exclusive sentinel
+while (lo &lt; hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (ok(mid)) hi = mid;     // mid is a candidate, try smaller
+    else         lo = mid + 1;
+}
+return lo;                  // == hi, the first true, or n if none</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int lo = 0, hi = n;
+while (lo &lt; hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (ok(mid)) hi = mid;
+    else         lo = mid + 1;
+}
+return lo;</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>lo, hi = 0, n
+while lo &lt; hi:
+    mid = (lo + hi) // 2
+    if ok(mid):  hi = mid
+    else:        lo = mid + 1
+return lo</code></pre>
+    </div>
+
+    <h3>Worked example - "Search in Rotated Sorted Array" (LC 33)</h3>
+    <p>One half of the array is always sorted. Detect which half, decide if the target lies in it, and recurse on that half.</p>
+    <div class="code-tabs" data-snippet="rotated-search">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int search(vector&lt;int&gt;&amp; a, int target) {
+    int lo = 0, hi = a.size() - 1;
+    while (lo &lt;= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (a[mid] == target) return mid;
+        if (a[lo] &lt;= a[mid]) {                 // left half sorted
+            if (a[lo] &lt;= target &amp;&amp; target &lt; a[mid]) hi = mid - 1;
+            else                                    lo = mid + 1;
+        } else {                                // right half sorted
+            if (a[mid] &lt; target &amp;&amp; target &lt;= a[hi]) lo = mid + 1;
+            else                                    hi = mid - 1;
+        }
+    }
+    return -1;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int search(int[] a, int target) {
+    int lo = 0, hi = a.length - 1;
+    while (lo &lt;= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (a[mid] == target) return mid;
+        if (a[lo] &lt;= a[mid]) {
+            if (a[lo] &lt;= target &amp;&amp; target &lt; a[mid]) hi = mid - 1;
+            else                                    lo = mid + 1;
+        } else {
+            if (a[mid] &lt; target &amp;&amp; target &lt;= a[hi]) lo = mid + 1;
+            else                                    hi = mid - 1;
+        }
+    }
+    return -1;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def search(a, target):
+    lo, hi = 0, len(a) - 1
+    while lo &lt;= hi:
+        mid = (lo + hi) // 2
+        if a[mid] == target: return mid
+        if a[lo] &lt;= a[mid]:                            # left half sorted
+            if a[lo] &lt;= target &lt; a[mid]: hi = mid - 1
+            else:                        lo = mid + 1
+        else:                                          # right half sorted
+            if a[mid] &lt; target &lt;= a[hi]: lo = mid + 1
+            else:                        hi = mid - 1
+    return -1</code></pre>
+    </div>
+
+    <h3>The "search the answer" trick</h3>
+    <p>If the question asks "min/max value of X" and you can <em>verify</em> any X in O(f(n)), binary-search the answer. Classic: Koko Eating Bananas (LC 875), Capacity to Ship in D Days (LC 1011), Split Array Largest Sum (LC 410).</p>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li><code>(lo + hi) / 2</code> overflows for huge ints in C++/Java &mdash; always use <code>lo + (hi - lo) / 2</code>.</li>
+        <li>Mixing <code>&lt;</code> and <code>&lt;=</code> bounds with mid-1 / mid &rarr; infinite loop. Pick a template and stick to it.</li>
+        <li>Forgetting the "answer space" is sometimes <code>[1, max_val]</code> not <code>[0, n-1]</code>.</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/binary-search/" target="_blank" rel="noopener">LC 704 &middot; Binary Search <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/first-bad-version/" target="_blank" rel="noopener">LC 278 &middot; First Bad Version <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">LC 34 &middot; First &amp; Last Position <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">LC 33 &middot; Rotated Search <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank" rel="noopener">LC 875 &middot; Koko Bananas <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">LC 4 &middot; Median of 2 Sorted <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Binary search isn't just for sorted arrays &mdash; it's for any monotonic predicate. That mental flip unlocks half the hard problems.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 8 - BFS & DFS ============== -->
+<details class="lesson" id="lesson-8">
+  <summary>
+    <span class="num">08</span>
+    <span class="heading">
+      <span class="title">Pattern: BFS &amp; DFS</span>
+      <span class="subtitle">Two ways to walk every reachable node &mdash; one careful, one curious.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">9 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> <strong>BFS</strong> with a queue &rarr; shortest path on an unweighted graph, level-order. <strong>DFS</strong> with a stack/recursion &rarr; connected components, cycles, topological sort, "all paths".</div>
+
+    <div class="recognise"><strong>When to recognise</strong> Trees, grids ("number of islands"), graphs, words with one-letter changes (LC 127), state-space exploration.</div>
+
+    <div class="illustration">
+      <img src="assets/bfs-dfs.svg" alt="BFS goes level by level; DFS dives deep" />
+      <div class="caption">Same nodes, different visit order. Pick by what you need.</div>
+    </div>
+
+    <h3>BFS template (grid)</h3>
+    <div class="code-tabs" data-snippet="bfs-grid">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int bfs(vector&lt;vector&lt;int&gt;&gt;&amp; g, int sr, int sc) {
+    int R = g.size(), C = g[0].size(), dist = 0;
+    queue&lt;pair&lt;int,int&gt;&gt; q;
+    vector&lt;vector&lt;bool&gt;&gt; seen(R, vector&lt;bool&gt;(C, false));
+    q.push({sr, sc}); seen[sr][sc] = true;
+    int dr[4] = {-1, 1, 0, 0}, dc[4] = {0, 0, -1, 1};
+    while (!q.empty()) {
+        int sz = q.size();
+        while (sz--) {
+            auto [r, c] = q.front(); q.pop();
+            // process (r, c)
+            for (int d = 0; d &lt; 4; ++d) {
+                int nr = r + dr[d], nc = c + dc[d];
+                if (nr&lt;0||nc&lt;0||nr&gt;=R||nc&gt;=C||seen[nr][nc]||g[nr][nc]==0) continue;
+                seen[nr][nc] = true;
+                q.push({nr, nc});
+            }
+        }
+        dist++;                  // finished one level
+    }
+    return dist;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int bfs(int[][] g, int sr, int sc) {
+    int R = g.length, C = g[0].length, dist = 0;
+    Deque&lt;int[]&gt; q = new ArrayDeque&lt;&gt;();
+    boolean[][] seen = new boolean[R][C];
+    q.offer(new int[]{sr, sc}); seen[sr][sc] = true;
+    int[] dr = { -1, 1, 0, 0 }, dc = { 0, 0, -1, 1 };
+    while (!q.isEmpty()) {
+        int sz = q.size();
+        for (int i = 0; i &lt; sz; i++) {
+            int[] cur = q.poll();
+            for (int d = 0; d &lt; 4; d++) {
+                int nr = cur[0] + dr[d], nc = cur[1] + dc[d];
+                if (nr&lt;0||nc&lt;0||nr&gt;=R||nc&gt;=C||seen[nr][nc]||g[nr][nc]==0) continue;
+                seen[nr][nc] = true;
+                q.offer(new int[]{nr, nc});
+            }
+        }
+        dist++;
+    }
+    return dist;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>from collections import deque
+def bfs(g, sr, sc):
+    R, C = len(g), len(g[0])
+    seen = [[False]*C for _ in range(R)]
+    q = deque([(sr, sc)]); seen[sr][sc] = True
+    dist = 0
+    while q:
+        for _ in range(len(q)):
+            r, c = q.popleft()
+            # process (r, c)
+            for dr, dc in ((-1,0),(1,0),(0,-1),(0,1)):
+                nr, nc = r + dr, c + dc
+                if 0 &lt;= nr &lt; R and 0 &lt;= nc &lt; C and not seen[nr][nc] and g[nr][nc]:
+                    seen[nr][nc] = True
+                    q.append((nr, nc))
+        dist += 1
+    return dist</code></pre>
+    </div>
+
+    <h3>DFS template (recursive)</h3>
+    <div class="code-tabs" data-snippet="dfs-rec">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>void dfs(int u, vector&lt;vector&lt;int&gt;&gt;&amp; adj, vector&lt;bool&gt;&amp; seen) {
+    seen[u] = true;
+    // pre-order action on u
+    for (int v : adj[u]) {
+        if (!seen[v]) dfs(v, adj, seen);
+    }
+    // post-order action on u
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>void dfs(int u, List&lt;List&lt;Integer&gt;&gt; adj, boolean[] seen) {
+    seen[u] = true;
+    for (int v : adj.get(u)) {
+        if (!seen[v]) dfs(v, adj, seen);
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def dfs(u, adj, seen):
+    seen[u] = True
+    for v in adj[u]:
+        if not seen[v]:
+            dfs(v, adj, seen)</code></pre>
+    </div>
+
+    <div class="callout tip"><strong>Tip</strong> For "number of islands" do DFS or BFS &mdash; either works. For "shortest path in moves", you <em>must</em> use BFS so you stop at the first time you reach the target.</div>
+
+    <h3>Tree traversals at a glance</h3>
+    <div class="cols-3">
+      <div class="col-card"><h4>Pre-order</h4><p>root &rarr; left &rarr; right. Use for serialising, copying.</p></div>
+      <div class="col-card"><h4>In-order</h4><p>left &rarr; root &rarr; right. For BST &rarr; sorted output.</p></div>
+      <div class="col-card"><h4>Post-order</h4><p>left &rarr; right &rarr; root. Use when child results feed parent (e.g. tree DP, deletion).</p></div>
+    </div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Mark visited <em>when you enqueue</em> in BFS, not when you dequeue &mdash; otherwise nodes get added multiple times.</li>
+        <li>Deep recursion in Python: stack overflow at ~1000. Use iterative DFS or <code>sys.setrecursionlimit</code> for grids &gt; 1000.</li>
+        <li>Forgetting to reset <code>visited</code> when reusing across queries.</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">LC 200 &middot; Number of Islands <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">LC 102 &middot; Level Order <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/rotting-oranges/" target="_blank" rel="noopener">LC 994 &middot; Rotting Oranges <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/clone-graph/" target="_blank" rel="noopener">LC 133 &middot; Clone Graph <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">LC 127 &middot; Word Ladder <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> BFS for shortest, DFS for thorough. Master both templates and 30% of medium-level problems become routine.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 9 - Backtracking ============== -->
+<details class="lesson" id="lesson-9">
+  <summary>
+    <span class="num">09</span>
+    <span class="heading">
+      <span class="title">Pattern: Backtracking &amp; Subsets</span>
+      <span class="subtitle">Try, recurse, undo. The exhaustive-but-smart search.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">8 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Build the solution one choice at a time. At each step, <em>add</em> a candidate, <em>recurse</em>, then <em>remove</em> it (the "undo"). Prune branches you can prove won't work.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> "Generate <em>all</em> X", subsets, permutations, combinations, N-Queens, Sudoku, word search.</div>
+
+    <div class="illustration">
+      <img src="assets/backtracking-tree.svg" alt="Backtracking decision tree" />
+      <div class="caption">Each node = a partial solution. Red branches = pruned (invalid).</div>
+    </div>
+
+    <h3>Universal template</h3>
+    <div class="code-tabs" data-snippet="backtrack-template">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>void backtrack(State&amp; cur, vector&lt;Result&gt;&amp; out) {
+    if (isComplete(cur)) { out.push_back(snapshot(cur)); return; }
+    for (Choice c : choices(cur)) {
+        if (!feasible(cur, c)) continue;       // prune
+        apply(cur, c);                          // try
+        backtrack(cur, out);                    // recurse
+        undo(cur, c);                           // undo
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>void backtrack(State cur, List&lt;Result&gt; out) {
+    if (isComplete(cur)) { out.add(snapshot(cur)); return; }
+    for (Choice c : choices(cur)) {
+        if (!feasible(cur, c)) continue;
+        apply(cur, c);
+        backtrack(cur, out);
+        undo(cur, c);
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def backtrack(cur, out):
+    if is_complete(cur):
+        out.append(snapshot(cur))
+        return
+    for c in choices(cur):
+        if not feasible(cur, c):
+            continue
+        apply(cur, c)
+        backtrack(cur, out)
+        undo(cur, c)</code></pre>
+    </div>
+
+    <h3>Worked example - all subsets (LC 78)</h3>
+    <div class="code-tabs" data-snippet="subsets">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>void dfs(int start, vector&lt;int&gt;&amp; nums, vector&lt;int&gt;&amp; cur, vector&lt;vector&lt;int&gt;&gt;&amp; out) {
+    out.push_back(cur);
+    for (int i = start; i &lt; (int)nums.size(); ++i) {
+        cur.push_back(nums[i]);
+        dfs(i + 1, nums, cur, out);
+        cur.pop_back();             // undo
+    }
+}
+vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) {
+    vector&lt;vector&lt;int&gt;&gt; out;
+    vector&lt;int&gt; cur;
+    dfs(0, nums, cur, out);
+    return out;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>void dfs(int start, int[] nums, List&lt;Integer&gt; cur, List&lt;List&lt;Integer&gt;&gt; out) {
+    out.add(new ArrayList&lt;&gt;(cur));
+    for (int i = start; i &lt; nums.length; i++) {
+        cur.add(nums[i]);
+        dfs(i + 1, nums, cur, out);
+        cur.remove(cur.size() - 1);
+    }
+}
+List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
+    List&lt;List&lt;Integer&gt;&gt; out = new ArrayList&lt;&gt;();
+    dfs(0, nums, new ArrayList&lt;&gt;(), out);
+    return out;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def subsets(nums):
+    out, cur = [], []
+    def dfs(start):
+        out.append(cur[:])
+        for i in range(start, len(nums)):
+            cur.append(nums[i])
+            dfs(i + 1)
+            cur.pop()                  # undo
+    dfs(0)
+    return out</code></pre>
+    </div>
+
+    <div class="complexity-row">
+      <span class="pill"><span class="k">subsets time</span><span class="v">O(2&#710;n &middot; n)</span></span>
+      <span class="pill"><span class="k">permute time</span><span class="v">O(n! &middot; n)</span></span>
+      <span class="pill"><span class="k">stack</span><span class="v">O(n)</span></span>
+    </div>
+
+    <div class="callout tip"><strong>Pruning matters</strong> N-Queens with no pruning explodes to 8! = 40320 boards. With diagonal/column pruning, only 92 reach the leaf. Cut early, cut often.</div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Forgetting to copy <code>cur</code> when storing into <code>out</code> &mdash; you'll see the same (empty) list everywhere.</li>
+        <li>Missing the "undo" &rarr; sibling branches inherit a polluted state.</li>
+        <li>Not skipping duplicates when input has duplicates (e.g. LC 90 Subsets II).</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/subsets/" target="_blank" rel="noopener">LC 78 &middot; Subsets <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/permutations/" target="_blank" rel="noopener">LC 46 &middot; Permutations <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="noopener">LC 39 &middot; Combination Sum <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">LC 79 &middot; Word Search <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/n-queens/" target="_blank" rel="noopener">LC 51 &middot; N-Queens <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Backtracking is just DFS on the choice-tree. Once you have the template, you only customise <code>choices</code>, <code>feasible</code>, and <code>isComplete</code>.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 10 - DP ============== -->
+<details class="lesson" id="lesson-10">
+  <summary>
+    <span class="num">10</span>
+    <span class="heading">
+      <span class="title">Pattern: Dynamic Programming</span>
+      <span class="subtitle">Solve once, look up forever. The interview boss-fight.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">12 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> DP = recursion + caching. You qualify if (1) the problem has <em>optimal substructure</em> (best of whole = combine best of parts) and (2) <em>overlapping subproblems</em> (same sub-question shows up many times). Define a state, write the transition, fill bottom-up.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> "Count the ways", "minimum / maximum / longest / shortest", "can you reach", problems that reduce to "choose / don't choose at step i".</div>
+    <div class="fingerprint">
+      <span class="tag">count / optimise</span>
+      <span class="tag">choose / skip</span>
+      <span class="tag">grid path</span>
+      <span class="tag">subsequence</span>
+      <span class="tag">knapsack</span>
+    </div>
+
+    <div class="illustration">
+      <img src="assets/dp-table.svg" alt="DP table" />
+      <div class="caption">Edit distance table. Each cell = answer to a smaller version of the problem.</div>
+    </div>
+
+    <h3>The 4 questions you ALWAYS answer</h3>
+    <ol>
+      <li><strong>State.</strong> What does <code>dp[i]</code> (or <code>dp[i][j]</code>) <em>mean</em>? Be precise. e.g. "<code>dp[i]</code> = length of LIS ending exactly at index <code>i</code>."</li>
+      <li><strong>Transition.</strong> How is <code>dp[i]</code> built from smaller indices? Write the recurrence.</li>
+      <li><strong>Base case.</strong> What are <code>dp[0]</code> or <code>dp[i][0]</code> trivially?</li>
+      <li><strong>Order.</strong> Iterate in an order where dependencies are already computed.</li>
+    </ol>
+
+    <h3>Climb the ladder: 1-D &rarr; 2-D &rarr; knapsack</h3>
+
+    <h4>1-D: House Robber (LC 198)</h4>
+    <p>State: <code>dp[i]</code> = max loot using houses <code>0..i</code>. Transition: <code>dp[i] = max(dp[i-1], dp[i-2] + nums[i])</code>.</p>
+    <div class="code-tabs" data-snippet="house-robber">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int rob(vector&lt;int&gt;&amp; nums) {
+    int prev2 = 0, prev1 = 0;
+    for (int x : nums) {
+        int cur = max(prev1, prev2 + x);
+        prev2 = prev1;
+        prev1 = cur;
+    }
+    return prev1;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int rob(int[] nums) {
+    int prev2 = 0, prev1 = 0;
+    for (int x : nums) {
+        int cur = Math.max(prev1, prev2 + x);
+        prev2 = prev1;
+        prev1 = cur;
+    }
+    return prev1;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def rob(nums):
+    prev2 = prev1 = 0
+    for x in nums:
+        prev2, prev1 = prev1, max(prev1, prev2 + x)
+    return prev1</code></pre>
+    </div>
+
+    <h4>2-D: Longest Common Subsequence (LC 1143)</h4>
+    <p>State: <code>dp[i][j]</code> = LCS of <code>s1[:i]</code> and <code>s2[:j]</code>. Transition: if last chars match, <code>1 + dp[i-1][j-1]</code>; otherwise <code>max(dp[i-1][j], dp[i][j-1])</code>.</p>
+    <div class="code-tabs" data-snippet="lcs">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int lcs(string a, string b) {
+    int n = a.size(), m = b.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(m + 1, 0));
+    for (int i = 1; i &lt;= n; ++i)
+        for (int j = 1; j &lt;= m; ++j)
+            dp[i][j] = (a[i-1] == b[j-1])
+                ? dp[i-1][j-1] + 1
+                : max(dp[i-1][j], dp[i][j-1]);
+    return dp[n][m];
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int lcs(String a, String b) {
+    int n = a.length(), m = b.length();
+    int[][] dp = new int[n + 1][m + 1];
+    for (int i = 1; i &lt;= n; i++)
+        for (int j = 1; j &lt;= m; j++)
+            dp[i][j] = (a.charAt(i-1) == b.charAt(j-1))
+                ? dp[i-1][j-1] + 1
+                : Math.max(dp[i-1][j], dp[i][j-1]);
+    return dp[n][m];
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def lcs(a, b):
+    n, m = len(a), len(b)
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if a[i-1] == b[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    return dp[n][m]</code></pre>
+    </div>
+
+    <h4>Knapsack (0/1)</h4>
+    <p>Items with weight <code>w[i]</code> and value <code>v[i]</code>; capacity <code>W</code>. State <code>dp[i][c]</code> = max value using first <code>i</code> items with capacity <code>c</code>. For each item: <em>skip</em> or <em>take</em> (if it fits).</p>
+    <div class="code-tabs" data-snippet="knapsack">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int knapsack(vector&lt;int&gt;&amp; w, vector&lt;int&gt;&amp; v, int W) {
+    int n = w.size();
+    vector&lt;int&gt; dp(W + 1, 0);              // space optimised
+    for (int i = 0; i &lt; n; ++i)
+        for (int c = W; c &gt;= w[i]; --c)    // iterate down to avoid reuse
+            dp[c] = max(dp[c], dp[c - w[i]] + v[i]);
+    return dp[W];
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int knapsack(int[] w, int[] v, int W) {
+    int[] dp = new int[W + 1];
+    for (int i = 0; i &lt; w.length; i++)
+        for (int c = W; c &gt;= w[i]; c--)
+            dp[c] = Math.max(dp[c], dp[c - w[i]] + v[i]);
+    return dp[W];
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def knapsack(w, v, W):
+    dp = [0] * (W + 1)
+    for i in range(len(w)):
+        for c in range(W, w[i] - 1, -1):     # right-to-left = 0/1
+            dp[c] = max(dp[c], dp[c - w[i]] + v[i])
+    return dp[W]</code></pre>
+    </div>
+
+    <div class="callout tip"><strong>Top-down or bottom-up?</strong> Top-down (recursion + memo) is easier to write and great in interviews when the state isn't obvious. Bottom-up (iterative tabulation) is usually faster constants and easier to space-optimise (just keep the last row).</div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Vague state definition ("<code>dp[i]</code> is something with index i") &rarr; broken transition.</li>
+        <li>Counting "starting at i" vs "ending at i" inconsistently &rarr; off-by-one bugs.</li>
+        <li>Knapsack: forgetting to iterate capacity <em>downwards</em> for 0/1 &mdash; you'll accidentally allow each item more than once.</li>
+        <li>Forgetting to handle empty input as a base case.</li>
+      </ul>
+    </div>
+
+    <h3>Practice (paced)</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">LC 70 &middot; Climbing Stairs <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="noopener">LC 198 &middot; House Robber <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">LC 322 &middot; Coin Change <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank" rel="noopener">LC 300 &middot; LIS <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank" rel="noopener">LC 1143 &middot; LCS <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/edit-distance/" target="_blank" rel="noopener">LC 72 &middot; Edit Distance <span class="diff hard">hard</span></a>
+      <a href="https://leetcode.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">LC 416 &middot; Partition Equal <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="noopener">LC 309 &middot; Stock w/ Cooldown <span class="diff med">med</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> DP feels like wizardry until you internalise the 4 questions. Then every new DP problem is just a fill-in-the-blank exercise.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 11 - Greedy ============== -->
+<details class="lesson" id="lesson-11">
+  <summary>
+    <span class="num">11</span>
+    <span class="heading">
+      <span class="title">Pattern: Greedy</span>
+      <span class="subtitle">Pick the locally best choice and hope it's globally right.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Greedy = make the locally optimal choice and never reconsider. Works only when an <em>exchange argument</em> proves the local choice is part of some optimal solution. Otherwise, use DP.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> Interval scheduling, jump games, assigning resources, Huffman, classroom intervals.</div>
+
+    <h3>Worked example - Interval Scheduling (max non-overlapping)</h3>
+    <p>Sort by <em>end time</em>. Always pick the next interval that starts after the last one ended. Why end-time? An interval that ends earlier leaves more room for the rest.</p>
+    <div class="code-tabs" data-snippet="interval-sched">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int maxNonOverlap(vector&lt;vector&lt;int&gt;&gt;&amp; iv) {
+    sort(iv.begin(), iv.end(),
+         [](auto&amp; a, auto&amp; b){ return a[1] &lt; b[1]; });   // by end
+    int count = 0, lastEnd = INT_MIN;
+    for (auto&amp; x : iv) {
+        if (x[0] &gt;= lastEnd) { count++; lastEnd = x[1]; }
+    }
+    return count;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int maxNonOverlap(int[][] iv) {
+    Arrays.sort(iv, (a, b) -&gt; Integer.compare(a[1], b[1]));
+    int count = 0, lastEnd = Integer.MIN_VALUE;
+    for (int[] x : iv) {
+        if (x[0] &gt;= lastEnd) { count++; lastEnd = x[1]; }
+    }
+    return count;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def max_non_overlap(iv):
+    iv.sort(key=lambda x: x[1])                # by end
+    count, last_end = 0, float('-inf')
+    for s, e in iv:
+        if s &gt;= last_end:
+            count += 1
+            last_end = e
+    return count</code></pre>
+    </div>
+
+    <h3>The "exchange argument" - why greedy works (proof sketch)</h3>
+    <p>Suppose some optimal solution doesn't pick the earliest-ending interval. Swap it with the earliest-ending one. The new solution is at least as good (still non-overlapping, same size). Repeat &rarr; greedy is one valid optimum.</p>
+
+    <h3>When greedy <em>fails</em></h3>
+    <p>Coin Change with coins <code>{1, 3, 4}</code>, target 6. Greedy picks 4 + 1 + 1 (3 coins). Optimal is 3 + 3 (2 coins). The local "biggest first" choice forecloses a better global option. <strong>Lesson:</strong> if you can't prove an exchange argument, fall back to DP.</p>
+
+    <div class="callout warn"><strong>Interview script</strong> If you're not sure greedy is correct, say so: "Greedy might work here &mdash; I think sorting by deadline gives the right ordering, but let me think if there's a counter-example&hellip;" Interviewers reward this honesty.</div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/jump-game/" target="_blank" rel="noopener">LC 55 &middot; Jump Game <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/jump-game-ii/" target="_blank" rel="noopener">LC 45 &middot; Jump Game II <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">LC 435 &middot; Non-Overlapping Intervals <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener">LC 134 &middot; Gas Station <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/task-scheduler/" target="_blank" rel="noopener">LC 621 &middot; Task Scheduler <span class="diff med">med</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Greedy is the fastest pattern when it works &mdash; and a disaster when it doesn't. Always sanity-check with a tiny counter-example before committing.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 12 - Top K Heap ============== -->
+<details class="lesson" id="lesson-12">
+  <summary>
+    <span class="num">12</span>
+    <span class="heading">
+      <span class="title">Pattern: Top-K with Heap</span>
+      <span class="subtitle">Keep a small priority queue of size K &mdash; everything else falls out.</span>
+    </span>
+    <span class="meta"><span class="badge pattern">pattern</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> "K largest" &rarr; <strong>min</strong>-heap of size K (kick the smallest). "K smallest" &rarr; <strong>max</strong>-heap of size K. Total cost: O(n log K) time, O(K) space &mdash; way better than sorting (O(n log n)) when K &lt;&lt; n.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> "K largest / smallest / closest", "merge K sorted", "median of stream", scheduling by priority.</div>
+
+    <div class="illustration">
+      <img src="assets/heap.svg" alt="Min-heap structure" />
+      <div class="caption">Min-heap: root holds the smallest. Push/pop are O(log n).</div>
+    </div>
+
+    <h3>Template - K largest elements (LC 215)</h3>
+    <div class="code-tabs" data-snippet="topk">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;   // min-heap
+    for (int x : nums) {
+        pq.push(x);
+        if ((int)pq.size() &gt; k) pq.pop();    // keep size = k
+    }
+    return pq.top();                          // smallest of top-k = kth largest
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int findKthLargest(int[] nums, int k) {
+    PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();   // min-heap
+    for (int x : nums) {
+        pq.offer(x);
+        if (pq.size() &gt; k) pq.poll();
+    }
+    return pq.peek();
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>import heapq
+def find_kth_largest(nums, k):
+    pq = []                                    # min-heap
+    for x in nums:
+        heapq.heappush(pq, x)
+        if len(pq) &gt; k:
+            heapq.heappop(pq)
+    return pq[0]</code></pre>
+    </div>
+
+    <h3>Median of a stream (LC 295) - two heaps</h3>
+    <p>Keep a max-heap (<code>lo</code>) for the smaller half and a min-heap (<code>hi</code>) for the larger half. Sizes differ by at most 1. Median = top of larger, or average of tops if equal.</p>
+    <div class="code-tabs" data-snippet="median-stream">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class MedianFinder {
+    priority_queue&lt;int&gt; lo;                                // max-heap (smaller half)
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; hi;     // min-heap (larger half)
+public:
+    void addNum(int x) {
+        lo.push(x);
+        hi.push(lo.top()); lo.pop();
+        if (hi.size() &gt; lo.size()) { lo.push(hi.top()); hi.pop(); }
+    }
+    double findMedian() {
+        return lo.size() &gt; hi.size() ? lo.top() : (lo.top() + hi.top()) / 2.0;
+    }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>class MedianFinder {
+    PriorityQueue&lt;Integer&gt; lo = new PriorityQueue&lt;&gt;(Comparator.reverseOrder());
+    PriorityQueue&lt;Integer&gt; hi = new PriorityQueue&lt;&gt;();
+    public void addNum(int x) {
+        lo.offer(x);
+        hi.offer(lo.poll());
+        if (hi.size() &gt; lo.size()) lo.offer(hi.poll());
+    }
+    public double findMedian() {
+        return lo.size() &gt; hi.size() ? lo.peek() : (lo.peek() + hi.peek()) / 2.0;
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>import heapq
+class MedianFinder:
+    def __init__(self):
+        self.lo = []     # max-heap as negatives
+        self.hi = []     # min-heap
+    def addNum(self, x):
+        heapq.heappush(self.lo, -x)
+        heapq.heappush(self.hi, -heapq.heappop(self.lo))
+        if len(self.hi) &gt; len(self.lo):
+            heapq.heappush(self.lo, -heapq.heappop(self.hi))
+    def findMedian(self):
+        if len(self.lo) &gt; len(self.hi):
+            return -self.lo[0]
+        return (-self.lo[0] + self.hi[0]) / 2</code></pre>
+    </div>
+
+    <div class="callout tip"><strong>Quickselect</strong> beats heap for one-shot K-th largest (avg O(n)). But heap wins for streaming, "top K so far at any moment", or when K &lt;&lt; n and the constants matter.</div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener">LC 215 &middot; Kth Largest <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" rel="noopener">LC 347 &middot; Top K Frequent <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank" rel="noopener">LC 973 &middot; K Closest Points <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">LC 23 &middot; Merge K Lists <span class="diff hard">hard</span></a>
+      <a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="noopener">LC 295 &middot; Median of Stream <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Heap = "I only care about the best K I've seen". Cheap, elegant, often the difference between TLE and accepted.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 13 - Union Find ============== -->
+<details class="lesson" id="lesson-13">
+  <summary>
+    <span class="num">13</span>
+    <span class="heading">
+      <span class="title">Pattern: Union-Find (DSU)</span>
+      <span class="subtitle">"Are these two in the same group?" &mdash; answered in ~constant time.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> DSU tracks disjoint groups by storing a parent pointer per element. Two ops: <code>find(x)</code> (which group?) and <code>union(x, y)</code> (merge groups). With <em>path compression + union by rank</em>, both are essentially O(&alpha;(n)) &mdash; the inverse Ackermann, basically constant.</div>
+
+    <div class="recognise"><strong>When to recognise</strong> "Number of connected components", "is the graph still connected after removing edges in reverse", Kruskal's MST, accounts merge.</div>
+
+    <div class="illustration">
+      <img src="assets/union-find.svg" alt="Union-Find merging trees" />
+      <div class="caption">Each tree = one component. Union = attach one root under the other.</div>
+    </div>
+
+    <h3>Template - with both optimisations</h3>
+    <div class="code-tabs" data-snippet="dsu">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>struct DSU {
+    vector&lt;int&gt; p, r;
+    DSU(int n) : p(n), r(n, 0) { iota(p.begin(), p.end(), 0); }
+    int find(int x) {
+        while (p[x] != x) { p[x] = p[p[x]]; x = p[x]; }  // path compression
+        return x;
+    }
+    bool unite(int a, int b) {
+        a = find(a); b = find(b);
+        if (a == b) return false;
+        if (r[a] &lt; r[b]) swap(a, b);
+        p[b] = a;
+        if (r[a] == r[b]) r[a]++;
+        return true;
+    }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>class DSU {
+    int[] p, r;
+    DSU(int n) { p = new int[n]; r = new int[n]; for (int i = 0; i &lt; n; i++) p[i] = i; }
+    int find(int x) {
+        while (p[x] != x) { p[x] = p[p[x]]; x = p[x]; }
+        return x;
+    }
+    boolean unite(int a, int b) {
+        a = find(a); b = find(b);
+        if (a == b) return false;
+        if (r[a] &lt; r[b]) { int t = a; a = b; b = t; }
+        p[b] = a;
+        if (r[a] == r[b]) r[a]++;
+        return true;
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class DSU:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.r = [0] * n
+    def find(self, x):
+        while self.p[x] != x:
+            self.p[x] = self.p[self.p[x]]      # path compression
+            x = self.p[x]
+        return x
+    def unite(self, a, b):
+        a, b = self.find(a), self.find(b)
+        if a == b:
+            return False
+        if self.r[a] &lt; self.r[b]:
+            a, b = b, a
+        self.p[b] = a
+        if self.r[a] == self.r[b]:
+            self.r[a] += 1
+        return True</code></pre>
+    </div>
+
+    <h3>Worked example - Number of Provinces (LC 547)</h3>
+    <p>Treat each city as a node, each <code>isConnected[i][j] == 1</code> as an edge. Union them, then count distinct roots.</p>
+
+    <div class="callout tip"><strong>Reverse-time trick</strong> When the question asks "after each edge removed, is graph still connected?" &mdash; reverse the timeline: start from the final graph and <em>add</em> edges (union), answer queries in reverse.</div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/number-of-provinces/" target="_blank" rel="noopener">LC 547 &middot; Provinces <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/graph-valid-tree/" target="_blank" rel="noopener">LC 261 &middot; Graph Valid Tree <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/accounts-merge/" target="_blank" rel="noopener">LC 721 &middot; Accounts Merge <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/redundant-connection/" target="_blank" rel="noopener">LC 684 &middot; Redundant Connection <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/swim-in-rising-water/" target="_blank" rel="noopener">LC 778 &middot; Swim in Rising Water <span class="diff hard">hard</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> If the problem screams "groups + merges + queries", DSU is faster and cleaner than BFS/DFS on the same graph.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 14 - Graph Algos ============== -->
+<details class="lesson" id="lesson-14">
+  <summary>
+    <span class="num">14</span>
+    <span class="heading">
+      <span class="title">Pattern: Graph Algorithms</span>
+      <span class="subtitle">Dijkstra, Bellman-Ford, MST, Topological Sort &mdash; pick by the constraint.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">9 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> For shortest paths: BFS (unweighted) &rarr; Dijkstra (non-negative weights) &rarr; Bellman-Ford (negative weights). For MST: Kruskal (sort edges + DSU) or Prim (heap). For ordering tasks with prerequisites: topological sort.</div>
+
+    <div class="illustration">
+      <img src="assets/graph-algos.svg" alt="Weighted graph for Dijkstra" />
+      <div class="caption">Dijkstra relaxes the cheapest unvisited node every step.</div>
+    </div>
+
+    <h3>Dijkstra (single-source shortest path, non-negative weights)</h3>
+    <div class="code-tabs" data-snippet="dijkstra">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>vector&lt;int&gt; dijkstra(int n, vector&lt;vector&lt;pair&lt;int,int&gt;&gt;&gt;&amp; adj, int s) {
+    vector&lt;int&gt; dist(n, INT_MAX);
+    dist[s] = 0;
+    priority_queue&lt;pair&lt;int,int&gt;, vector&lt;pair&lt;int,int&gt;&gt;, greater&lt;&gt;&gt; pq;
+    pq.push({0, s});
+    while (!pq.empty()) {
+        auto [d, u] = pq.top(); pq.pop();
+        if (d &gt; dist[u]) continue;             // stale
+        for (auto [v, w] : adj[u]) {
+            if (d + w &lt; dist[v]) {
+                dist[v] = d + w;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int[] dijkstra(int n, List&lt;int[]&gt;[] adj, int s) {
+    int[] dist = new int[n];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[s] = 0;
+    PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; a[0] - b[0]);
+    pq.offer(new int[]{0, s});
+    while (!pq.isEmpty()) {
+        int[] cur = pq.poll();
+        int d = cur[0], u = cur[1];
+        if (d &gt; dist[u]) continue;
+        for (int[] e : adj[u]) {
+            int v = e[0], w = e[1];
+            if (d + w &lt; dist[v]) {
+                dist[v] = d + w;
+                pq.offer(new int[]{dist[v], v});
+            }
+        }
+    }
+    return dist;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>import heapq
+def dijkstra(n, adj, s):
+    dist = [float('inf')] * n
+    dist[s] = 0
+    pq = [(0, s)]
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d &gt; dist[u]:
+            continue
+        for v, w in adj[u]:
+            if d + w &lt; dist[v]:
+                dist[v] = d + w
+                heapq.heappush(pq, (dist[v], v))
+    return dist</code></pre>
+    </div>
+
+    <h3>Topological Sort (Kahn's BFS variant)</h3>
+    <div class="code-tabs" data-snippet="topo">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>vector&lt;int&gt; topoSort(int n, vector&lt;vector&lt;int&gt;&gt;&amp; adj) {
+    vector&lt;int&gt; indeg(n, 0), out;
+    for (int u = 0; u &lt; n; ++u) for (int v : adj[u]) indeg[v]++;
+    queue&lt;int&gt; q;
+    for (int i = 0; i &lt; n; ++i) if (indeg[i] == 0) q.push(i);
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        out.push_back(u);
+        for (int v : adj[u]) if (--indeg[v] == 0) q.push(v);
+    }
+    return (int)out.size() == n ? out : vector&lt;int&gt;{};   // empty = cycle
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int[] topoSort(int n, List&lt;List&lt;Integer&gt;&gt; adj) {
+    int[] indeg = new int[n];
+    for (int u = 0; u &lt; n; u++) for (int v : adj.get(u)) indeg[v]++;
+    Deque&lt;Integer&gt; q = new ArrayDeque&lt;&gt;();
+    for (int i = 0; i &lt; n; i++) if (indeg[i] == 0) q.offer(i);
+    int[] out = new int[n]; int k = 0;
+    while (!q.isEmpty()) {
+        int u = q.poll();
+        out[k++] = u;
+        for (int v : adj.get(u)) if (--indeg[v] == 0) q.offer(v);
+    }
+    return k == n ? out : new int[0];
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>from collections import deque
+def topo_sort(n, adj):
+    indeg = [0] * n
+    for u in range(n):
+        for v in adj[u]:
+            indeg[v] += 1
+    q = deque(i for i in range(n) if indeg[i] == 0)
+    out = []
+    while q:
+        u = q.popleft()
+        out.append(u)
+        for v in adj[u]:
+            indeg[v] -= 1
+            if indeg[v] == 0:
+                q.append(v)
+    return out if len(out) == n else []         # [] = cycle</code></pre>
+    </div>
+
+    <h3>Algorithm cheat sheet</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Algorithm</th><th>Use case</th><th>Time</th><th>Constraint</th></tr></thead>
+      <tbody>
+        <tr><td>BFS</td>            <td>shortest path, unweighted</td>           <td>O(V + E)</td>      <td>edge weight = 1</td></tr>
+        <tr><td>Dijkstra</td>       <td>shortest path, weighted</td>             <td>O((V + E) log V)</td><td>no negative edges</td></tr>
+        <tr><td>Bellman-Ford</td>   <td>shortest path with neg edges</td>        <td>O(V &middot; E)</td><td>detects negative cycle</td></tr>
+        <tr><td>Floyd-Warshall</td> <td>all-pairs shortest path</td>             <td>O(V&sup3;)</td>      <td>V &le; ~400</td></tr>
+        <tr><td>Kruskal</td>        <td>MST, sparse graph</td>                   <td>O(E log E)</td>    <td>uses DSU</td></tr>
+        <tr><td>Prim</td>           <td>MST, dense graph</td>                    <td>O(E log V)</td>    <td>uses heap</td></tr>
+        <tr><td>Topo sort (Kahn)</td><td>order tasks with prereqs</td>           <td>O(V + E)</td>      <td>DAG only</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout warn"><strong>Common mistakes</strong>
+      <ul>
+        <li>Using Dijkstra with negative weights &rarr; wrong answer. Switch to Bellman-Ford.</li>
+        <li>Topo sort on a graph with a cycle &rarr; output will be shorter than n. Always check.</li>
+        <li>Building <code>adj</code> as a matrix when V is large &rarr; memory blows up. Use adjacency list.</li>
+      </ul>
+    </div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/network-delay-time/" target="_blank" rel="noopener">LC 743 &middot; Network Delay (Dijkstra) <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener">LC 787 &middot; Cheapest Flights <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="noopener">LC 207 &middot; Course Schedule <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener">LC 210 &middot; Course Schedule II <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/min-cost-to-connect-all-points/" target="_blank" rel="noopener">LC 1584 &middot; MST <span class="diff med">med</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Match the algorithm to the constraint, not to your favourite. Knowing <em>when</em> to use each is the interview skill &mdash; the code is templated.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 15 - Bit Manipulation ============== -->
+<details class="lesson" id="lesson-15">
+  <summary>
+    <span class="num">15</span>
+    <span class="heading">
+      <span class="title">Pattern: Bit Manipulation</span>
+      <span class="subtitle">XOR magic, subsets as integers, low-bit tricks.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Every integer is a bitmask. XOR cancels duplicates, AND tests bits, OR sets bits, shifts multiply/divide by 2. Master 5 tricks and you'll never freeze on bit problems.</div>
+
+    <h3>The 5 must-know operations</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Trick</th><th>Code</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Test bit <code>k</code></td>    <td><code>x &amp; (1 &lt;&lt; k)</code></td>     <td>non-zero if bit k is set</td></tr>
+        <tr><td>Set bit <code>k</code></td>     <td><code>x |= (1 &lt;&lt; k)</code></td>    <td>turn on bit k</td></tr>
+        <tr><td>Clear bit <code>k</code></td>   <td><code>x &amp;= ~(1 &lt;&lt; k)</code></td> <td>turn off bit k</td></tr>
+        <tr><td>Toggle bit <code>k</code></td>  <td><code>x ^= (1 &lt;&lt; k)</code></td>    <td>flip bit k</td></tr>
+        <tr><td>Lowest set bit</td>             <td><code>x &amp; -x</code></td>             <td>isolate the rightmost 1</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>XOR cancellation - Single Number (LC 136)</h3>
+    <p>Every number appears twice except one. <code>a XOR a = 0</code>, <code>a XOR 0 = a</code>. XOR the whole array; the duplicates cancel, the loner survives.</p>
+    <div class="code-tabs" data-snippet="single-number">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>int singleNumber(vector&lt;int&gt;&amp; nums) {
+    int x = 0;
+    for (int n : nums) x ^= n;
+    return x;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>int singleNumber(int[] nums) {
+    int x = 0;
+    for (int n : nums) x ^= n;
+    return x;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>def single_number(nums):
+    x = 0
+    for n in nums:
+        x ^= n
+    return x</code></pre>
+    </div>
+
+    <h3>Subsets as bitmasks</h3>
+    <p>For <code>n &le; 20</code>, enumerate subsets with <code>for (int mask = 0; mask &lt; (1 &lt;&lt; n); ++mask)</code>. Bit <code>i</code> of <code>mask</code> says whether element <code>i</code> is in the subset. Powers DP-on-subsets (TSP, bitmask DP).</p>
+
+    <div class="callout warn"><strong>Java gotcha</strong> <code>1 &lt;&lt; 31</code> on an <code>int</code> is the sign bit. Use <code>1L &lt;&lt; k</code> for k &ge; 31 to avoid overflow weirdness.</div>
+
+    <h3>Practice</h3>
+    <div class="practice">
+      <a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">LC 136 &middot; Single Number <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/number-of-1-bits/" target="_blank" rel="noopener">LC 191 &middot; Number of 1 Bits <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/counting-bits/" target="_blank" rel="noopener">LC 338 &middot; Counting Bits <span class="diff easy">easy</span></a>
+      <a href="https://leetcode.com/problems/sum-of-two-integers/" target="_blank" rel="noopener">LC 371 &middot; Sum w/o + <span class="diff med">med</span></a>
+      <a href="https://leetcode.com/problems/single-number-iii/" target="_blank" rel="noopener">LC 260 &middot; Single Number III <span class="diff med">med</span></a>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Bit ops are rare in interviews, but when they show up the solution is usually a one-liner &mdash; if you know the trick.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 16 - Optimisation Playbook ============== -->
+<details class="lesson" id="lesson-16">
+  <summary>
+    <span class="num">16</span>
+    <span class="heading">
+      <span class="title">The optimisation playbook</span>
+      <span class="subtitle">"My brute force is O(n&sup2;). What's my menu of improvements?"</span>
+    </span>
+    <span class="meta"><span class="badge wrap">wrap-up</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Don't stare at the screen hoping for inspiration. Walk this menu top-to-bottom &mdash; one of them will unlock the optimal answer.</div>
+
+    <h3>From brute force, ask in order</h3>
+
+    <div class="cols-2">
+      <div class="col-card">
+        <h4>1. Can a HashMap remember work?</h4>
+        <p>If the brute force keeps recomputing "have I seen X?" or "what's the index of X?", a hash map collapses it.</p>
+        <p><em>Example:</em> Two Sum's O(n&sup2;) &rarr; O(n) with map.</p>
+      </div>
+      <div class="col-card">
+        <h4>2. Does sorting reveal structure?</h4>
+        <p>Sorting costs O(n log n) but enables two-pointer, greedy, binary search. If brute is O(n&sup2;) and sort is "free", it's still a win.</p>
+        <p><em>Example:</em> 3Sum, Meeting Rooms.</p>
+      </div>
+
+      <div class="col-card">
+        <h4>3. Can two pointers replace a loop?</h4>
+        <p>If brute is "for each i, scan j&gt;i", and a monotonic relationship exists (sorted, fixed window), collapse to single linear walk.</p>
+      </div>
+      <div class="col-card">
+        <h4>4. Can a sliding window slide?</h4>
+        <p>Sub-array / substring brute force, where each element enters and leaves the window at most once &rarr; O(n).</p>
+      </div>
+
+      <div class="col-card">
+        <h4>5. Can I binary-search the answer?</h4>
+        <p>If you can <em>verify</em> a candidate answer in O(f(n)) and the predicate is monotonic, search the answer in O(log range &middot; f(n)).</p>
+      </div>
+      <div class="col-card">
+        <h4>6. Are subproblems overlapping?</h4>
+        <p>Recursion that re-solves the same state? DP/memo cuts O(2&#710;n) to O(n&sup2;) or O(n).</p>
+      </div>
+
+      <div class="col-card">
+        <h4>7. Is there a greedy choice?</h4>
+        <p>If you can sort by some key and always commit to the local best, you skip the whole DP.</p>
+      </div>
+      <div class="col-card">
+        <h4>8. Is the structure actually a graph?</h4>
+        <p>"Connected components", "shortest path", "ordering with dependencies" &mdash; even if no graph is mentioned, model it as one.</p>
+      </div>
+
+      <div class="col-card">
+        <h4>9. Do I need only the top K?</h4>
+        <p>If sorting is overkill, a size-K heap gives O(n log K).</p>
+      </div>
+      <div class="col-card">
+        <h4>10. Is there math?</h4>
+        <p>Prefix sums, GCD, modular arithmetic, combinatorics &mdash; one formula can replace a whole loop.</p>
+      </div>
+    </div>
+
+    <div class="callout tip"><strong>Interview cheat</strong> When stuck, narrate the menu out loud. "Could a hash map help here? Doesn't seem so. What about two pointers? The array isn't sorted&hellip;" The interviewer often nudges you when you brush past the right one.</div>
+
+    <h3>The constraint &rarr; algorithm map</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>n is&hellip;</th><th>Target complexity</th><th>Likely pattern</th></tr></thead>
+      <tbody>
+        <tr><td>n &le; 10</td>               <td>O(n!) / O(2&#710;n)</td>   <td>Brute backtracking</td></tr>
+        <tr><td>n &le; 20</td>               <td>O(2&#710;n)</td>           <td>Bitmask DP, subset enum</td></tr>
+        <tr><td>n &le; 100</td>              <td>O(n&sup3;) / O(n&sup2; log n)</td><td>DP, Floyd-Warshall</td></tr>
+        <tr><td>n &le; 5,000</td>             <td>O(n&sup2;)</td>           <td>2-D DP, nested loop</td></tr>
+        <tr><td>n &le; 10<sup>5</sup></td>   <td>O(n log n)</td>        <td>Sort, heap, segment tree, Dijkstra</td></tr>
+        <tr><td>n &le; 10<sup>6</sup></td>   <td>O(n)</td>              <td>Two pointers, sliding window, hashing</td></tr>
+        <tr><td>n &le; 10<sup>9</sup></td>   <td>O(log n) / O(&radic;n)</td><td>Binary search, math, sieve</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> When the constraint screams a target complexity, only a handful of patterns can deliver it. Reverse-engineer from <code>n</code> to the technique.</div>
+  </div>
+</details>
+
+</main>
+
+<!-- ============== SIGN-OFF ============== -->
+<section class="signoff">
+  <h2>You now know the playbook.</h2>
+  <p>The same 14 patterns solve roughly 90% of campus &amp; interview DSA. Practice 5&ndash;10 problems per pattern on LeetCode and you'll <em>recognise</em> instead of <em>solve</em>.</p>
+
+  <div class="takeaways">
+    <div class="takeaway-pill"><strong>Don't memorise</strong> Memorise <em>templates</em>, not solutions. The templates fit 50 problems each.</div>
+    <div class="takeaway-pill"><strong>Daily reps</strong> 1 medium per day for 60 days beats 5 hours on a Sunday once.</div>
+    <div class="takeaway-pill"><strong>Talk while coding</strong> Interviewers grade thought, not silence.</div>
+    <div class="takeaway-pill"><strong>Time, then space</strong> State both complexities unprompted &mdash; free points.</div>
+  </div>
+
+  <div class="next-up">
+    <a class="btn primary" href="system-design.html">Next: System Design &rarr;</a>
+    <a class="btn" href="interview-playbook.html">Or: Interview Playbook</a>
+  </div>
+</section>
+
+<footer class="footer-meta">
+  <span>DSA Pack &middot; static HTML &middot; share freely</span>
+  <span>Press <kbd>E</kbd> to expand all, <kbd>C</kbd> to collapse</span>
+</footer>
+
+<script src="dsa.js"></script>
+</body>
+</html>

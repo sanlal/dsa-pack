@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="wCL"><feTurbulence baseFrequency="0.022" numOctaves="2" seed="59"/><feDisplacementMap in="SourceGraphic" scale="1.3"/></filter>
+  </defs>
+
+  <text x="300" y="34" font-family="'Caveat', cursive" font-size="28" fill="#B388FF" text-anchor="middle">45 minutes - how the time should be spent</text>
+
+  <!-- Clock face -->
+  <circle cx="300" cy="245" r="160" filter="url(#wCL)" stroke="#9AA7BD" stroke-width="3" fill="rgba(0,0,0,0.18)"/>
+  <circle cx="300" cy="245" r="6" fill="#9AA7BD"/>
+
+  <!-- Pie segments using strokes (approx by paths) -->
+  <g filter="url(#wCL)" fill="none" stroke-width="36" stroke-linecap="butt">
+    <!-- 5 min understand (cyan): 0..(5/45)*360 = 40 deg -->
+    <path d="M300 105 A140 140 0 0 1 390 138" stroke="#3DD9D6"/>
+    <!-- 5 min examples (yellow): 40..80 -->
+    <path d="M390 138 A140 140 0 0 1 437 215" stroke="#FFD93D"/>
+    <!-- 5 min brute (orange): 80..120 -->
+    <path d="M437 215 A140 140 0 0 1 419 305" stroke="#FF8C42"/>
+    <!-- 10 min optimise (purple): 120..200 -->
+    <path d="M419 305 A140 140 0 0 1 252 380" stroke="#B388FF"/>
+    <!-- 15 min code (green): 200..320 -->
+    <path d="M252 380 A140 140 0 0 1 167 162" stroke="#5FE388"/>
+    <!-- 5 min test (pink): 320..360 -->
+    <path d="M167 162 A140 140 0 0 1 300 105" stroke="#FF7AB6"/>
+  </g>
+
+  <!-- legend -->
+  <g font-family="'Caveat', cursive" font-size="18">
+    <g><circle cx="60"  cy="425" r="6" fill="#3DD9D6"/><text x="74" y="430" fill="#3DD9D6">5m understand</text></g>
+    <g><circle cx="200" cy="425" r="6" fill="#FFD93D"/><text x="214" y="430" fill="#FFD93D">5m examples</text></g>
+    <g><circle cx="330" cy="425" r="6" fill="#FF8C42"/><text x="344" y="430" fill="#FF8C42">5m brute</text></g>
+    <g><circle cx="440" cy="425" r="6" fill="#B388FF"/><text x="454" y="430" fill="#B388FF">10m optimise</text></g>
+    <g><circle cx="60"  cy="448" r="6" fill="#5FE388"/><text x="74" y="453" fill="#5FE388">15m code</text></g>
+    <g><circle cx="200" cy="448" r="6" fill="#FF7AB6"/><text x="214" y="453" fill="#FF7AB6">5m test/explain</text></g>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="w6"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="17"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <!-- Pass 1 -->
+  <g filter="url(#w6)" stroke="#9AA7BD" stroke-width="2" fill="rgba(0,0,0,0.18)">
+    <rect x="40" y="60"  width="40" height="40"/>
+    <rect x="80" y="60"  width="40" height="40"/>
+    <rect x="120" y="60" width="40" height="40"/>
+    <rect x="160" y="60" width="40" height="40"/>
+    <rect x="200" y="60" width="40" height="40"/>
+    <rect x="240" y="60" width="40" height="40"/>
+    <rect x="280" y="60" width="40" height="40"/>
+    <rect x="320" y="60" width="40" height="40"/>
+    <rect x="360" y="60" width="40" height="40"/>
+    <rect x="400" y="60" width="40" height="40"/>
+  </g>
+  <rect x="200" y="55" width="40" height="50" stroke="#FFD93D" stroke-width="3" fill="rgba(255,217,61,0.18)"/>
+  <text x="490" y="86" font-family="'Caveat', cursive" font-size="22" fill="#3DD9D6">mid = (l + r) / 2</text>
+
+  <!-- Pass 2 -->
+  <g filter="url(#w6)" stroke="#9AA7BD" stroke-width="2" fill="rgba(0,0,0,0.18)">
+    <rect x="240" y="140" width="40" height="40"/>
+    <rect x="280" y="140" width="40" height="40"/>
+    <rect x="320" y="140" width="40" height="40"/>
+    <rect x="360" y="140" width="40" height="40"/>
+    <rect x="400" y="140" width="40" height="40"/>
+  </g>
+  <rect x="320" y="135" width="40" height="50" stroke="#FFD93D" stroke-width="3" fill="rgba(255,217,61,0.18)"/>
+  <text x="490" y="166" font-family="'Caveat', cursive" font-size="22" fill="#FF8C42">half cut!</text>
+
+  <!-- Pass 3 -->
+  <g filter="url(#w6)" stroke="#9AA7BD" stroke-width="2" fill="rgba(0,0,0,0.18)">
+    <rect x="320" y="220" width="40" height="40"/>
+    <rect x="360" y="220" width="40" height="40"/>
+  </g>
+  <rect x="320" y="215" width="40" height="50" stroke="#5FE388" stroke-width="3" fill="rgba(95,227,136,0.20)"/>
+  <text x="490" y="246" font-family="'Caveat', cursive" font-size="22" fill="#5FE388">found!</text>
+
+  <text x="370" y="40" font-family="'Caveat', cursive" font-size="26" fill="#B388FF" text-anchor="middle">Halve the search space every step</text>
+  <text x="370" y="300" font-family="'JetBrains Mono', monospace" font-size="16" fill="#9AA7BD" text-anchor="middle">log(10) -&gt; log(5) -&gt; log(2)  =  4 comparisons</text>
+</svg>

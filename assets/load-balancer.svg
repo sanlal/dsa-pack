@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="wLB"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="45"/><feDisplacementMap in="SourceGraphic" scale="1.3"/></filter>
+  </defs>
+
+  <text x="360" y="34" font-family="'Caveat', cursive" font-size="28" fill="#B388FF" text-anchor="middle">Load balancer fans traffic to the herd</text>
+
+  <!-- Clients -->
+  <g filter="url(#wLB)" stroke-width="2.5">
+    <circle cx="80"  cy="120" r="22" fill="rgba(61,217,214,0.20)" stroke="#3DD9D6"/>
+    <circle cx="80"  cy="190" r="22" fill="rgba(61,217,214,0.20)" stroke="#3DD9D6"/>
+    <circle cx="80"  cy="260" r="22" fill="rgba(61,217,214,0.20)" stroke="#3DD9D6"/>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="12" fill="#3DD9D6" text-anchor="middle">
+    <text x="80" y="125">u1</text>
+    <text x="80" y="195">u2</text>
+    <text x="80" y="265">u3</text>
+  </g>
+
+  <!-- Lines to LB -->
+  <g stroke="#9AA7BD" stroke-width="1.5" fill="none" stroke-dasharray="3 3">
+    <path d="M102 120 L260 190"/>
+    <path d="M102 190 L260 190"/>
+    <path d="M102 260 L260 190"/>
+  </g>
+
+  <!-- Load Balancer -->
+  <g filter="url(#wLB)">
+    <rect x="260" y="150" width="140" height="80" rx="14" fill="rgba(255,140,66,0.15)" stroke="#FF8C42" stroke-width="3"/>
+  </g>
+  <text x="330" y="186" font-family="'Caveat', cursive" font-size="22" fill="#FF8C42" text-anchor="middle">Load Balancer</text>
+  <text x="330" y="210" font-family="'JetBrains Mono', monospace" font-size="11" fill="#FFD93D" text-anchor="middle">round-robin / least-conn / hash</text>
+
+  <!-- Lines to servers -->
+  <g stroke="#9AA7BD" stroke-width="1.5" fill="none">
+    <path d="M400 170 L560 80"/>
+    <path d="M400 190 L560 150"/>
+    <path d="M400 210 L560 230"/>
+    <path d="M400 220 L560 300"/>
+  </g>
+
+  <!-- Servers -->
+  <g filter="url(#wLB)" stroke-width="2.5">
+    <rect x="560" y="60"  width="100" height="44" rx="6" fill="rgba(95,227,136,0.18)" stroke="#5FE388"/>
+    <rect x="560" y="130" width="100" height="44" rx="6" fill="rgba(95,227,136,0.18)" stroke="#5FE388"/>
+    <rect x="560" y="210" width="100" height="44" rx="6" fill="rgba(95,227,136,0.18)" stroke="#5FE388"/>
+    <rect x="560" y="280" width="100" height="44" rx="6" fill="rgba(95,227,136,0.18)" stroke="#5FE388"/>
+  </g>
+  <g font-family="'JetBrains Mono', monospace" font-size="13" fill="#5FE388" text-anchor="middle">
+    <text x="610" y="86">app-1</text>
+    <text x="610" y="156">app-2</text>
+    <text x="610" y="236">app-3</text>
+    <text x="610" y="306">app-4</text>
+  </g>
+
+  <text x="360" y="360" font-family="'Caveat', cursive" font-size="18" fill="#9AA7BD" text-anchor="middle">Layer 4 = packets (TCP) | Layer 7 = HTTP-aware (routes, cookies)</text>
+</svg>

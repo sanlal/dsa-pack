@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="w5"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="13"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <!-- Linked list circles -->
+  <g filter="url(#w5)" stroke="#9AA7BD" stroke-width="2" fill="rgba(0,0,0,0.18)">
+    <circle cx="80"  cy="140" r="28"/>
+    <circle cx="180" cy="140" r="28"/>
+    <circle cx="280" cy="140" r="28"/>
+    <circle cx="380" cy="140" r="28"/>
+    <circle cx="480" cy="140" r="28"/>
+    <circle cx="580" cy="140" r="28"/>
+  </g>
+  <!-- arrows -->
+  <g stroke="#9AA7BD" stroke-width="2" fill="none">
+    <path d="M108 140 L152 140" marker-end="url(#a5)"/>
+    <path d="M208 140 L252 140" marker-end="url(#a5)"/>
+    <path d="M308 140 L352 140" marker-end="url(#a5)"/>
+    <path d="M408 140 L452 140" marker-end="url(#a5)"/>
+    <path d="M508 140 L552 140" marker-end="url(#a5)"/>
+    <!-- Cycle back -->
+    <path d="M580 168 q-200 80 -300 0" stroke="#FF5C5C" stroke-width="2.5" stroke-dasharray="4 4"/>
+  </g>
+  <defs>
+    <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9AA7BD"/>
+    </marker>
+  </defs>
+
+  <text x="80"  y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">A</text>
+  <text x="180" y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">B</text>
+  <text x="280" y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">C</text>
+  <text x="380" y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">D</text>
+  <text x="480" y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">E</text>
+  <text x="580" y="146" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F4F1E8" text-anchor="middle">F</text>
+
+  <!-- slow pointer -->
+  <g filter="url(#w5)" stroke="#3DD9D6" stroke-width="3" fill="#3DD9D6">
+    <path d="M280 80 L280 105" stroke-linecap="round"/>
+    <polygon points="280,105 274,90 286,90"/>
+  </g>
+  <text x="280" y="65" font-family="'Caveat', cursive" font-size="22" fill="#3DD9D6" text-anchor="middle">slow (1 step)</text>
+
+  <!-- fast pointer -->
+  <g filter="url(#w5)" stroke="#FF8C42" stroke-width="3" fill="#FF8C42">
+    <path d="M480 80 L480 105" stroke-linecap="round"/>
+    <polygon points="480,105 474,90 486,90"/>
+  </g>
+  <text x="480" y="65" font-family="'Caveat', cursive" font-size="22" fill="#FF8C42" text-anchor="middle">fast (2 steps)</text>
+
+  <text x="280" y="260" font-family="'Caveat', cursive" font-size="22" fill="#FF5C5C" text-anchor="middle">if cycle exists, they meet</text>
+
+  <text x="360" y="40" font-family="'Caveat', cursive" font-size="26" fill="#B388FF" text-anchor="middle">Floyd's tortoise &amp; hare</text>
+</svg>

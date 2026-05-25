@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="wG"><feTurbulence baseFrequency="0.025" numOctaves="2" seed="33"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <text x="360" y="34" font-family="'Caveat', cursive" font-size="28" fill="#B388FF" text-anchor="middle">Weighted graph - Dijkstra's relaxation</text>
+
+  <g filter="url(#wG)" stroke="#9AA7BD" stroke-width="2.5" fill="none">
+    <line x1="120" y1="180" x2="260" y2="100"/>
+    <line x1="120" y1="180" x2="260" y2="260"/>
+    <line x1="260" y1="100" x2="400" y2="180"/>
+    <line x1="260" y1="100" x2="400" y2="80"/>
+    <line x1="260" y1="260" x2="400" y2="180"/>
+    <line x1="260" y1="260" x2="400" y2="300"/>
+    <line x1="400" y1="180" x2="560" y2="180"/>
+    <line x1="400" y1="80"  x2="560" y2="180"/>
+    <line x1="400" y1="300" x2="560" y2="180"/>
+  </g>
+
+  <!-- Edge weights -->
+  <g font-family="'JetBrains Mono', monospace" font-size="14" fill="#FFD93D">
+    <text x="180" y="130">4</text>
+    <text x="180" y="240">1</text>
+    <text x="330" y="135">3</text>
+    <text x="330" y="80">7</text>
+    <text x="330" y="245">2</text>
+    <text x="330" y="305">5</text>
+    <text x="480" y="170">2</text>
+    <text x="490" y="115">1</text>
+    <text x="490" y="265">4</text>
+  </g>
+
+  <!-- Nodes -->
+  <g stroke-width="3">
+    <circle cx="120" cy="180" r="26" fill="#5FE388" stroke="#5FE388"/>
+    <circle cx="260" cy="90"  r="24" fill="rgba(61,217,214,0.30)" stroke="#3DD9D6"/>
+    <circle cx="260" cy="270" r="24" fill="rgba(61,217,214,0.30)" stroke="#3DD9D6"/>
+    <circle cx="400" cy="80"  r="24" fill="rgba(255,140,66,0.30)" stroke="#FF8C42"/>
+    <circle cx="400" cy="180" r="24" fill="rgba(255,140,66,0.30)" stroke="#FF8C42"/>
+    <circle cx="400" cy="300" r="24" fill="rgba(255,140,66,0.30)" stroke="#FF8C42"/>
+    <circle cx="560" cy="180" r="26" fill="#FF7AB6" stroke="#FF7AB6"/>
+  </g>
+
+  <g font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" text-anchor="middle">
+    <text x="120" y="186" fill="#0F1A2E">S</text>
+    <text x="260" y="96"  fill="#F4F1E8">A</text>
+    <text x="260" y="276" fill="#F4F1E8">B</text>
+    <text x="400" y="86"  fill="#F4F1E8">C</text>
+    <text x="400" y="186" fill="#F4F1E8">D</text>
+    <text x="400" y="306" fill="#F4F1E8">E</text>
+    <text x="560" y="186" fill="#0F1A2E">T</text>
+  </g>
+
+  <text x="360" y="360" font-family="'Caveat', cursive" font-size="20" fill="#9AA7BD" text-anchor="middle">shortest S -&gt; T via priority queue: 1 + 2 + 2 = 5</text>
+</svg>

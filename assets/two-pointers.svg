@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" font-family="'Inter', sans-serif">
+  <defs>
+    <filter id="w3"><feTurbulence baseFrequency="0.03" numOctaves="2" seed="9"/><feDisplacementMap in="SourceGraphic" scale="1.2"/></filter>
+  </defs>
+
+  <!-- Array boxes -->
+  <g filter="url(#w3)" stroke="#9AA7BD" stroke-width="2" fill="rgba(0,0,0,0.18)">
+    <rect x="80"  y="100" width="60" height="60"/>
+    <rect x="140" y="100" width="60" height="60"/>
+    <rect x="200" y="100" width="60" height="60"/>
+    <rect x="260" y="100" width="60" height="60"/>
+    <rect x="320" y="100" width="60" height="60"/>
+    <rect x="380" y="100" width="60" height="60"/>
+    <rect x="440" y="100" width="60" height="60"/>
+    <rect x="500" y="100" width="60" height="60"/>
+    <rect x="560" y="100" width="60" height="60"/>
+  </g>
+
+  <!-- Values -->
+  <g font-family="'JetBrains Mono', monospace" font-size="22" fill="#F4F1E8" text-anchor="middle">
+    <text x="110" y="138">-3</text>
+    <text x="170" y="138">1</text>
+    <text x="230" y="138">2</text>
+    <text x="290" y="138">4</text>
+    <text x="350" y="138">5</text>
+    <text x="410" y="138">7</text>
+    <text x="470" y="138">9</text>
+    <text x="530" y="138">11</text>
+    <text x="590" y="138">14</text>
+  </g>
+
+  <!-- left pointer -->
+  <g filter="url(#w3)" stroke="#3DD9D6" stroke-width="3" fill="#3DD9D6">
+    <path d="M110 80 L110 95" stroke-linecap="round"/>
+    <polygon points="110,95 104,82 116,82"/>
+  </g>
+  <text x="110" y="65" font-family="'Caveat', cursive" font-size="22" fill="#3DD9D6" text-anchor="middle">left</text>
+
+  <!-- right pointer -->
+  <g filter="url(#w3)" stroke="#FF8C42" stroke-width="3" fill="#FF8C42">
+    <path d="M590 80 L590 95" stroke-linecap="round"/>
+    <polygon points="590,95 584,82 596,82"/>
+  </g>
+  <text x="590" y="65" font-family="'Caveat', cursive" font-size="22" fill="#FF8C42" text-anchor="middle">right</text>
+
+  <!-- arrows moving -->
+  <g stroke="#5FE388" stroke-width="2" fill="none" stroke-dasharray="4 4">
+    <path d="M125 200 q60 30 130 0" filter="url(#w3)"/>
+    <path d="M575 200 q-60 30 -130 0" filter="url(#w3)"/>
+  </g>
+  <text x="200" y="240" font-family="'Caveat', cursive" font-size="22" fill="#5FE388">l++  if sum &lt; target</text>
+  <text x="490" y="240" font-family="'Caveat', cursive" font-size="22" fill="#5FE388" text-anchor="end">r--  if sum &gt; target</text>
+
+  <text x="350" y="40" font-family="'Caveat', cursive" font-size="26" fill="#B388FF" text-anchor="middle">Sorted array, walk from both ends</text>
+</svg>

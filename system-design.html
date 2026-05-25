@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="System Design for interviews - LLD (OOP, SOLID, design patterns, walkthroughs) + HLD (scalability, CAP, caching, sharding, microservices, URL shortener, chat, feed)." />
+
+  <meta property="og:title" content="DSA Pack - System Design for Interviews" />
+  <meta property="og:description" content="LLD + HLD that actually appear in mid-tier &amp; product-company interviews." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/sd-hero.svg" />
+
+  <title>System Design - DSA Pack</title>
+  <link rel="icon" type="image/svg+xml" href="assets/sd-hero.svg" />
+  <link rel="stylesheet" href="dsa.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand bare">
+      <span class="brand-dot"></span>
+      <span>DSA Pack</span>
+    </a>
+
+    <nav class="nav-tabs" aria-label="Pack navigation">
+      <a class="nav-tab"        href="dsa.html">DSA Patterns</a>
+      <a class="nav-tab active" href="system-design.html">System Design</a>
+      <a class="nav-tab"        href="interview-playbook.html">Interview Playbook</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="lang-switcher" role="group" aria-label="Code language">
+        <button data-lang="cpp">C++</button>
+        <button data-lang="java">Java</button>
+        <button data-lang="python">Py</button>
+      </div>
+      <button class="btn" id="expand-all">Expand all</button>
+      <button class="btn" id="collapse-all">Collapse</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <p class="eyebrow">LLD + HLD for interviews</p>
+  <h1>Design <span class="accent2">systems</span><br>that actually <span class="accent">scale</span></h1>
+  <p class="lede">
+    The interview version of system design &mdash; not a 600-page book.
+    Low-level (OOP / SOLID / patterns) for mid-tier rounds, high-level (caching / sharding / queues) for SDE-2 and FAANG. Three walkthroughs at the end.
+  </p>
+  <img src="assets/sd-hero.svg" alt="System architecture overview" class="hero-mascot" />
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">13</span><span class="label">lessons</span></div>
+    <div class="hero-stat"><span class="num orange">4 LLD</span><span class="label">+ 9 HLD</span></div>
+    <div class="hero-stat"><span class="num green">3 walkthroughs</span><span class="label">URL / chat / feed</span></div>
+  </div>
+</section>
+
+<!-- ============== TOC ============== -->
+<nav class="toc" id="contents" aria-label="Contents">
+  <div class="toc-head">
+    <h2>What you'll design</h2>
+    <div class="toc-controls">
+      <a class="btn" href="dsa.html">&larr; Back to DSA</a>
+      <a class="btn" href="interview-playbook.html">Interview Playbook &rarr;</a>
+    </div>
+  </div>
+
+  <p class="toc-section">Low-level design (LLD)</p>
+  <ol>
+    <li><a href="#sd-1"><span class="title">OOP foundations</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#sd-2"><span class="title">SOLID principles</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#sd-3"><span class="title">Design patterns interviewers love</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#sd-4"><span class="title">LLD walkthroughs: Parking Lot / Splitwise / BookMyShow</span> <span class="badge case">case</span></a></li>
+  </ol>
+
+  <p class="toc-section">High-level design (HLD)</p>
+  <ol start="5">
+    <li><a href="#sd-5"><span class="title">Scalability vocabulary</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#sd-6"><span class="title">CAP theorem &amp; consistency</span> <span class="badge theory">theory</span></a></li>
+    <li><a href="#sd-7"><span class="title">Load balancing</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#sd-8"><span class="title">Caching layers</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#sd-9"><span class="title">Databases: SQL, NoSQL, sharding</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#sd-10"><span class="title">Message queues &amp; events</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#sd-11"><span class="title">Microservices &amp; API gateway</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#sd-12"><span class="title">Rate limiting &amp; auth</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#sd-13"><span class="title">HLD walkthroughs: URL shortener / Chat / Feed</span> <span class="badge case">case</span></a></li>
+  </ol>
+</nav>
+
+<main class="lessons">
+
+<div class="section-break"><span class="label">Low-Level Design</span> <span class="sub">classes, objects, patterns</span></div>
+
+<!-- ============== SD 1 - OOP ============== -->
+<details class="lesson" id="sd-1" open>
+  <summary>
+    <span class="num">01</span>
+    <span class="heading">
+      <span class="title">OOP foundations</span>
+      <span class="subtitle">Encapsulation, inheritance, polymorphism, abstraction &mdash; in one tiny example each.</span>
+    </span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> The 4 pillars of OOP exist to hide complexity behind clean boundaries. Interviewers don't want definitions &mdash; they want to see you <em>use</em> them in your class design.</div>
+
+    <h3>1. Encapsulation - hide state, expose behaviour</h3>
+    <p>Fields are private. The outside world calls methods. The class is free to change how it stores things without breaking callers.</p>
+    <div class="code-tabs" data-snippet="encapsulation">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class BankAccount {
+    double balance_;                       // hidden
+public:
+    void deposit(double amt) {
+        if (amt &lt;= 0) throw runtime_error("bad");
+        balance_ += amt;
+    }
+    double balance() const { return balance_; }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>public class BankAccount {
+    private double balance;                // hidden
+    public void deposit(double amt) {
+        if (amt &lt;= 0) throw new IllegalArgumentException("bad");
+        balance += amt;
+    }
+    public double getBalance() { return balance; }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class BankAccount:
+    def __init__(self):
+        self._balance = 0                  # _ = "hands off"
+    def deposit(self, amt):
+        if amt &lt;= 0:
+            raise ValueError("bad")
+        self._balance += amt
+    @property
+    def balance(self):
+        return self._balance</code></pre>
+    </div>
+
+    <h3>2. Inheritance - share, don't duplicate</h3>
+    <p>A subclass gets the parent's fields and methods. Good for "is-a" relationships (a <code>SavingsAccount</code> <em>is a</em> <code>BankAccount</code>). Prefer composition ("has-a") if the relationship is fuzzy.</p>
+
+    <h3>3. Polymorphism - one call, many forms</h3>
+    <p>Same method name behaves differently depending on the actual runtime type. Lets your code work with abstractions instead of concrete classes.</p>
+    <div class="code-tabs" data-snippet="polymorphism">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>struct Shape { virtual double area() const = 0; };
+struct Circle : Shape { double r; double area() const { return 3.14159 * r * r; } };
+struct Square : Shape { double s; double area() const { return s * s; } };
+
+double totalArea(vector&lt;Shape*&gt;&amp; shapes) {
+    double t = 0;
+    for (auto* s : shapes) t += s-&gt;area();   // works for any Shape
+    return t;
+}</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>abstract class Shape { abstract double area(); }
+class Circle extends Shape { double r; double area() { return Math.PI * r * r; } }
+class Square extends Shape { double s; double area() { return s * s; } }
+
+double totalArea(List&lt;Shape&gt; shapes) {
+    double t = 0;
+    for (Shape s : shapes) t += s.area();
+    return t;
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class Shape:
+    def area(self): raise NotImplementedError
+class Circle(Shape):
+    def __init__(self, r): self.r = r
+    def area(self): return 3.14159 * self.r * self.r
+class Square(Shape):
+    def __init__(self, s): self.s = s
+    def area(self): return self.s * self.s
+
+def total_area(shapes):
+    return sum(s.area() for s in shapes)</code></pre>
+    </div>
+
+    <h3>4. Abstraction - program to interfaces, not implementations</h3>
+    <p>Define <em>what</em> something does, defer <em>how</em>. <code>List</code> is an interface; <code>ArrayList</code>, <code>LinkedList</code> are implementations. Callers depend on <code>List</code> &mdash; you can swap the implementation without breaking them.</p>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> In LLD interviews, every class should be small, hide its fields, and depend on abstractions. If you find yourself writing one giant <code>God</code> class, stop and decompose.</div>
+  </div>
+</details>
+
+<!-- ============== SD 2 - SOLID ============== -->
+<details class="lesson" id="sd-2">
+  <summary>
+    <span class="num">02</span>
+    <span class="heading">
+      <span class="title">SOLID principles</span>
+      <span class="subtitle">Five rules that turn fragile code into flexible code.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> SOLID = SRP, OCP, LSP, ISP, DIP. Each one prevents a specific kind of pain. Memorise the pain, not just the acronym.</div>
+
+    <h3>S - Single Responsibility Principle</h3>
+    <p>"A class should have one reason to change." A <code>User</code> class that holds data, saves to DB, <em>and</em> sends emails has three reasons to change &mdash; split it.</p>
+    <div class="cols-2">
+      <div class="col-card dont"><h4>Bad</h4><pre><code>class User {
+  save() {...}
+  sendWelcomeEmail() {...}
+  formatForCsv() {...}
+}</code></pre></div>
+      <div class="col-card do"><h4>Good</h4><pre><code>class User { /* data only */ }
+class UserRepository { save(u) {...} }
+class WelcomeMailer { send(u) {...} }
+class UserCsv { format(u) {...} }</code></pre></div>
+    </div>
+
+    <h3>O - Open/Closed</h3>
+    <p>"Open for extension, closed for modification." Adding a new payment method shouldn't require editing the <code>PaymentProcessor</code>. Use polymorphism (Strategy pattern).</p>
+    <div class="cols-2">
+      <div class="col-card dont"><h4>Bad</h4><pre><code>switch(method) {
+  case CARD: chargeCard(); break;
+  case UPI:  chargeUpi();  break;
+  // adding PayPal? edit here, retest everything
+}</code></pre></div>
+      <div class="col-card do"><h4>Good</h4><pre><code>interface PaymentMethod { void charge(Order o); }
+class Card implements PaymentMethod {...}
+class Upi  implements PaymentMethod {...}
+// add PayPal class without touching old code</code></pre></div>
+    </div>
+
+    <h3>L - Liskov Substitution</h3>
+    <p>A subclass should be usable wherever its parent is &mdash; without surprises. The classic violation: <code>Square extends Rectangle</code> and overrides <code>setWidth</code> to also change height. Now any code expecting a <code>Rectangle</code> behaves wrong with a <code>Square</code>.</p>
+
+    <h3>I - Interface Segregation</h3>
+    <p>"Many small interfaces beat one giant one." A printer-scanner shouldn't force a plain printer to implement <code>scan()</code>. Split into <code>Printer</code> and <code>Scanner</code>, and let the multi-function device implement both.</p>
+
+    <h3>D - Dependency Inversion</h3>
+    <p>"Depend on abstractions, not concrete classes." High-level <code>OrderService</code> should depend on a <code>PaymentGateway</code> interface, not on <code>StripeClient</code>. Inject the concrete implementation at construction time. Now testing with a fake gateway is trivial.</p>
+
+    <div class="code-tabs" data-snippet="dip-injection">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class PaymentGateway { public: virtual bool charge(double) = 0; };
+
+class OrderService {
+    PaymentGateway&amp; gw;                    // injected
+public:
+    OrderService(PaymentGateway&amp; g) : gw(g) {}
+    bool place(double amt) { return gw.charge(amt); }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>interface PaymentGateway { boolean charge(double amt); }
+
+class OrderService {
+    private final PaymentGateway gw;       // injected
+    OrderService(PaymentGateway gw) { this.gw = gw; }
+    boolean place(double amt) { return gw.charge(amt); }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>from typing import Protocol
+class PaymentGateway(Protocol):
+    def charge(self, amt: float) -&gt; bool: ...
+
+class OrderService:
+    def __init__(self, gw: PaymentGateway):
+        self.gw = gw
+    def place(self, amt):
+        return self.gw.charge(amt)</code></pre>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> SOLID isn't dogma &mdash; it's a checklist when you smell bad code. "Does this class do too much? (SRP) Does this <code>switch</code> grow every release? (OCP)" The right principle usually pops out.</div>
+  </div>
+</details>
+
+<!-- ============== SD 3 - Design Patterns ============== -->
+<details class="lesson" id="sd-3">
+  <summary>
+    <span class="num">03</span>
+    <span class="heading">
+      <span class="title">Design patterns interviewers love</span>
+      <span class="subtitle">Singleton, Factory, Builder, Observer, Strategy, Decorator, Adapter.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">10 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Design patterns are names for solutions you'd discover anyway. Learn the 7 below and you'll spot them &mdash; and apply them &mdash; in any LLD round.</div>
+
+    <h3>Singleton - exactly one instance</h3>
+    <p>Use for shared config, loggers, connection pools. Make the constructor private; expose a static <code>getInstance()</code>. Beware: untestable, hides dependencies, hard to scale to multi-threaded.</p>
+    <div class="code-tabs" data-snippet="singleton">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class Logger {
+    Logger() {}
+public:
+    static Logger&amp; instance() {        // Meyers' singleton, thread-safe since C++11
+        static Logger inst;
+        return inst;
+    }
+    void log(const string&amp; s) { /* ... */ }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>public class Logger {
+    private static volatile Logger INSTANCE;
+    private Logger() {}
+    public static Logger getInstance() {
+        if (INSTANCE == null) {
+            synchronized (Logger.class) {
+                if (INSTANCE == null) INSTANCE = new Logger();
+            }
+        }
+        return INSTANCE;
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class Logger:
+    _inst = None
+    def __new__(cls):
+        if cls._inst is None:
+            cls._inst = super().__new__(cls)
+        return cls._inst</code></pre>
+    </div>
+
+    <h3>Factory - create without naming the class</h3>
+    <p>Callers ask the factory for "a parser for JSON"; factory returns the right concrete type. Adding a new format = one new class + one line in the factory.</p>
+
+    <h3>Builder - fluent construction of complex objects</h3>
+    <p>When a constructor would take 10 parameters, replace it with a builder. <code>new Pizza.Builder().crust(THIN).cheese().pepperoni().build()</code>.</p>
+
+    <h3>Observer - publish/subscribe</h3>
+    <p>Subject keeps a list of observers; on state change, notifies them all. Backbone of UI event handlers, Kafka consumers, the Redux store.</p>
+    <div class="code-tabs" data-snippet="observer">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class Observer { public: virtual void on(const string&amp; ev) = 0; };
+class Subject {
+    vector&lt;Observer*&gt; subs;
+public:
+    void subscribe(Observer* o) { subs.push_back(o); }
+    void publish(const string&amp; ev) { for (auto* o : subs) o-&gt;on(ev); }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>interface Observer { void on(String ev); }
+class Subject {
+    private final List&lt;Observer&gt; subs = new ArrayList&lt;&gt;();
+    void subscribe(Observer o) { subs.add(o); }
+    void publish(String ev) { for (Observer o : subs) o.on(ev); }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class Subject:
+    def __init__(self):
+        self.subs = []
+    def subscribe(self, fn):
+        self.subs.append(fn)
+    def publish(self, ev):
+        for fn in self.subs:
+            fn(ev)</code></pre>
+    </div>
+
+    <h3>Strategy - swap the algorithm at runtime</h3>
+    <p>Sort with comparator, payment with PaymentMethod, compression with Compressor. Strategy is OCP in code form.</p>
+
+    <h3>Decorator - wrap to add behaviour</h3>
+    <p>Coffee &rarr; MilkDecorator(Coffee) &rarr; SugarDecorator(MilkDecorator(Coffee)). Each wrapper adds price/description without modifying the original.</p>
+
+    <h3>Adapter - bridge incompatible interfaces</h3>
+    <p>Your app expects a <code>Logger.log(s)</code>; the third-party library exposes <code>RemoteLogger.send(msg, level)</code>. An adapter class translates the call.</p>
+
+    <div class="callout tip"><strong>How to use patterns in interviews</strong> Don't shout "Observer pattern!". <em>Describe</em> the design ("the cart will notify subscribers when totals change") and the interviewer will recognise the pattern. Naming feels show-off; describing feels confident.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> 7 patterns cover 80% of LLD interviews. Internalise the <em>problem</em> each one solves and you'll reach for it naturally.</div>
+  </div>
+</details>
+
+<!-- ============== SD 4 - LLD Walkthroughs ============== -->
+<details class="lesson" id="sd-4">
+  <summary>
+    <span class="num">04</span>
+    <span class="heading">
+      <span class="title">LLD walkthroughs</span>
+      <span class="subtitle">Parking Lot, Splitwise, BookMyShow &mdash; the classics, fully sketched.</span>
+    </span>
+    <span class="meta"><span class="badge case">case</span><span class="reading-time">12 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> LLD interviewers want to see: (1) you ask clarifying questions, (2) you list nouns &rarr; classes, (3) you draw interactions, (4) you mention concurrency, (5) you handle one extension cleanly.</div>
+
+    <h3>Approach for any LLD problem (5 steps)</h3>
+    <ol class="steps">
+      <li><strong>Clarify scope.</strong> What's in / what's out? E.g. "Is payment in scope, or only ticket issuance?"</li>
+      <li><strong>List entities (nouns).</strong> ParkingLot, Spot, Vehicle, Ticket, Payment.</li>
+      <li><strong>Define relationships.</strong> A ParkingLot <em>has many</em> Spots. A Ticket <em>belongs to</em> one Vehicle.</li>
+      <li><strong>Methods on each.</strong> <code>ParkingLot.park(vehicle) -&gt; Ticket</code>, <code>ParkingLot.leave(ticket) -&gt; Receipt</code>.</li>
+      <li><strong>Discuss concurrency &amp; extensions.</strong> Two cars enter at the same time. Multi-floor lots. EV-only spots.</li>
+    </ol>
+
+    <h3>Walkthrough 1 - Parking Lot</h3>
+    <p>Clarify: "Multi-level? Vehicle types? Pricing model? Reservation?". Assume: multi-floor, 3 vehicle types (bike/car/truck), pay-on-exit.</p>
+
+    <p><strong>Classes</strong></p>
+    <ul>
+      <li><code>VehicleType</code> enum: BIKE, CAR, TRUCK.</li>
+      <li><code>Vehicle</code> (plate, type).</li>
+      <li><code>Spot</code> (id, type, isFree).</li>
+      <li><code>Floor</code> (number, spots, <code>findFreeSpot(type)</code>).</li>
+      <li><code>ParkingLot</code> (floors, <code>park()</code>, <code>leave()</code>, registry of active tickets).</li>
+      <li><code>Ticket</code> (id, vehicle, spot, entryTime).</li>
+      <li><code>PricingStrategy</code> interface: <code>HourlyPricing</code>, <code>FlatPricing</code> (Strategy pattern).</li>
+      <li><code>Payment</code> with state machine: PENDING &rarr; PAID / FAILED.</li>
+    </ul>
+
+    <p><strong>Concurrency:</strong> two cars contend for the same spot. Make <code>findFreeSpot</code> + reserve atomic (lock the floor, or use a <code>BlockingQueue</code> of free spots per type).</p>
+
+    <p><strong>Extension scenario:</strong> "Now we support EV charging spots." Add <code>EvSpot extends Spot</code> + a new <code>VehicleType.EV</code>. <code>findFreeSpot(EV)</code> can fall back to a regular CAR spot if no EV spot is free &mdash; document the policy.</p>
+
+    <h3>Walkthrough 2 - Splitwise (expense splitter)</h3>
+    <p>Clarify: "Group expenses? Equal split / percentage / exact / shares? Settlement suggestions?"</p>
+
+    <p><strong>Classes</strong></p>
+    <ul>
+      <li><code>User</code> (id, name, email).</li>
+      <li><code>Group</code> (members, expenses).</li>
+      <li><code>Expense</code> (paidBy, totalAmount, splits, splitType).</li>
+      <li><code>Split</code> abstract: <code>EqualSplit</code>, <code>PercentageSplit</code>, <code>ExactSplit</code> (Strategy).</li>
+      <li><code>BalanceSheet</code>: <code>Map&lt;User, Map&lt;User, Double&gt;&gt;</code> = "owes how much to whom".</li>
+      <li><code>SettlementService.minimiseTransactions(group)</code>: turn the balance graph into the fewest transfers (greedy + max-heap of creditors/debtors).</li>
+    </ul>
+
+    <p><strong>Concurrency:</strong> two members add expenses to the same group simultaneously &rarr; serialise updates to the BalanceSheet (lock per group).</p>
+
+    <h3>Walkthrough 3 - BookMyShow (movie ticket)</h3>
+    <p>Clarify: "Single city / multi-city? Concurrent seat selection? Refunds?"</p>
+
+    <p><strong>Classes</strong></p>
+    <ul>
+      <li><code>City</code>, <code>Theatre</code>, <code>Screen</code>, <code>Show</code> (movie, screen, startTime, seatLayout).</li>
+      <li><code>Seat</code> (row, col, type: REGULAR / RECLINER / GOLD).</li>
+      <li><code>Booking</code> (user, show, seats, status: HOLD / CONFIRMED / CANCELLED, expiresAt).</li>
+      <li><code>SeatHold</code> with TTL (e.g. 5 minutes) so abandoned carts release seats.</li>
+      <li><code>Payment</code> + <code>BookingService.confirm(holdId, paymentToken)</code>.</li>
+    </ul>
+
+    <p><strong>The hard part</strong> &mdash; two users tap the same seat at the same time. Wrap seat selection in a transaction: <code>UPDATE seats SET held_by = ?, expires = ? WHERE show_id = ? AND seat_id IN (...) AND held_by IS NULL</code>. If 0 rows updated &rarr; someone else got it; show the user the new seat map.</p>
+
+    <div class="callout warn"><strong>Don't draw God classes</strong> <code>BookMyShow</code> with 200 methods is a red flag. Decompose: <code>CatalogService</code>, <code>SeatService</code>, <code>BookingService</code>, <code>PaymentService</code>, <code>NotificationService</code>.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> The LLD interview rewards <em>narrating your design</em> as you build it. Talk through the entities, drop in 1-2 patterns, mention concurrency. You're done in 30 minutes.</div>
+  </div>
+</details>
+
+<div class="section-break"><span class="label">High-Level Design</span> <span class="sub">scaling boxes, arrows, and trade-offs</span></div>
+
+<!-- ============== SD 5 - Scalability vocab ============== -->
+<details class="lesson" id="sd-5">
+  <summary>
+    <span class="num">05</span>
+    <span class="heading">
+      <span class="title">Scalability vocabulary</span>
+      <span class="subtitle">The 10 words you must use correctly in HLD rounds.</span>
+    </span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">5 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> If you mix up <em>latency</em> and <em>throughput</em>, or <em>SLA</em> and <em>SLO</em>, the interviewer mentally notes "junior". Get these definitions perfect.</div>
+
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Term</th><th>Meaning in one line</th><th>Example number</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Latency</strong></td>          <td>Time for one request to finish.</td>                         <td>50 ms p50, 200 ms p99</td></tr>
+        <tr><td><strong>Throughput / QPS</strong></td> <td>Requests served per second.</td>                              <td>10k QPS</td></tr>
+        <tr><td><strong>Vertical scaling</strong></td> <td>Bigger box: more CPU / RAM / disk.</td>                       <td>2x cores</td></tr>
+        <tr><td><strong>Horizontal scaling</strong></td><td>More boxes behind a load balancer.</td>                       <td>3 &rarr; 30 nodes</td></tr>
+        <tr><td><strong>Availability</strong></td>     <td>Fraction of time the system answers correctly.</td>           <td>99.99% = 52 min/year down</td></tr>
+        <tr><td><strong>Durability</strong></td>       <td>Probability data survives.</td>                                <td>S3 = 11 nines</td></tr>
+        <tr><td><strong>SLA</strong></td>              <td>Contractual promise to customer (legally binding).</td>       <td>"99.9% uptime or refund"</td></tr>
+        <tr><td><strong>SLO</strong></td>              <td>Internal target you measure against.</td>                     <td>"p99 latency &lt; 300 ms"</td></tr>
+        <tr><td><strong>SLI</strong></td>              <td>The actual metric you're measuring.</td>                      <td>"% of requests under 300 ms"</td></tr>
+        <tr><td><strong>Idempotent</strong></td>       <td>Calling N times = calling once.</td>                          <td>HTTP PUT, DELETE</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Vertical vs horizontal &mdash; when to choose what</h3>
+    <div class="cols-2">
+      <div class="col-card do"><h4>Vertical scaling</h4>
+        <p>+ Zero code change.</p>
+        <p>+ Best for state-heavy single nodes (a primary DB).</p>
+        <p>- Hard cap (you run out of biggest box).</p>
+        <p>- Single point of failure.</p>
+      </div>
+      <div class="col-card do"><h4>Horizontal scaling</h4>
+        <p>+ Near-infinite ceiling.</p>
+        <p>+ Fault tolerant: lose 1 of 50 = ok.</p>
+        <p>- Needs stateless services (or sharding).</p>
+        <p>- Coordination + distributed-systems pain.</p>
+      </div>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> "Scale up first, scale out next" is a fine rule of thumb. Start vertical, switch to horizontal when latency or HA forces you.</div>
+  </div>
+</details>
+
+<!-- ============== SD 6 - CAP ============== -->
+<details class="lesson" id="sd-6">
+  <summary>
+    <span class="num">06</span>
+    <span class="heading">
+      <span class="title">CAP theorem &amp; consistency</span>
+      <span class="subtitle">The triangle you can never fully escape.</span>
+    </span>
+    <span class="meta"><span class="badge theory">theory</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> A distributed system can only guarantee <strong>two</strong> of {Consistency, Availability, Partition tolerance} during a network split. Partitions <em>will</em> happen, so the real trade-off is C vs A.</div>
+
+    <div class="illustration">
+      <img src="assets/cap-triangle.svg" alt="CAP triangle" />
+      <div class="caption">CP systems halt writes during split; AP systems answer with stale data.</div>
+    </div>
+
+    <h3>Consistency models (from strong to loose)</h3>
+    <ul>
+      <li><strong>Strong / linearizable.</strong> Every read sees the latest write. Slow, expensive, but easy to reason about (single MySQL primary).</li>
+      <li><strong>Read-your-writes.</strong> After you write, <em>you</em> see it; others may lag. Sticky sessions, or read from primary for your user.</li>
+      <li><strong>Monotonic reads.</strong> Once you've seen version N, you never see version &lt; N again.</li>
+      <li><strong>Eventual.</strong> All replicas converge "eventually". Cheap, fast, but reads can return stale data (DynamoDB by default, Cassandra).</li>
+      <li><strong>Causal.</strong> Operations that depend on each other are seen in order; unrelated ops can reorder.</li>
+    </ul>
+
+    <h3>How to talk about it in an interview</h3>
+    <p>Don't say "CAP theorem!" abstractly. Say: "For a banking system, I'd pick CP &mdash; we can't show a stale balance. For a social feed, AP is fine &mdash; a 5-second-stale like count won't ruin anyone's day."</p>
+
+    <div class="callout tip"><strong>PACELC</strong> is the modern refinement: <em>If Partition, choose A or C; <strong>Else</strong>, choose Latency or Consistency.</em> Spanner is CP+EL (sacrifices latency for consistency even with no partition). Cassandra is AP+EL.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> "We need strong consistency" is rarely true. Most domains tolerate eventual consistency &mdash; and unlock huge scale by accepting it.</div>
+  </div>
+</details>
+
+<!-- ============== SD 7 - Load balancing ============== -->
+<details class="lesson" id="sd-7">
+  <summary>
+    <span class="num">07</span>
+    <span class="heading">
+      <span class="title">Load balancing</span>
+      <span class="subtitle">Spreading traffic without losing your mind.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> A load balancer sits between clients and a fleet of servers, distributing requests. Two big choices: <em>L4 vs L7</em>, and the <em>algorithm</em> (round-robin, least-connections, consistent hashing).</div>
+
+    <div class="illustration">
+      <img src="assets/load-balancer.svg" alt="Load balancer between clients and servers" />
+      <div class="caption">One brain, many backs.</div>
+    </div>
+
+    <h3>L4 vs L7</h3>
+    <div class="cols-2">
+      <div class="col-card">
+        <h4>L4 (transport)</h4>
+        <p>Routes by IP + port, ignores payload. Fast, simple, cheap.</p>
+        <p>Tools: AWS NLB, IPVS, HAProxy in TCP mode.</p>
+      </div>
+      <div class="col-card">
+        <h4>L7 (application)</h4>
+        <p>Reads HTTP. Can route by path, header, cookie. Can do TLS termination, retries, rate limiting.</p>
+        <p>Tools: AWS ALB, NGINX, Envoy, Istio.</p>
+      </div>
+    </div>
+
+    <h3>Algorithms</h3>
+    <ul>
+      <li><strong>Round-robin.</strong> req 1 &rarr; A, req 2 &rarr; B, req 3 &rarr; C, req 4 &rarr; A. Simple but ignores load.</li>
+      <li><strong>Least connections.</strong> Send to the server with fewest active connections. Better for variable-length requests.</li>
+      <li><strong>Weighted.</strong> Bigger servers get more weight. Useful during a rolling deploy.</li>
+      <li><strong>IP hash.</strong> Same client always lands on the same server (cheap sticky session).</li>
+      <li><strong>Consistent hashing.</strong> Adding/removing a server only re-maps ~1/N of keys instead of all. Critical for cache fleets and sharded systems.</li>
+    </ul>
+
+    <h3>Health checks &amp; failover</h3>
+    <p>The LB pings each backend on a port/path every few seconds. If a backend fails <code>k</code> consecutive checks, it's removed from rotation. Re-added when healthy again. Crucial: don't share the LB itself as a single point of failure &mdash; run multiple LBs behind DNS round-robin or BGP anycast.</p>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Default to L7 for HTTP apps &mdash; the routing flexibility pays off. Use consistent hashing for any cache or sharded backend so node changes don't trigger thundering re-balancing.</div>
+  </div>
+</details>
+
+<!-- ============== SD 8 - Caching ============== -->
+<details class="lesson" id="sd-8">
+  <summary>
+    <span class="num">08</span>
+    <span class="heading">
+      <span class="title">Caching layers</span>
+      <span class="subtitle">Every cache hit is a query the DB didn't see.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Cache aggressively, invalidate carefully. The cache always wins on <em>read</em> performance; the cost is on <em>write</em> and on staleness.</div>
+
+    <div class="illustration">
+      <img src="assets/cache-layers.svg" alt="Cache layers from browser to DB" />
+      <div class="caption">The closer to the user, the faster &mdash; and the staler.</div>
+    </div>
+
+    <h3>Five layers worth caching</h3>
+    <ol>
+      <li><strong>Browser.</strong> <code>Cache-Control</code> headers, service workers, IndexedDB.</li>
+      <li><strong>CDN.</strong> Cloudflare, Akamai, CloudFront. Caches your static assets near the user (~10 ms).</li>
+      <li><strong>App-level / in-process.</strong> LRU map inside the server process. Lowest latency, lost on restart.</li>
+      <li><strong>Distributed cache.</strong> Redis or Memcached cluster. Shared across many app instances.</li>
+      <li><strong>DB cache.</strong> Buffer pool, query cache. Mostly automatic but tune sizes.</li>
+    </ol>
+
+    <h3>Write strategies</h3>
+    <div class="cols-3">
+      <div class="col-card"><h4>Write-through</h4><p>Write to cache <em>and</em> DB together. Safe, but slower writes.</p></div>
+      <div class="col-card"><h4>Write-back</h4><p>Write to cache; flush to DB later. Fast writes; risky if cache dies.</p></div>
+      <div class="col-card"><h4>Write-around</h4><p>Write straight to DB; cache fills on next read. Fine for "write once, read rarely".</p></div>
+    </div>
+
+    <h3>Eviction policies</h3>
+    <ul>
+      <li><strong>LRU</strong> (least recently used) &mdash; default in Redis (with <code>allkeys-lru</code>). Works well for general traffic.</li>
+      <li><strong>LFU</strong> (least frequently used) &mdash; resists "one-hit wonders" like a viral tweet polluting the cache.</li>
+      <li><strong>TTL</strong> &mdash; expire after N seconds. Simple, predictable staleness.</li>
+    </ul>
+
+    <h3>Cache invalidation - "two hard problems"</h3>
+    <ul>
+      <li><strong>Write-through</strong> updates the cache on every write &rarr; never stale, slower writes.</li>
+      <li><strong>Cache-aside + TTL.</strong> Read populates cache; writes only invalidate (or delete) the key. The TTL caps how stale a missed invalidation can stay.</li>
+      <li><strong>Pub/sub invalidation.</strong> Writer publishes a "user-123 changed" event; all app servers listen and drop the entry.</li>
+    </ul>
+
+    <div class="callout warn"><strong>Thundering herd</strong> when a hot key expires and 10,000 requests hit the DB simultaneously. Mitigate with <em>request coalescing</em> (single re-fetch, others wait) or <em>stale-while-revalidate</em> (serve stale, refresh in background).</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> If your read traffic to write traffic is &gt;10:1, you should be caching. If it's &gt;100:1, the cache is doing 99% of the work.</div>
+  </div>
+</details>
+
+<!-- ============== SD 9 - Databases ============== -->
+<details class="lesson" id="sd-9">
+  <summary>
+    <span class="num">09</span>
+    <span class="heading">
+      <span class="title">Databases: SQL, NoSQL, sharding</span>
+      <span class="subtitle">Choose the storage that matches the question.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">9 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> SQL for relational + ACID. NoSQL when you outgrow it or need flexible schema. Always-index your queries. Shard only when one box stops being enough.</div>
+
+    <h3>SQL vs NoSQL at a glance</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Dimension</th><th>SQL (Postgres, MySQL)</th><th>NoSQL</th></tr></thead>
+      <tbody>
+        <tr><td>Schema</td>           <td>Strict, enforced</td>             <td>Flexible / schema-less</td></tr>
+        <tr><td>Joins</td>            <td>First-class</td>                  <td>Usually denormalised, joins in app</td></tr>
+        <tr><td>Consistency</td>      <td>ACID (strong)</td>                <td>BASE (eventual) by default</td></tr>
+        <tr><td>Scale</td>            <td>Mostly vertical + read replicas</td><td>Horizontal-first, sharded</td></tr>
+        <tr><td>Best for</td>         <td>Orders, payments, anything with FKs</td><td>Feeds, logs, key-value, time series</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>NoSQL flavours (pick by access pattern)</h3>
+    <ul>
+      <li><strong>Key-value</strong> (Redis, DynamoDB) &mdash; "given a key, get a value". Sessions, caches, profiles.</li>
+      <li><strong>Document</strong> (MongoDB, Couchbase) &mdash; JSON-ish docs with nested fields and partial indexes.</li>
+      <li><strong>Wide-column</strong> (Cassandra, HBase, ScyllaDB) &mdash; tunable consistency, write-heavy, time-series.</li>
+      <li><strong>Graph</strong> (Neo4j, Amazon Neptune) &mdash; relationship-heavy queries (friend-of-friend).</li>
+      <li><strong>Search</strong> (Elasticsearch, OpenSearch) &mdash; full-text and faceted search.</li>
+    </ul>
+
+    <h3>Indexing 101</h3>
+    <p>A B-tree index turns "search column X" from O(n) into O(log n). Trade-off: each insert/update/delete must also update every index &rarr; slower writes. Rules of thumb:</p>
+    <ul>
+      <li>Index the columns you query in <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code>.</li>
+      <li>Composite index <code>(a, b)</code> works for queries on <code>a</code> alone and <code>(a, b)</code>, but not on <code>b</code> alone.</li>
+      <li>Never over-index a write-heavy table. Measure with <code>EXPLAIN</code>.</li>
+    </ul>
+
+    <h3>Replication</h3>
+    <p><strong>Leader-follower (primary-replica):</strong> writes go to leader; reads can hit followers (slight lag). Standard MySQL/Postgres setup.<br><strong>Multi-leader:</strong> writes on any node; conflict resolution needed.<br><strong>Leaderless</strong> (Cassandra): every node accepts writes; quorum reads/writes for consistency.</p>
+
+    <h3>Sharding (horizontal partitioning)</h3>
+    <div class="illustration">
+      <img src="assets/sharding.svg" alt="Hash sharding into 3 shards" />
+      <div class="caption">Cheap reads-per-shard. Cross-shard queries get painful.</div>
+    </div>
+    <ul>
+      <li><strong>Hash sharding.</strong> <code>shard = hash(user_id) % N</code>. Even distribution; ranged queries cost a fan-out.</li>
+      <li><strong>Range sharding.</strong> Users A-F &rarr; shard 0, G-M &rarr; shard 1. Range queries fast, but hot keys cause hotspots.</li>
+      <li><strong>Geo sharding.</strong> By region. Useful for latency &amp; data-locality laws (GDPR).</li>
+      <li><strong>Consistent hashing.</strong> Add a shard &rarr; only ~1/N of keys move (vs ~all with mod N).</li>
+    </ul>
+
+    <div class="callout warn"><strong>Don't shard early</strong> Sharding is a one-way door &mdash; cross-shard joins, transactions, and rebalances all become hard. Try vertical scaling + read replicas + caching first.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Start with a single Postgres. Add a read replica. Add a cache. Shard only when you've exhausted the above &mdash; usually past 10TB of hot data.</div>
+  </div>
+</details>
+
+<!-- ============== SD 10 - Queues ============== -->
+<details class="lesson" id="sd-10">
+  <summary>
+    <span class="num">10</span>
+    <span class="heading">
+      <span class="title">Message queues &amp; events</span>
+      <span class="subtitle">Decouple producers and consumers; smooth out spikes.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> A queue is a buffer between "I'm done" and "you take it from here". Producers and consumers scale independently, slow downstream doesn't break upstream, and you get retries for free.</div>
+
+    <h3>Three use cases</h3>
+    <ul>
+      <li><strong>Async work.</strong> User uploads a video; web server returns 202, video service processes it later from a queue.</li>
+      <li><strong>Spike absorption.</strong> Flash sale: 100k orders/sec into the queue, 1k orders/sec processed downstream &mdash; queue stretches.</li>
+      <li><strong>Decoupling.</strong> Order service publishes <code>OrderPlaced</code>; mail, analytics, fraud services each subscribe.</li>
+    </ul>
+
+    <h3>Kafka vs RabbitMQ vs SQS</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Tool</th><th>Model</th><th>Strength</th><th>Use when&hellip;</th></tr></thead>
+      <tbody>
+        <tr><td>Kafka</td>      <td>Log (replayable)</td>    <td>High throughput, retention</td>   <td>event sourcing, analytics, audit</td></tr>
+        <tr><td>RabbitMQ</td>   <td>Queue + exchanges</td>   <td>Flexible routing, low latency</td><td>RPC-like task queues</td></tr>
+        <tr><td>SQS</td>        <td>Managed queue</td>       <td>Zero ops</td>                     <td>You're on AWS and want simple</td></tr>
+        <tr><td>Redis Streams</td><td>Lightweight log</td>   <td>If Redis is already there</td>    <td>Small-scale events</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Delivery guarantees (memorise!)</h3>
+    <ul>
+      <li><strong>At-most-once</strong> &mdash; might lose messages, never duplicate. Fire-and-forget metrics.</li>
+      <li><strong>At-least-once</strong> &mdash; never lose, may duplicate. The default in practice; <strong>consumers must be idempotent</strong>.</li>
+      <li><strong>Exactly-once</strong> &mdash; the dream. Kafka offers it for the Kafka-to-Kafka path with transactions; end-to-end exactly-once across services is essentially impossible without idempotency keys.</li>
+    </ul>
+
+    <div class="callout tip"><strong>Idempotency trick</strong> Producer attaches a UUID per logical event. Consumer keeps a "processed IDs" set (Redis, DB unique index). Duplicate &rarr; skip. Now at-least-once + idempotency = exactly-once effects.</div>
+
+    <h3>Dead-letter queues (DLQ)</h3>
+    <p>After N failed retries, the message goes to a DLQ instead of looping forever. Engineers triage the DLQ. Never auto-drop &mdash; you'll lose evidence of bugs.</p>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Add a queue the moment two services can answer the question "does this need to happen <em>synchronously</em>?" with "no". Latency drops, resilience climbs.</div>
+  </div>
+</details>
+
+<!-- ============== SD 11 - Microservices ============== -->
+<details class="lesson" id="sd-11">
+  <summary>
+    <span class="num">11</span>
+    <span class="heading">
+      <span class="title">Microservices &amp; API gateway</span>
+      <span class="subtitle">When to split the monolith &mdash; and when not to.</span>
+    </span>
+    <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">7 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Microservices trade <em>internal complexity</em> for <em>independent deployment &amp; team scaling</em>. Worth it past ~50 engineers; usually overkill below.</div>
+
+    <div class="illustration">
+      <img src="assets/microservices.svg" alt="Microservices behind an API gateway with event bus" />
+      <div class="caption">Each service owns its DB and emits events.</div>
+    </div>
+
+    <h3>Monolith vs Microservices</h3>
+    <div class="cols-2">
+      <div class="col-card do"><h4>Monolith wins when</h4>
+        <ul>
+          <li>Small team (&lt; 20 devs).</li>
+          <li>Domain is still being discovered.</li>
+          <li>You need cross-table transactions a lot.</li>
+          <li>You want simple deploys.</li>
+        </ul>
+      </div>
+      <div class="col-card do"><h4>Microservices win when</h4>
+        <ul>
+          <li>Teams need to deploy independently.</li>
+          <li>Different services have wildly different scale or tech.</li>
+          <li>Blast radius of a bad deploy must be small.</li>
+          <li>Org chart maps to service boundaries (Conway's law).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The supporting cast</h3>
+    <ul>
+      <li><strong>API gateway</strong> &mdash; one front door. Authn/authz, rate limiting, routing, request shaping.</li>
+      <li><strong>Service discovery</strong> &mdash; how does <code>orders</code> find <code>payments</code>? DNS (Kubernetes service), Consul, Eureka.</li>
+      <li><strong>Circuit breaker</strong> &mdash; if downstream fails fast for 50% of requests, stop calling it for 30s. Prevents cascading failure (Hystrix, resilience4j).</li>
+      <li><strong>Distributed tracing</strong> &mdash; OpenTelemetry, Jaeger. One request ID flows through every service so you can see the waterfall.</li>
+      <li><strong>Saga pattern</strong> &mdash; replaces cross-service transactions: each step has a compensating action ("if payment fails, cancel the order").</li>
+    </ul>
+
+    <div class="callout warn"><strong>Distributed monolith</strong> If your microservices must all be deployed together, you've built the worst of both worlds. Aim for clear boundaries + async communication.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Start with a modular monolith. Extract a service only when a boundary screams (different scale, different team, different lifecycle). Premature microservices wastes years.</div>
+  </div>
+</details>
+
+<!-- ============== SD 12 - Rate limiting & auth ============== -->
+<details class="lesson" id="sd-12">
+  <summary>
+    <span class="num">12</span>
+    <span class="heading">
+      <span class="title">Rate limiting &amp; auth</span>
+      <span class="subtitle">Keep bad actors out, keep good ones inside the budget.</span>
+    </span>
+    <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">6 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Rate limit by user/IP/API-key. Authenticate with sessions for browser apps, JWTs for stateless APIs, OAuth for third-party access.</div>
+
+    <h3>Rate-limiting algorithms</h3>
+    <ul>
+      <li><strong>Fixed window.</strong> "100 req per minute starting on the minute". Simple but allows 2x burst at the boundary.</li>
+      <li><strong>Sliding window log.</strong> Store every request timestamp; count those within the window. Accurate, expensive memory.</li>
+      <li><strong>Sliding window counter.</strong> Approximate by combining current + previous window. Cheap and accurate enough.</li>
+      <li><strong>Token bucket.</strong> Bucket of size B; refilled at rate R per second. Request takes 1 token, drops if empty. Allows controlled bursts.</li>
+      <li><strong>Leaky bucket.</strong> Token bucket's cousin; smooths burst into steady drain.</li>
+    </ul>
+
+    <h3>Token bucket sketch</h3>
+    <div class="code-tabs" data-snippet="token-bucket">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>struct TokenBucket {
+    double tokens, capacity, refillPerSec;
+    double lastFill;
+    bool allow() {
+        double now = nowSeconds();
+        tokens = min(capacity, tokens + (now - lastFill) * refillPerSec);
+        lastFill = now;
+        if (tokens &gt;= 1) { tokens -= 1; return true; }
+        return false;
+    }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>class TokenBucket {
+    double tokens, capacity, refillPerSec, lastFill;
+    synchronized boolean allow() {
+        double now = System.nanoTime() / 1e9;
+        tokens = Math.min(capacity, tokens + (now - lastFill) * refillPerSec);
+        lastFill = now;
+        if (tokens &gt;= 1) { tokens -= 1; return true; }
+        return false;
+    }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>import time
+class TokenBucket:
+    def __init__(self, capacity, refill_per_sec):
+        self.capacity = capacity
+        self.refill = refill_per_sec
+        self.tokens = capacity
+        self.last = time.monotonic()
+    def allow(self):
+        now = time.monotonic()
+        self.tokens = min(self.capacity, self.tokens + (now - self.last) * self.refill)
+        self.last = now
+        if self.tokens &gt;= 1:
+            self.tokens -= 1
+            return True
+        return False</code></pre>
+    </div>
+
+    <h3>Auth choices</h3>
+    <ul>
+      <li><strong>Session cookies.</strong> Server stores the session; client holds a cookie. Easy to invalidate, secure-by-default with HttpOnly + SameSite.</li>
+      <li><strong>JWT (JSON Web Token).</strong> Signed payload; server doesn't need to look it up. Great for stateless APIs. Hard to revoke before expiry &mdash; keep TTL short (15 min) + refresh tokens.</li>
+      <li><strong>OAuth 2.0.</strong> "Login with Google" flow. Authorisation server returns an access token your app uses to call user-owned APIs.</li>
+    </ul>
+
+    <div class="callout warn"><strong>Don't roll your own crypto</strong> Use a library. Hash passwords with bcrypt/argon2 (never MD5/SHA-256 alone). Always TLS. Store secrets in a vault, never in source code.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> Apply rate limits at the edge (API gateway) and at the service for defence-in-depth. Pick the auth scheme by who the caller is &mdash; browser, partner API, or end-user via 3rd-party.</div>
+  </div>
+</details>
+
+<!-- ============== SD 13 - HLD walkthroughs ============== -->
+<details class="lesson" id="sd-13">
+  <summary>
+    <span class="num">13</span>
+    <span class="heading">
+      <span class="title">HLD walkthroughs</span>
+      <span class="subtitle">URL shortener, chat, news feed &mdash; full designs in interview style.</span>
+    </span>
+    <span class="meta"><span class="badge case">case</span><span class="reading-time">14 min</span></span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Every HLD answer follows the same shape: <em>clarify &rarr; estimate &rarr; data model &rarr; high-level diagram &rarr; deep-dive on 1-2 components &rarr; bottlenecks &amp; trade-offs</em>.</div>
+
+    <h3>Universal HLD framework</h3>
+    <ol class="steps">
+      <li><strong>Clarify scope &amp; SLAs.</strong> "Do we need analytics? Custom aliases? What's expected p99 latency?"</li>
+      <li><strong>Back-of-envelope estimation.</strong> Users, QPS, storage, bandwidth.</li>
+      <li><strong>Data model.</strong> Core entities + access patterns.</li>
+      <li><strong>High-level diagram.</strong> Client &rarr; LB &rarr; service &rarr; cache &rarr; DB &rarr; queue. Draw on whiteboard.</li>
+      <li><strong>Deep-dive.</strong> Pick the spiciest component (hashing scheme, sharding key, feed ranking) and go deeper.</li>
+      <li><strong>Bottlenecks &amp; trade-offs.</strong> What breaks at 10x? Consistency choices. SPOFs.</li>
+    </ol>
+
+    <h3>Walkthrough A - URL shortener (bit.ly)</h3>
+
+    <p><strong>Clarify:</strong> "Custom aliases? Expiry? Analytics? How long are URLs (read-heavy clearly)?"</p>
+
+    <p><strong>Estimate (assume):</strong></p>
+    <ul>
+      <li>Writes: 100M/month = ~40 writes/sec.</li>
+      <li>Read:write = 100:1 &rarr; 4k reads/sec, 100k peak.</li>
+      <li>Storage: ~500 bytes/record &times; 100M/month &times; 5 years &asymp; 3 TB.</li>
+    </ul>
+
+    <p><strong>Data model:</strong> <code>(short_key PRIMARY, long_url, owner, created_at, expires_at)</code>.</p>
+
+    <p><strong>Diagram:</strong></p>
+    <div class="illustration">
+      <img src="assets/url-shortener-arch.svg" alt="URL shortener architecture" />
+      <div class="caption">Read-heavy; cache the redirect, replicate the KV store.</div>
+    </div>
+
+    <p><strong>Short-key generation:</strong></p>
+    <ul>
+      <li><strong>Hash &amp; truncate</strong> (MD5(long_url)[:7] in base62). Collisions possible &rarr; rehash with salt.</li>
+      <li><strong>Counter / Snowflake.</strong> Central ID generator gives a monotonically-increasing 64-bit ID; encode to base62. Collision-free; predictable URLs (bad for security &mdash; mitigate by shuffling).</li>
+      <li><strong>Pre-generated pool.</strong> Background job creates batches of unused keys; service grabs one per request. Decouples write path from key generation.</li>
+    </ul>
+
+    <p><strong>Bottlenecks:</strong> hot reads &rarr; CDN + Redis. Sharded KV store keyed by short_key. Analytics? Drop click events into Kafka &rarr; ClickHouse for queries.</p>
+
+    <h3>Walkthrough B - Chat (WhatsApp-lite)</h3>
+
+    <p><strong>Clarify:</strong> "1-1 only or groups? Message delivery semantics? Online status?"</p>
+
+    <p><strong>Estimate:</strong> 500M users, 50 msgs/user/day &rarr; ~290k msg/sec; storage ~500 GB/day if 200 B per msg + metadata.</p>
+
+    <p><strong>Components:</strong></p>
+    <ul>
+      <li><strong>Edge layer:</strong> WebSocket gateway (~1M connections per box, sticky LB on hash(user_id)).</li>
+      <li><strong>Presence service:</strong> Redis with user-online TTL; heartbeats every 30s.</li>
+      <li><strong>Message service:</strong> writes to Cassandra keyed by (conversation_id, msg_id ascending). Range-scan efficient for "load last 50 msgs".</li>
+      <li><strong>Pub/sub:</strong> Kafka topic per shard; gateways subscribe and push to connected clients.</li>
+      <li><strong>Offline delivery:</strong> Push via FCM/APNs when user not connected.</li>
+    </ul>
+
+    <p><strong>Hardest part - delivery guarantees.</strong> WebSocket can drop. Use a per-message ID; client ACKs on receipt; server keeps unacked for &lt; N seconds; resend on reconnect. End-to-end encryption (E2EE) means server never sees plaintext &mdash; complicates search, simplifies privacy.</p>
+
+    <h3>Walkthrough C - News feed (Instagram-lite)</h3>
+
+    <p><strong>Clarify:</strong> "Chronological or ranked? Followers can be in millions (celebrities)?"</p>
+
+    <p><strong>The fundamental choice - fan-out:</strong></p>
+    <div class="cols-2">
+      <div class="col-card">
+        <h4>Fan-out on write (push)</h4>
+        <p>When user A posts, copy the post-id into the feed cache of every follower.</p>
+        <p>+ Read is O(1) &mdash; just read your feed key.</p>
+        <p>- Celebrity with 100M followers = 100M writes per post.</p>
+      </div>
+      <div class="col-card">
+        <h4>Fan-out on read (pull)</h4>
+        <p>At read time, merge recent posts from everyone the user follows.</p>
+        <p>+ Cheap write.</p>
+        <p>- Read is O(followees), heavy for power users.</p>
+      </div>
+    </div>
+
+    <p><strong>The hybrid (Instagram, Twitter):</strong> push for normal users, pull for celebrities at read time, merge the two lists. Best of both worlds.</p>
+
+    <p><strong>Ranking:</strong> off-line model scores (user_id, post_id) -&gt; affinity; the feed service pulls top-N candidate posts and re-ranks on read.</p>
+
+    <p><strong>Storage:</strong> Posts in a sharded blob/KV store (user_id partition). Media in object store (S3) + CDN. Feeds in Redis sorted-set keyed by user_id, score=timestamp or rank.</p>
+
+    <div class="callout tip"><strong>Always close with trade-offs</strong> "I chose push for the common case because reads dominate. For celebrities, I'd switch to pull because the write amplification would crush the system." That last sentence wins offers.</div>
+
+    <div class="callout takeaway"><strong>Takeaway</strong> The HLD interview isn't a quiz on tools &mdash; it's a structured conversation. Memorise the framework, practice 5 walkthroughs out loud, and you'll never be lost.</div>
+  </div>
+</details>
+
+</main>
+
+<!-- ============== SIGN-OFF ============== -->
+<section class="signoff">
+  <h2>Boxes &amp; arrows &mdash; now with reasons.</h2>
+  <p>You now have a vocabulary, a framework, and three case studies. Practice by re-designing apps you use daily.</p>
+
+  <div class="takeaways">
+    <div class="takeaway-pill"><strong>Clarify first</strong> 5 minutes of clarifying questions saves 30 minutes of building the wrong thing.</div>
+    <div class="takeaway-pill"><strong>Estimate openly</strong> Numbers on the whiteboard convert "design" into "engineering".</div>
+    <div class="takeaway-pill"><strong>One deep-dive</strong> Better to nail one component than skim everything.</div>
+    <div class="takeaway-pill"><strong>Trade-offs &gt; perfect</strong> Every choice has a downside. Say it out loud.</div>
+  </div>
+
+  <div class="next-up">
+    <a class="btn primary" href="interview-playbook.html">Next: Interview Playbook &rarr;</a>
+    <a class="btn" href="dsa.html">&larr; Back to DSA</a>
+  </div>
+</section>
+
+<footer class="footer-meta">
+  <span>DSA Pack &middot; System Design</span>
+  <span>Press <kbd>E</kbd> to expand all, <kbd>C</kbd> to collapse</span>
+</footer>
+
+<script src="dsa.js"></script>
+</body>
+</html>
