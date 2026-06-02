@@ -21,15 +21,18 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="#top" class="brand bare">
+    <a href="index.html" class="brand bare" aria-label="DSA Pack home">
       <span class="brand-dot"></span>
       <span>DSA Pack</span>
     </a>
 
     <nav class="nav-tabs" aria-label="Pack navigation">
-      <a class="nav-tab active" href="dsa.html">DSA Patterns</a>
-      <a class="nav-tab"        href="system-design.html">System Design</a>
-      <a class="nav-tab"        href="interview-playbook.html">Interview Playbook</a>
+      <a class="nav-tab home-tab"    href="index.html">Home</a>
+      <a class="nav-tab"             href="dsa-fundamentals.html">Fundamentals</a>
+      <a class="nav-tab active"      href="dsa.html">Patterns</a>
+      <a class="nav-tab"             href="top-50-problems.html">Top 50</a>
+      <a class="nav-tab"             href="system-design.html">System Design</a>
+      <a class="nav-tab"             href="interview-playbook.html">Playbook</a>
     </nav>
 
     <div class="topbar-actions">
@@ -53,6 +56,9 @@
     in 90% of interviews, plus a universal framework to attack the rest.
     Every example shown in <strong>C++</strong>, <strong>Java</strong>, and <strong>Python</strong> &mdash; pick your weapon.
   </p>
+  <p class="lede" style="margin-top:-4px">
+    New here? Start at <a href="dsa-fundamentals.html">DSA Fundamentals</a> for every topic from arrays to segment trees, then drill the <a href="top-50-problems.html">Top 50 Problems</a>.
+  </p>
   <img src="assets/dsa-hero.svg" alt="DSA brain with patterns" class="hero-mascot" />
   <div class="hero-stats">
     <div class="hero-stat"><span class="num">16</span><span class="label">lessons</span></div>
@@ -67,7 +73,8 @@
   <div class="toc-head">
     <h2>What you'll master</h2>
     <div class="toc-controls">
-      <a class="btn" href="system-design.html">Then: System Design &rarr;</a>
+      <a class="btn" href="dsa-fundamentals.html">&larr; DSA Fundamentals</a>
+      <a class="btn" href="top-50-problems.html">Top 50 Problems &rarr;</a>
     </div>
   </div>
   <ol>
@@ -1878,6 +1885,31 @@ def topo_sort(n, adj):
     <a class="btn" href="interview-playbook.html">Or: Interview Playbook</a>
   </div>
 </section>
+
+<!-- ============== FOOTER PAGE-NAV ============== -->
+<nav class="page-nav" aria-label="Page navigation">
+  <a class="page-nav-btn prev" href="dsa-fundamentals.html">
+    <span class="arr">&larr;</span>
+    <span class="meta">
+      <span class="lbl">Previous</span>
+      <span class="ttl">DSA Fundamentals</span>
+    </span>
+  </a>
+  <a class="page-nav-btn home" href="index.html">
+    <span class="arr">&#9737;</span>
+    <span class="meta">
+      <span class="lbl">All pages</span>
+      <span class="ttl">Home</span>
+    </span>
+  </a>
+  <a class="page-nav-btn next" href="top-50-problems.html">
+    <span class="meta">
+      <span class="lbl">Next up</span>
+      <span class="ttl">Top 50 Problems</span>
+    </span>
+    <span class="arr">&rarr;</span>
+  </a>
+</nav>
 
 <footer class="footer-meta">
   <span>DSA Pack &middot; static HTML &middot; share freely</span>

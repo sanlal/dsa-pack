@@ -192,4 +192,36 @@
     if (e.key === 'c' && collapseBtn) collapseBtn.click();
   });
 
+  /* ==============================================================
+     YouTube link wiring (Top 50)
+     Looks up each <a data-yt="p-N"> in window.PROBLEM_VIDEOS:
+       - URL string -> set href, mark as live
+       - null/empty -> mark as "video coming soon", click is a no-op
+     ============================================================== */
+  function wireYouTubeLinks() {
+    const map = (window && window.PROBLEM_VIDEOS) || {};
+    document.querySelectorAll('a[data-yt]').forEach(a => {
+      const key = a.getAttribute('data-yt');
+      const url = key ? map[key] : null;
+      const lbl = a.querySelector('.label');
+      if (typeof url === 'string' && url.length > 0) {
+        a.setAttribute('href', url);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+        a.setAttribute('data-yt-status', 'live');
+        if (lbl) lbl.textContent = 'Watch the walkthrough';
+      } else {
+        a.setAttribute('href', '#');
+        a.setAttribute('data-yt-status', 'pending');
+        a.setAttribute('aria-disabled', 'true');
+        a.setAttribute('title', 'Video coming soon - check back later');
+        if (lbl) lbl.textContent = 'Video coming soon';
+        a.addEventListener('click', (ev) => {
+          ev.preventDefault();
+        });
+      }
+    });
+  }
+  wireYouTubeLinks();
+
 })();

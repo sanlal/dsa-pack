@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="DSA Pack home - pick where to start: Fundamentals, 14 Patterns, Top 50 problems, System Design, or the Interview Playbook. Dark, hand-drawn, with C++/Java/Python tabs." />
+
+  <meta property="og:title" content="DSA Pack - Home" />
+  <meta property="og:description" content="Five interactive pages, one philosophy: small set of patterns, deep understanding, ruthless practice. C++/Java/Python tabs everywhere." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/dsa-hero.svg" />
+
+  <title>DSA Pack - Home</title>
+  <link rel="icon" type="image/svg+xml" href="assets/dsa-hero.svg" />
+  <link rel="stylesheet" href="dsa.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand bare" aria-label="DSA Pack home">
+      <span class="brand-dot"></span>
+      <span>DSA Pack</span>
+    </a>
+
+    <nav class="nav-tabs" aria-label="Pack navigation">
+      <a class="nav-tab home-tab active" href="index.html">Home</a>
+      <a class="nav-tab"                  href="dsa-fundamentals.html">Fundamentals</a>
+      <a class="nav-tab"                  href="dsa.html">Patterns</a>
+      <a class="nav-tab"                  href="top-50-problems.html">Top 50</a>
+      <a class="nav-tab"                  href="system-design.html">System Design</a>
+      <a class="nav-tab"                  href="interview-playbook.html">Playbook</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="lang-switcher" role="group" aria-label="Code language">
+        <button data-lang="cpp">C++</button>
+        <button data-lang="java">Java</button>
+        <button data-lang="python">Py</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="home-hero" id="top">
+  <p class="eyebrow"><span class="wave">~</span> welcome in <span class="wave">~</span></p>
+  <h1>One pack. <span class="accent">Everything</span><br>you need to <span class="accent2">land the offer</span>.</h1>
+  <p class="lede">
+    Five interactive pages, one simple idea: <strong>learn the patterns deeply, then practise ruthlessly</strong>.
+    Every code example is shown in <strong>C++</strong>, <strong>Java</strong>, and <strong>Python</strong> &mdash; tap once, the whole pack switches.
+  </p>
+  <p class="sub-lede">Pick a card below to jump straight in. You can always come back here.</p>
+  <img src="assets/dsa-hero.svg" alt="DSA brain mascot" class="hero-mascot" />
+</section>
+
+<!-- ============== THE 5 CARDS ============== -->
+<section class="cards-wrap">
+  <h2 class="cards-title">The 5-step path</h2>
+  <p class="cards-sub">Follow them in order, or jump straight to whichever you need today.</p>
+
+  <div class="page-cards">
+
+    <a class="page-card tone-cyan" href="dsa-fundamentals.html">
+      <div class="page-card-num">01</div>
+      <h3>DSA Fundamentals</h3>
+      <p>Every data structure and algorithm from <em>arrays to segment trees</em> &mdash; explained from first principles with a real-life analogy, then the diagram, then the code.</p>
+      <div class="page-card-meta">
+        <span>30 lessons</span>
+        <span>basic &rarr; advanced</span>
+        <span>~2 hrs to skim</span>
+      </div>
+      <span class="page-card-cta">Start learning <span class="arr">&rarr;</span></span>
+    </a>
+
+    <a class="page-card tone-orange" href="dsa.html">
+      <div class="page-card-num">02</div>
+      <h3>14 Patterns</h3>
+      <p>The pattern templates that recur in 90% of coding interviews. Sliding window, two pointers, BFS/DFS, DP &hellip; plus a universal framework to attack anything new.</p>
+      <div class="page-card-meta">
+        <span>16 lessons</span>
+        <span>~90 min read</span>
+        <span>150+ practice links</span>
+      </div>
+      <span class="page-card-cta">Learn the patterns <span class="arr">&rarr;</span></span>
+    </a>
+
+    <a class="page-card tone-pink" href="top-50-problems.html">
+      <div class="page-card-num">03</div>
+      <h3>Top 50 Problems</h3>
+      <p>The fifty must-do interview problems with full multi-language solutions. The questions Google, Meta, Microsoft and Amazon actually rotate &mdash; with the gotchas spelled out.</p>
+      <div class="page-card-meta">
+        <span>50 problems</span>
+        <span>C++ / Java / Py</span>
+        <span>~30 hrs to master</span>
+      </div>
+      <span class="page-card-cta">Drill the problems <span class="arr">&rarr;</span></span>
+    </a>
+
+    <a class="page-card tone-purple" href="system-design.html">
+      <div class="page-card-num">04</div>
+      <h3>System Design</h3>
+      <p>Low-level design + high-level design, in one place. OOP, SOLID, design patterns and end-to-end walkthroughs. Then CAP, caching, sharding, queues, microservices.</p>
+      <div class="page-card-meta">
+        <span>13 lessons</span>
+        <span>LLD + HLD</span>
+        <span>URL shortener &middot; chat &middot; feed</span>
+      </div>
+      <span class="page-card-cta">Design real systems <span class="arr">&rarr;</span></span>
+    </a>
+
+    <a class="page-card tone-green" href="interview-playbook.html">
+      <div class="page-card-num">05</div>
+      <h3>Interview Playbook</h3>
+      <p>The soft-skills layer that actually converts offers. Communication, projects, HR rounds, India-tier playbook, a 60-day prep schedule, and salary negotiation.</p>
+      <div class="page-card-meta">
+        <span>10 lessons</span>
+        <span>before drive day</span>
+        <span>read in 45 min</span>
+      </div>
+      <span class="page-card-cta">Master the round <span class="arr">&rarr;</span></span>
+    </a>
+
+  </div>
+
+  <!-- Friendly tips row -->
+  <div class="home-tips">
+    <div class="home-tip">
+      <div class="ico">&#10003;</div>
+      <h4>Pick your language once</h4>
+      <p>Use the <kbd>C++</kbd> / <kbd>Java</kbd> / <kbd>Py</kbd> switch in the top-right. Every code block on every page flips together &mdash; and remembers your choice next time.</p>
+    </div>
+    <div class="home-tip">
+      <div class="ico">&#9889;</div>
+      <h4>Keyboard shortcuts</h4>
+      <p>On any inner page press <kbd>E</kbd> to expand all lessons or <kbd>C</kbd> to collapse them. Click any item in the Table of Contents to jump and auto-open.</p>
+    </div>
+    <div class="home-tip">
+      <div class="ico">&larr;&rarr;</div>
+      <h4>Move between pages easily</h4>
+      <p>The header is always there. So is the footer at the bottom of every page: <strong>Previous &middot; Home &middot; Next</strong>. You can walk the full pack without hitting the browser back button.</p>
+    </div>
+    <div class="home-tip">
+      <div class="ico">&#9733;</div>
+      <h4>No login. No tracking.</h4>
+      <p>This whole pack is plain HTML, CSS and SVG. Save it offline, share the folder, or host it for free on GitHub Pages. It's yours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER PAGE-NAV ============== -->
+<nav class="page-nav" aria-label="Page navigation">
+  <a class="page-nav-btn prev" href="interview-playbook.html">
+    <span class="arr">&larr;</span>
+    <span class="meta">
+      <span class="lbl">Last page</span>
+      <span class="ttl">Interview Playbook</span>
+    </span>
+  </a>
+  <a class="page-nav-btn home" href="#top">
+    <span class="arr">&uarr;</span>
+    <span class="meta">
+      <span class="lbl">Jump to</span>
+      <span class="ttl">Top of page</span>
+    </span>
+  </a>
+  <a class="page-nav-btn next" href="dsa-fundamentals.html">
+    <span class="meta">
+      <span class="lbl">Start here</span>
+      <span class="ttl">DSA Fundamentals</span>
+    </span>
+    <span class="arr">&rarr;</span>
+  </a>
+</nav>
+
+<footer class="footer-meta">
+  <span>DSA Pack &middot; share freely &middot; built for placements &amp; interviews</span>
+  <span>Made with <span style="color: var(--pink)">&hearts;</span> &middot; tap a card to begin</span>
+</footer>
+
+<script src="dsa.js"></script>
+</body>
+</html>
