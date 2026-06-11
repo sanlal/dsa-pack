@@ -1,186 +1,986 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0F1A2E" />
-  <meta name="description" content="DSA Pack home - pick where to start: Fundamentals, 14 Patterns, Top 50 problems, System Design, or the Interview Playbook. Dark, hand-drawn, with C++/Java/Python tabs." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#ffffff" />
+<title>DSA Pack &mdash; the complete interview prep hub</title>
+<meta name="description" content="Seven interactive pages, one philosophy: learn the patterns deeply, then practise ruthlessly. DSA, OOP, System Design, Patterns, Top 50 problems, and the Interview Playbook &mdash; all in Python, Java and C++." />
 
-  <meta property="og:title" content="DSA Pack - Home" />
-  <meta property="og:description" content="Five interactive pages, one philosophy: small set of patterns, deep understanding, ruthless practice. C++/Java/Python tabs everywhere." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/dsa-hero.svg" />
+<meta property="og:title" content="DSA Pack &mdash; the complete interview prep hub" />
+<meta property="og:description" content="Seven interactive pages: Fundamentals, Patterns, Top 50, System Design, Playbook, OOP. C++/Java/Python tabs everywhere." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/dsa-hero.svg" />
 
-  <title>DSA Pack - Home</title>
-  <link rel="icon" type="image/svg+xml" href="assets/dsa-hero.svg" />
-  <link rel="stylesheet" href="dsa.css" />
+<link rel="icon" type="image/svg+xml" href="assets/dsa-hero.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:           #ffffff;
+    --bg-soft:      #f7f9fc;
+    --bg-softer:    #f1f4f9;
+    --text:         #0f172a;
+    --text-muted:   #475569;
+    --text-light:   #64748b;
+    --border:       #e2e8f0;
+    --border-soft:  #eef2f7;
+    --accent:       #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-soft:  #eef2ff;
+    --accent-text:  #4338ca;
+    --pink:         #ec4899;
+    --purple:       #a855f7;
+    --orange:       #f59e0b;
+    --green:        #10b981;
+    --cyan:         #06b6d4;
+    --shadow-sm:    0 1px 2px 0 rgba(15, 23, 42, 0.04);
+    --shadow:       0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+    --shadow-lg:    0 20px 40px -10px rgba(15, 23, 42, 0.15), 0 10px 20px -10px rgba(15, 23, 42, 0.08);
+    --radius:       12px;
+    --radius-sm:    8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: #fafbfc;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    font-feature-settings: "ss01", "cv11", "calt";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .12s ease; }
+  a:hover { color: var(--accent-hover); }
+
+  /* ====== ANIMATED BACKGROUND BLOBS ====== */
+  .bg-blobs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(90px); opacity: 0.4;
+    will-change: transform;
+    transition: transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .blob-1 { background: radial-gradient(circle, #6366f1, #818cf8); top: -15%; left: -10%; width: 600px; height: 600px; animation: drift1 18s ease-in-out infinite; }
+  .blob-2 { background: radial-gradient(circle, #a855f7, #c084fc); top: 30%; right: -15%; width: 520px; height: 520px; animation: drift2 22s ease-in-out infinite; }
+  .blob-3 { background: radial-gradient(circle, #ec4899, #f472b6); bottom: -20%; left: 20%; width: 680px; height: 680px; animation: drift3 26s ease-in-out infinite; }
+  .blob-4 { background: radial-gradient(circle, #06b6d4, #67e8f9); top: 60%; left: 50%; width: 420px; height: 420px; animation: drift1 20s ease-in-out infinite reverse; opacity: 0.3; }
+  @keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-60px) scale(1.1);} 66% { transform: translate(-30px,50px) scale(.95);} }
+  @keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px,40px) scale(1.15);} }
+  @keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 25% { transform: translate(60px,-30px) scale(1.08);} 75% { transform: translate(-40px,70px) scale(.92);} }
+
+  .site-header, .main, .site-footer { position: relative; z-index: 1; }
+
+  /* ====== READING PROGRESS BAR ====== */
+  .progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg,#6366f1 0%,#a855f7 50%,#ec4899 100%); z-index: 70; transition: width .12s linear; pointer-events: none; box-shadow: 0 0 12px rgba(168,85,247,.4); }
+
+  /* ====== HEADER ====== */
+  .site-header {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid rgba(226,232,240,.6);
+  }
+  .site-header-inner {
+    max-width: 1440px; margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text);
+    font-weight: 700; font-size: 15px; letter-spacing: -0.01em;
+  }
+  .brand:hover { text-decoration: none; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    box-shadow: 0 3px 10px rgba(99,102,241,.4);
+    position: relative;
+  }
+  .brand-mark::after {
+    content: ''; position: absolute; inset: 6px;
+    background: white; border-radius: 4px;
+    opacity: 0.18;
+  }
+
+  .nav-tabs {
+    display: inline-flex; align-items: center; gap: 2px;
+    padding: 4px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-tabs a {
+    padding: 6px 12px;
+    font: 500 13px 'Inter', sans-serif;
+    color: var(--text-muted);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all .12s ease;
+    white-space: nowrap;
+  }
+  .nav-tabs a:hover { color: var(--text); background: var(--bg-soft); }
+  .nav-tabs a.active {
+    background: var(--text);
+    color: white;
+  }
+  .nav-tabs a.is-new {
+    position: relative;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+  .nav-tabs a.is-new::after {
+    content: 'NEW';
+    position: absolute; top: -7px; right: -8px;
+    background: linear-gradient(135deg, #f59e0b, #ec4899);
+    color: white;
+    font: 700 9px 'Inter', sans-serif;
+    padding: 1px 5px;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 6px rgba(236,72,153,.4);
+  }
+  @media (max-width: 900px) {
+    .nav-tabs { display: none; }
+    .site-header-inner { padding: 12px 18px; }
+  }
+
+  /* ====== MAIN LAYOUT ====== */
+  .main { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 720px) { .main { padding: 0 18px; } }
+
+  /* ====== HERO ====== */
+  .hero {
+    padding: 64px 0 36px;
+    text-align: center;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  @media (max-width: 720px) { .hero { padding: 36px 0 24px; } }
+  .hero .eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #eef2ff 0%, #fce7f3 100%);
+    color: var(--accent-text);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    border: 1px solid rgba(99,102,241,0.15);
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin: 0 0 22px;
+    color: var(--text);
+  }
+  .hero h1 .grad {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero .lede {
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 auto 28px;
+    max-width: 720px;
+  }
+  .hero .lede strong { color: var(--text); font-weight: 600; }
+
+  .hero-cta {
+    display: inline-flex; gap: 10px; flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .hero-cta .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font: 600 14.5px 'Inter', sans-serif;
+    cursor: pointer; text-decoration: none;
+    transition: all .15s cubic-bezier(.2,.8,.2,1);
+    border: 0;
+  }
+  .hero-cta .btn.primary {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    box-shadow: 0 6px 18px -3px rgba(99,102,241,.45);
+  }
+  .hero-cta .btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -4px rgba(99,102,241,.55);
+    color: white; text-decoration: none;
+  }
+  .hero-cta .btn.ghost {
+    background: rgba(255,255,255,0.8);
+    color: var(--text);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .hero-cta .btn.ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+
+  /* Stats strip */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding: 22px 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 6px;
+  }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  .stat { text-align: center; }
+  .stat .n {
+    display: block;
+    font: 800 28px 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+  .stat .l {
+    display: block;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ====== SECTION TITLES ====== */
+  .section { padding: 56px 0; }
+  @media (max-width: 720px) { .section { padding: 36px 0; } }
+  .section-head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-head .eyebrow {
+    display: inline-block;
+    font: 700 11px 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-head h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+  .section-head p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin: 0 auto;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  /* ====== FEATURED CARD (OOP) ====== */
+  .featured {
+    position: relative;
+    padding: 40px 44px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 50%, #be185d 100%);
+    color: white;
+    overflow: hidden;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    box-shadow: 0 20px 40px -10px rgba(67,56,202,.35);
+    transition: all .25s cubic-bezier(.2,.8,.2,1);
+  }
+  .featured::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(168,85,247,0.4), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(236,72,153,0.3), transparent 50%);
+    pointer-events: none;
+  }
+  .featured:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 56px -12px rgba(67,56,202,.5);
+    color: white; text-decoration: none;
+  }
+  .featured > * { position: relative; }
+  .featured .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    font: 700 11px 'Inter', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .featured h3 {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .featured p {
+    margin: 0 0 16px;
+    font-size: 15.5px;
+    line-height: 1.55;
+    opacity: 0.9;
+    max-width: 580px;
+  }
+  .featured .meta {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .featured .meta span {
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    font: 500 12px 'Inter', sans-serif;
+  }
+  .featured .arrow {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: all .2s ease;
+  }
+  .featured:hover .arrow {
+    background: white;
+    color: var(--accent-text);
+    transform: translateX(4px);
+  }
+  @media (max-width: 720px) {
+    .featured { grid-template-columns: 1fr; padding: 28px 24px; gap: 16px; }
+    .featured .arrow { justify-self: start; width: 48px; height: 48px; font-size: 20px; }
+  }
+
+  /* ====== PAGE CARDS GRID ====== */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    position: relative;
+    padding: 28px 28px 24px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all .2s cubic-bezier(.2,.8,.2,1);
+    cursor: pointer;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--card-tint, linear-gradient(135deg, rgba(99,102,241,0.04), transparent));
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-color, var(--accent));
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .card:hover::before { opacity: 1; }
+  .card > * { position: relative; }
+
+  .card .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    background: var(--card-bg, var(--accent-soft));
+    color: var(--card-color, var(--accent));
+    font: 700 16px 'JetBrains Mono', monospace;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(15,23,42,.05);
+  }
+  .card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  .card p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+    flex: 1;
+  }
+  .card .meta {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 16px;
+  }
+  .card .meta span {
+    font: 500 11.5px 'Inter', sans-serif;
+    color: var(--text-light);
+    padding: 3px 9px;
+    background: var(--bg-soft);
+    border-radius: 999px;
+    border: 1px solid var(--border-soft);
+  }
+  .card .cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font: 600 13.5px 'Inter', sans-serif;
+    color: var(--card-color, var(--accent));
+    margin-top: auto;
+  }
+  .card .cta .arr {
+    transition: transform .2s cubic-bezier(.2,.8,.2,1);
+    display: inline-block;
+  }
+  .card:hover .cta .arr { transform: translateX(4px); }
+
+  /* Card color variants */
+  .card.c-indigo { --card-color: #6366f1; --card-bg: #eef2ff; --card-tint: linear-gradient(135deg, rgba(99,102,241,0.06), transparent); }
+  .card.c-orange { --card-color: #f59e0b; --card-bg: #fef3c7; --card-tint: linear-gradient(135deg, rgba(245,158,11,0.06), transparent); }
+  .card.c-pink   { --card-color: #ec4899; --card-bg: #fce7f3; --card-tint: linear-gradient(135deg, rgba(236,72,153,0.06), transparent); }
+  .card.c-purple { --card-color: #a855f7; --card-bg: #f3e8ff; --card-tint: linear-gradient(135deg, rgba(168,85,247,0.06), transparent); }
+  .card.c-green  { --card-color: #10b981; --card-bg: #d1fae5; --card-tint: linear-gradient(135deg, rgba(16,185,129,0.06), transparent); }
+  .card.c-cyan   { --card-color: #06b6d4; --card-bg: #cffafe; --card-tint: linear-gradient(135deg, rgba(6,182,212,0.06), transparent); }
+
+  /* ====== TIPS GRID ====== */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .tip {
+    padding: 22px 24px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    transition: all .18s ease;
+  }
+  .tip:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: var(--shadow); }
+  .tip .ico {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .tip h4 {
+    font-size: 14.5px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .tip p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .tip p kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font: 600 11px 'JetBrains Mono', monospace;
+    color: var(--text);
+  }
+
+  /* ====== HOW TO USE (path) ====== */
+  .path {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 36px 40px;
+  }
+  @media (max-width: 720px) { .path { padding: 28px 22px; } }
+  .path ol {
+    list-style: none;
+    counter-reset: step;
+    padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .path ol li {
+    counter-increment: step;
+    position: relative;
+    padding: 16px 18px 16px 64px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .path ol li::before {
+    content: counter(step);
+    position: absolute; left: 16px; top: 50%;
+    transform: translateY(-50%);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    color: white;
+    font: 700 14px 'JetBrains Mono', monospace;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(99,102,241,.35);
+  }
+  .path ol li strong { color: var(--text); }
+  .path ol li a { font-weight: 600; }
+
+  /* ====== FOOTER ====== */
+  .site-footer {
+    border-top: 1px solid rgba(226,232,240,.6);
+    padding: 32px 32px 28px;
+    background: rgba(255,255,255,.7);
+    backdrop-filter: blur(20px);
+    margin-top: 64px;
+  }
+  .foot-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .foot-pill {
+    display: inline-flex; align-items: center;
+    padding: 5px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    gap: 2px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .foot-pill a, .foot-pill button {
+    border: 0; background: transparent;
+    padding: 8px 16px;
+    font: 500 13px 'Inter', sans-serif;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all .12s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none;
+  }
+  .foot-pill a:hover, .foot-pill button:hover {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    text-decoration: none;
+  }
+  .foot-meta {
+    font-size: 12.5px;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .foot-meta strong { color: var(--text); font-weight: 600; }
+  .foot-meta .heart { color: #ef4444; }
+
+  /* ====== FLOATING SCROLL CONTROLS ====== */
+  .float-ctrls {
+    position: fixed;
+    right: 22px; bottom: 22px;
+    display: flex; flex-direction: column;
+    gap: 8px;
+    z-index: 55;
+  }
+  .float-ctrls button {
+    width: 42px; height: 42px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 16px; font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all .18s cubic-bezier(.2,.8,.2,1);
+    display: inline-flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(10px) scale(.9);
+    pointer-events: none;
+  }
+  .float-ctrls.visible button {
+    opacity: 1; transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .float-ctrls button:hover {
+    background: white; color: var(--accent);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .float-ctrls { right: 14px; bottom: 14px; }
+    .float-ctrls button { width: 38px; height: 38px; font-size: 14px; }
+  }
+
+  ::selection { background: var(--accent-soft); color: var(--text); }
+</style>
 </head>
+
 <body>
 
-<div class="progress-bar" id="progress"></div>
+<!-- READING PROGRESS BAR -->
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a href="index.html" class="brand bare" aria-label="DSA Pack home">
-      <span class="brand-dot"></span>
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html" aria-label="DSA Pack home">
+      <span class="brand-mark"></span>
       <span>DSA Pack</span>
     </a>
 
     <nav class="nav-tabs" aria-label="Pack navigation">
-      <a class="nav-tab home-tab active" href="index.html">Home</a>
-      <a class="nav-tab"                  href="dsa-fundamentals.html">Fundamentals</a>
-      <a class="nav-tab"                  href="dsa.html">Patterns</a>
-      <a class="nav-tab"                  href="top-50-problems.html">Top 50</a>
-      <a class="nav-tab"                  href="system-design.html">System Design</a>
-      <a class="nav-tab"                  href="interview-playbook.html">Playbook</a>
+      <a class="active" href="index.html">Home</a>
+      <a href="dsa-fundamentals.html">Fundamentals</a>
+      <a href="dsa.html">Patterns</a>
+      <a href="top-50-problems.html">Top 50</a>
+      <a href="system-design.html">System Design</a>
+      <a href="interview-playbook.html">Playbook</a>
+      <a href="oop-notes.html" class="is-new">OOP</a>
     </nav>
-
-    <div class="topbar-actions">
-      <div class="lang-switcher" role="group" aria-label="Code language">
-        <button data-lang="cpp">C++</button>
-        <button data-lang="java">Java</button>
-        <button data-lang="python">Py</button>
-      </div>
-    </div>
   </div>
 </header>
 
-<!-- ============== HERO ============== -->
-<section class="home-hero" id="top">
-  <p class="eyebrow"><span class="wave">~</span> welcome in <span class="wave">~</span></p>
-  <h1>One pack. <span class="accent">Everything</span><br>you need to <span class="accent2">land the offer</span>.</h1>
-  <p class="lede">
-    Five interactive pages, one simple idea: <strong>learn the patterns deeply, then practise ruthlessly</strong>.
-    Every code example is shown in <strong>C++</strong>, <strong>Java</strong>, and <strong>Python</strong> &mdash; tap once, the whole pack switches.
-  </p>
-  <p class="sub-lede">Pick a card below to jump straight in. You can always come back here.</p>
-  <img src="assets/dsa-hero.svg" alt="DSA brain mascot" class="hero-mascot" />
-</section>
+<!-- MAIN -->
+<main class="main">
 
-<!-- ============== THE 5 CARDS ============== -->
-<section class="cards-wrap">
-  <h2 class="cards-title">The 5-step path</h2>
-  <p class="cards-sub">Follow them in order, or jump straight to whichever you need today.</p>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <span class="eyebrow">7 pages &middot; 3 languages &middot; 100% free</span>
+    <h1>One pack.<br><span class="grad">Everything</span> you need to land the offer.</h1>
+    <p class="lede">
+      Seven interactive pages, one simple idea: <strong>learn the patterns deeply, then practise ruthlessly</strong>.
+      Every code example is shown in <strong>Python</strong>, <strong>Java</strong>, and <strong>C++</strong>. Pick a card below to jump in &mdash; or follow the recommended path.
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="oop-notes.html">
+        Open OOP Notes <span aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="btn ghost" href="#path">
+        See the learning path
+      </a>
+    </div>
 
-  <div class="page-cards">
+    <div class="stats">
+      <div class="stat"><span class="n">7</span><span class="l">interactive pages</span></div>
+      <div class="stat"><span class="n">160+</span><span class="l">lessons &amp; problems</span></div>
+      <div class="stat"><span class="n">3</span><span class="l">languages (Py/Java/C++)</span></div>
+      <div class="stat"><span class="n">36</span><span class="l">OOP topics alone</span></div>
+    </div>
+  </section>
 
-    <a class="page-card tone-cyan" href="dsa-fundamentals.html">
-      <div class="page-card-num">01</div>
-      <h3>DSA Fundamentals</h3>
-      <p>Every data structure and algorithm from <em>arrays to segment trees</em> &mdash; explained from first principles with a real-life analogy, then the diagram, then the code.</p>
-      <div class="page-card-meta">
-        <span>30 lessons</span>
-        <span>basic &rarr; advanced</span>
-        <span>~2 hrs to skim</span>
+  <!-- ============ FEATURED: OOP NOTES ============ -->
+  <section class="section" style="padding-top:36px;">
+    <a class="featured" href="oop-notes.html">
+      <div>
+        <span class="badge"><span>&#9889;</span> Newly added &middot; most polished</span>
+        <h3>OOP Notes &mdash; zero to hero, in plain English</h3>
+        <p>The complete guide to Object-Oriented Programming. 36 deep-dive topics from <em>"why OOP exists"</em> through the four pillars, relationships, SOLID, and design patterns. Every concept tied to apps you already use: Swiggy, Uber, YouTube, WhatsApp, Netflix.</p>
+        <div class="meta">
+          <span>36 topics</span>
+          <span>Python &middot; Java &middot; C++</span>
+          <span>Keyboard navigation</span>
+          <span>SOLID + Design Patterns</span>
+        </div>
       </div>
-      <span class="page-card-cta">Start learning <span class="arr">&rarr;</span></span>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
     </a>
+  </section>
 
-    <a class="page-card tone-orange" href="dsa.html">
-      <div class="page-card-num">02</div>
-      <h3>14 Patterns</h3>
-      <p>The pattern templates that recur in 90% of coding interviews. Sliding window, two pointers, BFS/DFS, DP &hellip; plus a universal framework to attack anything new.</p>
-      <div class="page-card-meta">
-        <span>16 lessons</span>
-        <span>~90 min read</span>
-        <span>150+ practice links</span>
-      </div>
-      <span class="page-card-cta">Learn the patterns <span class="arr">&rarr;</span></span>
-    </a>
+  <!-- ============ ALL PAGES GRID ============ -->
+  <section class="section" id="pages">
+    <div class="section-head">
+      <span class="eyebrow">Browse everything</span>
+      <h2>All seven pages in the pack</h2>
+      <p>Each page is self-contained and works offline. Pick whichever you need today &mdash; or follow the recommended order below.</p>
+    </div>
 
-    <a class="page-card tone-pink" href="top-50-problems.html">
-      <div class="page-card-num">03</div>
-      <h3>Top 50 Problems</h3>
-      <p>The fifty must-do interview problems with full multi-language solutions. The questions Google, Meta, Microsoft and Amazon actually rotate &mdash; with the gotchas spelled out.</p>
-      <div class="page-card-meta">
-        <span>50 problems</span>
-        <span>C++ / Java / Py</span>
-        <span>~30 hrs to master</span>
-      </div>
-      <span class="page-card-cta">Drill the problems <span class="arr">&rarr;</span></span>
-    </a>
+    <div class="cards">
 
-    <a class="page-card tone-purple" href="system-design.html">
-      <div class="page-card-num">04</div>
-      <h3>System Design</h3>
-      <p>Low-level design + high-level design, in one place. OOP, SOLID, design patterns and end-to-end walkthroughs. Then CAP, caching, sharding, queues, microservices.</p>
-      <div class="page-card-meta">
-        <span>13 lessons</span>
-        <span>LLD + HLD</span>
-        <span>URL shortener &middot; chat &middot; feed</span>
-      </div>
-      <span class="page-card-cta">Design real systems <span class="arr">&rarr;</span></span>
-    </a>
+      <a class="card c-cyan" href="oop-notes.html">
+        <div class="num">01</div>
+        <h3>OOP Notes <span style="background:linear-gradient(135deg,#f59e0b,#ec4899);color:white;font-size:9px;padding:2px 6px;border-radius:999px;vertical-align:middle;margin-left:6px;letter-spacing:.05em;">NEW</span></h3>
+        <p>Object-Oriented Programming, end-to-end. The four pillars, object relationships, SOLID, and the seven must-know design patterns &mdash; explained in basic English with real apps.</p>
+        <div class="meta">
+          <span>36 topics</span>
+          <span>SOLID + Patterns</span>
+          <span>keyboard nav</span>
+        </div>
+        <span class="cta">Open the guide <span class="arr">&rarr;</span></span>
+      </a>
 
-    <a class="page-card tone-green" href="interview-playbook.html">
-      <div class="page-card-num">05</div>
-      <h3>Interview Playbook</h3>
-      <p>The soft-skills layer that actually converts offers. Communication, projects, HR rounds, India-tier playbook, a 60-day prep schedule, and salary negotiation.</p>
-      <div class="page-card-meta">
-        <span>10 lessons</span>
-        <span>before drive day</span>
-        <span>read in 45 min</span>
+      <a class="card c-indigo" href="dsa-fundamentals.html">
+        <div class="num">02</div>
+        <h3>DSA Fundamentals</h3>
+        <p>Every data structure and algorithm from arrays to segment trees &mdash; explained from first principles with a real-life analogy, the diagram, then the code.</p>
+        <div class="meta">
+          <span>30 lessons</span>
+          <span>basic &rarr; advanced</span>
+          <span>~2 hrs to skim</span>
+        </div>
+        <span class="cta">Start learning <span class="arr">&rarr;</span></span>
+      </a>
+
+      <a class="card c-orange" href="dsa.html">
+        <div class="num">03</div>
+        <h3>14 Patterns</h3>
+        <p>The pattern templates that recur in 90% of coding interviews. Sliding window, two pointers, BFS/DFS, DP &hellip; plus a universal framework to attack anything new.</p>
+        <div class="meta">
+          <span>16 lessons</span>
+          <span>~90 min read</span>
+          <span>150+ practice links</span>
+        </div>
+        <span class="cta">Learn the patterns <span class="arr">&rarr;</span></span>
+      </a>
+
+      <a class="card c-pink" href="top-50-problems.html">
+        <div class="num">04</div>
+        <h3>Top 50 Problems</h3>
+        <p>The fifty must-do interview problems with full multi-language solutions. The questions Google, Meta, Microsoft and Amazon actually rotate &mdash; with gotchas spelled out.</p>
+        <div class="meta">
+          <span>50 problems</span>
+          <span>C++ / Java / Py</span>
+          <span>~30 hrs to master</span>
+        </div>
+        <span class="cta">Drill the problems <span class="arr">&rarr;</span></span>
+      </a>
+
+      <a class="card c-purple" href="system-design.html">
+        <div class="num">05</div>
+        <h3>System Design</h3>
+        <p>Low-level design + high-level design, in one place. OOP, SOLID, design patterns and end-to-end walkthroughs. Then CAP, caching, sharding, queues, microservices.</p>
+        <div class="meta">
+          <span>13 lessons</span>
+          <span>LLD + HLD</span>
+          <span>URL shortener &middot; chat &middot; feed</span>
+        </div>
+        <span class="cta">Design real systems <span class="arr">&rarr;</span></span>
+      </a>
+
+      <a class="card c-green" href="interview-playbook.html">
+        <div class="num">06</div>
+        <h3>Interview Playbook</h3>
+        <p>The soft-skills layer that actually converts offers. Communication, projects, HR rounds, India-tier playbook, a 60-day prep schedule, and salary negotiation.</p>
+        <div class="meta">
+          <span>10 lessons</span>
+          <span>before drive day</span>
+          <span>read in 45 min</span>
+        </div>
+        <span class="cta">Master the round <span class="arr">&rarr;</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ LEARNING PATH ============ -->
+  <section class="section" id="path">
+    <div class="section-head">
+      <span class="eyebrow">Recommended order</span>
+      <h2>The 6-step path</h2>
+      <p>If you're starting fresh, this is the order that works. If you only have a week, do the <a href="oop-notes.html">OOP Notes</a> first, then drill the <a href="top-50-problems.html">Top 50</a>.</p>
+    </div>
+
+    <div class="path">
+      <ol>
+        <li><strong>Begin with the <a href="oop-notes.html">OOP Notes</a>.</strong> Object-Oriented thinking is the mental model the rest of the pack assumes. Includes SOLID + the 7 must-know design patterns &mdash; everything you'll need before System Design.</li>
+        <li><strong>Move on to <a href="dsa-fundamentals.html">DSA Fundamentals</a>.</strong> Skim every chapter so you know what tools exist. Don't memorise &mdash; just see them.</li>
+        <li><strong>Learn the <a href="dsa.html">14 Patterns</a>.</strong> These are the templates. 90% of coding questions are a variation of one of these.</li>
+        <li><strong>Drill the <a href="top-50-problems.html">Top 50 Problems</a>.</strong> Practise each one in your weakest language. Re-do the ones you got wrong after a week.</li>
+        <li><strong>Work through <a href="system-design.html">System Design</a>.</strong> LLD first (it leans on the OOP you just learned), then HLD. Practise the URL shortener, chat, and feed walkthroughs out loud.</li>
+        <li><strong>Finish with the <a href="interview-playbook.html">Interview Playbook</a>.</strong> Soft skills, HR prep, the 60-day schedule and salary negotiation &mdash; the layer that actually closes offers.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TIPS ============ -->
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Pro tips</span>
+      <h2>Get the most out of the pack</h2>
+      <p>Small things that make a big difference. Most of these are inside the OOP Notes page.</p>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip">
+        <div class="ico">&#10003;</div>
+        <h4>Pick your language once</h4>
+        <p>Every code block has a <kbd>C++</kbd> / <kbd>Java</kbd> / <kbd>Py</kbd> switch. The whole page flips at once and remembers your choice for next time.</p>
       </div>
-      <span class="page-card-cta">Master the round <span class="arr">&rarr;</span></span>
-    </a>
+      <div class="tip">
+        <div class="ico">&#9889;</div>
+        <h4>Keyboard shortcuts</h4>
+        <p>On the OOP Notes page: <kbd>&larr;</kbd>/<kbd>&rarr;</kbd> prev/next topic, <kbd>H</kbd> home, <kbd>T</kbd> top, <kbd>B</kbd> bottom, <kbd>/</kbd> search.</p>
+      </div>
+      <div class="tip">
+        <div class="ico">&#128279;</div>
+        <h4>Move between pages easily</h4>
+        <p>The header is always there. Use the tabs to jump between pages. Every page also has a footer pill with Prev / Next / Top / Bottom.</p>
+      </div>
+      <div class="tip">
+        <div class="ico">&#127968;</div>
+        <h4>Works offline, no login</h4>
+        <p>Plain HTML, CSS and SVG. Save the folder, share it, or host it free on GitHub Pages. Your data stays on your device.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="foot-inner">
+
+    <nav class="foot-pill" aria-label="Pack pages">
+      <a href="oop-notes.html">OOP</a>
+      <a href="dsa-fundamentals.html">Fundamentals</a>
+      <a href="dsa.html">Patterns</a>
+      <a href="top-50-problems.html">Top 50</a>
+      <a href="system-design.html">System Design</a>
+      <a href="interview-playbook.html">Playbook</a>
+      <button type="button" id="btnTop" title="Scroll to top">&uarr; Top</button>
+    </nav>
+
+    <p class="foot-meta">
+      <strong>DSA Pack</strong> &middot; 7 interactive pages &middot; Python &middot; Java &middot; C++ &middot; no login, no tracking
+      <br />
+      Built with <span class="heart">&hearts;</span> for placements &amp; interviews &middot; share freely
+    </p>
 
   </div>
-
-  <!-- Friendly tips row -->
-  <div class="home-tips">
-    <div class="home-tip">
-      <div class="ico">&#10003;</div>
-      <h4>Pick your language once</h4>
-      <p>Use the <kbd>C++</kbd> / <kbd>Java</kbd> / <kbd>Py</kbd> switch in the top-right. Every code block on every page flips together &mdash; and remembers your choice next time.</p>
-    </div>
-    <div class="home-tip">
-      <div class="ico">&#9889;</div>
-      <h4>Keyboard shortcuts</h4>
-      <p>On any inner page press <kbd>E</kbd> to expand all lessons or <kbd>C</kbd> to collapse them. Click any item in the Table of Contents to jump and auto-open.</p>
-    </div>
-    <div class="home-tip">
-      <div class="ico">&larr;&rarr;</div>
-      <h4>Move between pages easily</h4>
-      <p>The header is always there. So is the footer at the bottom of every page: <strong>Previous &middot; Home &middot; Next</strong>. You can walk the full pack without hitting the browser back button.</p>
-    </div>
-    <div class="home-tip">
-      <div class="ico">&#9733;</div>
-      <h4>No login. No tracking.</h4>
-      <p>This whole pack is plain HTML, CSS and SVG. Save it offline, share the folder, or host it for free on GitHub Pages. It's yours.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============== FOOTER PAGE-NAV ============== -->
-<nav class="page-nav" aria-label="Page navigation">
-  <a class="page-nav-btn prev" href="interview-playbook.html">
-    <span class="arr">&larr;</span>
-    <span class="meta">
-      <span class="lbl">Last page</span>
-      <span class="ttl">Interview Playbook</span>
-    </span>
-  </a>
-  <a class="page-nav-btn home" href="#top">
-    <span class="arr">&uarr;</span>
-    <span class="meta">
-      <span class="lbl">Jump to</span>
-      <span class="ttl">Top of page</span>
-    </span>
-  </a>
-  <a class="page-nav-btn next" href="dsa-fundamentals.html">
-    <span class="meta">
-      <span class="lbl">Start here</span>
-      <span class="ttl">DSA Fundamentals</span>
-    </span>
-    <span class="arr">&rarr;</span>
-  </a>
-</nav>
-
-<footer class="footer-meta">
-  <span>DSA Pack &middot; share freely &middot; built for placements &amp; interviews</span>
-  <span>Made with <span style="color: var(--pink)">&hearts;</span> &middot; tap a card to begin</span>
 </footer>
 
-<script src="dsa.js"></script>
+<!-- FLOATING SCROLL CONTROLS -->
+<div class="float-ctrls" id="floatCtrls" aria-hidden="true">
+  <button type="button" data-act="top" title="Scroll to top">&uarr;</button>
+  <button type="button" data-act="bottom" title="Scroll to bottom">&darr;</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ===== READING PROGRESS BAR =====
+  var bar = document.getElementById('progressBar');
+  var ticking = false;
+  function updateBar() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (bar) bar.style.width = pct.toFixed(1) + '%';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(updateBar); ticking = true; }
+  }, { passive: true });
+  window.addEventListener('resize', updateBar);
+  updateBar();
+
+  // ===== FLOATING SCROLL BUTTONS =====
+  var ctrls = document.getElementById('floatCtrls');
+  function scrollTopFn()    { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function scrollBottomFn() { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
+  if (ctrls) {
+    ctrls.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.act === 'top') scrollTopFn(); else scrollBottomFn();
+      });
+    });
+    var updateCtrls = function () { ctrls.classList.toggle('visible', window.scrollY > 240); };
+    window.addEventListener('scroll', updateCtrls, { passive: true });
+    updateCtrls();
+  }
+
+  // ===== "TOP" button in footer pill =====
+  var btnTop = document.getElementById('btnTop');
+  if (btnTop) btnTop.addEventListener('click', scrollTopFn);
+
+  // ===== KEYBOARD SHORTCUTS (basic for home page) =====
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 't' || e.key === 'T') scrollTopFn();
+    else if (e.key === 'b' || e.key === 'B') scrollBottomFn();
+  });
+
+  // ===== INTERACTIVE BG: mouse parallax on blobs =====
+  var blobs = document.querySelectorAll('.blob');
+  if (blobs.length) {
+    var mx = 0, my = 0, tx = 0, ty = 0;
+    document.addEventListener('mousemove', function (e) {
+      mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+      my = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+    (function frame() {
+      tx += (mx - tx) * 0.05;
+      ty += (my - ty) * 0.05;
+      blobs.forEach(function (b, i) {
+        var f = (i + 1) * 12;
+        b.style.translate = (tx * f) + 'px ' + (ty * f) + 'px';
+      });
+      requestAnimationFrame(frame);
+    })();
+  }
+})();
+</script>
+
+<script src="coffee.js" defer></script>
+
 </body>
 </html>

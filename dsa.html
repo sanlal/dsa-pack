@@ -33,6 +33,7 @@
       <a class="nav-tab"             href="top-50-problems.html">Top 50</a>
       <a class="nav-tab"             href="system-design.html">System Design</a>
       <a class="nav-tab"             href="interview-playbook.html">Playbook</a>
+      <a class="nav-tab"             href="oop-notes.html">OOP</a>
     </nav>
 
     <div class="topbar-actions">
@@ -215,7 +216,7 @@
         <tr><td><code>O(n log n)</code></td>    <td class="good">very good</td>    <td>sort, heap-based</td>                <td class="good">~20M steps</td></tr>
         <tr><td><code>O(n&sup2;)</code></td>       <td class="meh">ok for n &lt; 10<sup>4</sup></td><td>two nested loops, naive DP</td><td class="bad">TLE</td></tr>
         <tr><td><code>O(n&sup3;)</code></td>       <td class="bad">avoid</td>        <td>three nested loops</td>              <td class="bad">~10<sup>18</sup></td></tr>
-        <tr><td><code>O(2&#710;n)</code></td>      <td class="bad">brute subsets</td><td>backtracking subsets</td>            <td class="bad">won't finish</td></tr>
+        <tr><td><code>O(2<sup>n</sup>)</code></td>      <td class="bad">brute subsets</td><td>backtracking subsets</td>            <td class="bad">won't finish</td></tr>
         <tr><td><code>O(n!)</code></td>         <td class="bad">brute permute</td> <td>brute travelling salesman</td>       <td class="bad">won't finish</td></tr>
       </tbody>
     </table></div>
@@ -223,7 +224,7 @@
     <h3>How to derive complexity in 30 seconds</h3>
     <ol>
       <li>Find every loop. A single loop over <code>n</code> is O(n). Nested loops multiply: 2 nested loops over <code>n</code> = O(n&sup2;).</li>
-      <li>Recursive calls: count the tree. If each call spawns 2 sub-calls and depth is <code>n</code>, you have O(2&#710;n).</li>
+      <li>Recursive calls: count the tree. If each call spawns 2 sub-calls and depth is <code>n</code>, you have O(2<sup>n</sup>).</li>
       <li>Drop constants and lower-order terms: <code>5n + 100</code> is just O(n). <code>n&sup2; + n</code> is O(n&sup2;).</li>
       <li>Space = the largest auxiliary data you keep (extra arrays, recursion stack, hash map size). The output usually doesn't count.</li>
     </ol>
@@ -234,8 +235,8 @@
     <div class="cols-2">
       <div class="col-card do">
         <h4>Practical translation</h4>
-        <p><strong>n &le; 10:</strong> O(n!), O(2&#710;n) ok.</p>
-        <p><strong>n &le; 20:</strong> O(2&#710;n) ok (with memo).</p>
+        <p><strong>n &le; 10:</strong> O(n!), O(2<sup>n</sup>) ok.</p>
+        <p><strong>n &le; 20:</strong> O(2<sup>n</sup>) ok (with memo).</p>
         <p><strong>n &le; 5000:</strong> O(n&sup2;) ok.</p>
         <p><strong>n &le; 10<sup>5</sup>:</strong> O(n log n).</p>
         <p><strong>n &le; 10<sup>7</sup>:</strong> O(n).</p>
@@ -365,7 +366,7 @@ while l &lt; r:
     else:              r -= 1</code></pre>
     </div>
 
-    <h3>Worked example - 3Sum (LC 15)</h3>
+    <h3>Worked example &mdash; 3Sum (LC 15)</h3>
     <p>Given <code>nums</code>, find all unique triplets <code>(a, b, c)</code> such that <code>a + b + c == 0</code>. Sort the array, fix <code>nums[i]</code>, then two-pointer the rest.</p>
     <div class="code-tabs" data-snippet="three-sum">
       <div class="tab-strip">
@@ -486,7 +487,7 @@ while l &lt; r:
       <div class="caption">Fixed window = slide K. Variable window = stretch R, then shrink L while invalid.</div>
     </div>
 
-    <h3>Template - variable window (most common)</h3>
+    <h3>Template &mdash; variable window (most common)</h3>
     <div class="code-tabs" data-snippet="sliding-window-template">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -526,7 +527,7 @@ for R, ch in enumerate(s):
     best = max(best, R - L + 1)</code></pre>
     </div>
 
-    <h3>Worked example - Longest Substring Without Repeating Characters (LC 3)</h3>
+    <h3>Worked example &mdash; Longest Substring Without Repeating Characters (LC 3)</h3>
     <div class="code-tabs" data-snippet="lsws-repeat">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -615,7 +616,7 @@ for R, ch in enumerate(s):
       <div class="caption">Floyd's tortoise &amp; hare &mdash; the geometry guarantees they meet inside the cycle.</div>
     </div>
 
-    <h3>Template - cycle detection</h3>
+    <h3>Template &mdash; cycle detection</h3>
     <div class="code-tabs" data-snippet="cycle-detect">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -650,7 +651,7 @@ for R, ch in enumerate(s):
     return False</code></pre>
     </div>
 
-    <h3>Why the math works (LC 142 - find the cycle start)</h3>
+    <h3>Why the math works (LC 142 &mdash; find the cycle start)</h3>
     <p>Let <code>L</code> = distance from head to cycle start, <code>C</code> = cycle length, <code>k</code> = distance from cycle start to the meet point. When they meet: slow walked <code>L + k</code>, fast walked <code>2(L + k) = L + k + n&middot;C</code>. So <code>L = n&middot;C - k</code>. Reset slow to head; move both one step at a time. They re-meet exactly at the cycle's start.</p>
 
     <div class="complexity-row">
@@ -701,7 +702,7 @@ for R, ch in enumerate(s):
       <div class="caption">Every comparison kills half the candidates.</div>
     </div>
 
-    <h3>Template - "first true" (most bug-proof variant)</h3>
+    <h3>Template &mdash; "first true" (most bug-proof variant)</h3>
     <div class="code-tabs" data-snippet="bsearch-firsttrue">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -732,7 +733,7 @@ while lo &lt; hi:
 return lo</code></pre>
     </div>
 
-    <h3>Worked example - "Search in Rotated Sorted Array" (LC 33)</h3>
+    <h3>Worked example &mdash; "Search in Rotated Sorted Array" (LC 33)</h3>
     <p>One half of the array is always sorted. Detect which half, decide if the target lies in it, and recurse on that half.</p>
     <div class="code-tabs" data-snippet="rotated-search">
       <div class="tab-strip">
@@ -1015,7 +1016,7 @@ def bfs(g, sr, sc):
         undo(cur, c)</code></pre>
     </div>
 
-    <h3>Worked example - all subsets (LC 78)</h3>
+    <h3>Worked example &mdash; all subsets (LC 78)</h3>
     <div class="code-tabs" data-snippet="subsets">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -1062,7 +1063,7 @@ List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
     </div>
 
     <div class="complexity-row">
-      <span class="pill"><span class="k">subsets time</span><span class="v">O(2&#710;n &middot; n)</span></span>
+      <span class="pill"><span class="k">subsets time</span><span class="v">O(2<sup>n</sup> &middot; n)</span></span>
       <span class="pill"><span class="k">permute time</span><span class="v">O(n! &middot; n)</span></span>
       <span class="pill"><span class="k">stack</span><span class="v">O(n)</span></span>
     </div>
@@ -1275,7 +1276,7 @@ List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
 
     <div class="recognise"><strong>When to recognise</strong> Interval scheduling, jump games, assigning resources, Huffman, classroom intervals.</div>
 
-    <h3>Worked example - Interval Scheduling (max non-overlapping)</h3>
+    <h3>Worked example &mdash; Interval Scheduling (max non-overlapping)</h3>
     <p>Sort by <em>end time</em>. Always pick the next interval that starts after the last one ended. Why end-time? An interval that ends earlier leaves more room for the rest.</p>
     <div class="code-tabs" data-snippet="interval-sched">
       <div class="tab-strip">
@@ -1310,7 +1311,7 @@ List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
     return count</code></pre>
     </div>
 
-    <h3>The "exchange argument" - why greedy works (proof sketch)</h3>
+    <h3>The "exchange argument" &mdash; why greedy works (proof sketch)</h3>
     <p>Suppose some optimal solution doesn't pick the earliest-ending interval. Swap it with the earliest-ending one. The new solution is at least as good (still non-overlapping, same size). Repeat &rarr; greedy is one valid optimum.</p>
 
     <h3>When greedy <em>fails</em></h3>
@@ -1352,7 +1353,7 @@ List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
       <div class="caption">Min-heap: root holds the smallest. Push/pop are O(log n).</div>
     </div>
 
-    <h3>Template - K largest elements (LC 215)</h3>
+    <h3>Template &mdash; K largest elements (LC 215)</h3>
     <div class="code-tabs" data-snippet="topk">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -1385,7 +1386,7 @@ def find_kth_largest(nums, k):
     return pq[0]</code></pre>
     </div>
 
-    <h3>Median of a stream (LC 295) - two heaps</h3>
+    <h3>Median of a stream (LC 295) &mdash; two heaps</h3>
     <p>Keep a max-heap (<code>lo</code>) for the smaller half and a min-heap (<code>hi</code>) for the larger half. Sizes differ by at most 1. Median = top of larger, or average of tops if equal.</p>
     <div class="code-tabs" data-snippet="median-stream">
       <div class="tab-strip">
@@ -1470,7 +1471,7 @@ class MedianFinder:
       <div class="caption">Each tree = one component. Union = attach one root under the other.</div>
     </div>
 
-    <h3>Template - with both optimisations</h3>
+    <h3>Template &mdash; with both optimisations</h3>
     <div class="code-tabs" data-snippet="dsu">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -1530,7 +1531,7 @@ class MedianFinder:
         return True</code></pre>
     </div>
 
-    <h3>Worked example - Number of Provinces (LC 547)</h3>
+    <h3>Worked example &mdash; Number of Provinces (LC 547)</h3>
     <p>Treat each city as a node, each <code>isConnected[i][j] == 1</code> as an edge. Union them, then count distinct roots.</p>
 
     <div class="callout tip"><strong>Reverse-time trick</strong> When the question asks "after each edge removed, is graph still connected?" &mdash; reverse the timeline: start from the final graph and <em>add</em> edges (union), answer queries in reverse.</div>
@@ -1738,7 +1739,7 @@ def topo_sort(n, adj):
       </tbody>
     </table></div>
 
-    <h3>XOR cancellation - Single Number (LC 136)</h3>
+    <h3>XOR cancellation &mdash; Single Number (LC 136)</h3>
     <p>Every number appears twice except one. <code>a XOR a = 0</code>, <code>a XOR 0 = a</code>. XOR the whole array; the duplicates cancel, the loner survives.</p>
     <div class="code-tabs" data-snippet="single-number">
       <div class="tab-strip">
@@ -1824,7 +1825,7 @@ def topo_sort(n, adj):
       </div>
       <div class="col-card">
         <h4>6. Are subproblems overlapping?</h4>
-        <p>Recursion that re-solves the same state? DP/memo cuts O(2&#710;n) to O(n&sup2;) or O(n).</p>
+        <p>Recursion that re-solves the same state? DP/memo cuts O(2<sup>n</sup>) to O(n&sup2;) or O(n).</p>
       </div>
 
       <div class="col-card">
@@ -1852,8 +1853,8 @@ def topo_sort(n, adj):
     <div class="table-wrap"><table class="dsa-table">
       <thead><tr><th>n is&hellip;</th><th>Target complexity</th><th>Likely pattern</th></tr></thead>
       <tbody>
-        <tr><td>n &le; 10</td>               <td>O(n!) / O(2&#710;n)</td>   <td>Brute backtracking</td></tr>
-        <tr><td>n &le; 20</td>               <td>O(2&#710;n)</td>           <td>Bitmask DP, subset enum</td></tr>
+        <tr><td>n &le; 10</td>               <td>O(n!) / O(2<sup>n</sup>)</td>   <td>Brute backtracking</td></tr>
+        <tr><td>n &le; 20</td>               <td>O(2<sup>n</sup>)</td>           <td>Bitmask DP, subset enum</td></tr>
         <tr><td>n &le; 100</td>              <td>O(n&sup3;) / O(n&sup2; log n)</td><td>DP, Floyd-Warshall</td></tr>
         <tr><td>n &le; 5,000</td>             <td>O(n&sup2;)</td>           <td>2-D DP, nested loop</td></tr>
         <tr><td>n &le; 10<sup>5</sup></td>   <td>O(n log n)</td>        <td>Sort, heap, segment tree, Dijkstra</td></tr>
@@ -1917,5 +1918,6 @@ def topo_sort(n, adj):
 </footer>
 
 <script src="dsa.js"></script>
+<script src="coffee.js" defer></script>
 </body>
 </html>

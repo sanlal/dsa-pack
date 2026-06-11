@@ -33,6 +33,7 @@
       <a class="nav-tab"             href="top-50-problems.html">Top 50</a>
       <a class="nav-tab"             href="system-design.html">System Design</a>
       <a class="nav-tab"             href="interview-playbook.html">Playbook</a>
+      <a class="nav-tab"             href="oop-notes.html">OOP</a>
     </nav>
 
     <div class="topbar-actions">
@@ -79,18 +80,18 @@
   <ol>
     <li><a href="#lesson-1"><span class="title">What is DSA &amp; why do we learn it?</span> <span class="badge basic">basic</span></a></li>
     <li><a href="#lesson-2"><span class="title">Time &amp; Space Complexity (Big-O)</span> <span class="badge basic">basic</span></a></li>
-    <li><a href="#lesson-3"><span class="title">Recursion - thinking in dolls</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-3"><span class="title">Recursion &mdash; thinking in dolls</span> <span class="badge basic">basic</span></a></li>
     <li><a href="#lesson-4"><span class="title">Math you actually need (GCD, primes, modular, power)</span> <span class="badge basic">basic</span></a></li>
   </ol>
 
   <div class="toc-section">B. Linear data structures</div>
   <ol start="5">
-    <li><a href="#lesson-5"><span class="title">Arrays - the row of lockers</span> <span class="badge basic">basic</span></a></li>
-    <li><a href="#lesson-6"><span class="title">Strings - text as a special array</span> <span class="badge basic">basic</span></a></li>
-    <li><a href="#lesson-7"><span class="title">Linked Lists - singly, doubly, circular</span> <span class="badge basic">basic</span></a></li>
-    <li><a href="#lesson-8"><span class="title">Stacks - plates in a kitchen</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-5"><span class="title">Arrays &mdash; the row of lockers</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-6"><span class="title">Strings &mdash; text as a special array</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-7"><span class="title">Linked Lists &mdash; singly, doubly, circular</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-8"><span class="title">Stacks &mdash; plates in a kitchen</span> <span class="badge basic">basic</span></a></li>
     <li><a href="#lesson-9"><span class="title">Queues, Deques &amp; Priority Queues</span> <span class="badge basic">basic</span></a></li>
-    <li><a href="#lesson-10"><span class="title">Hash Tables - the dictionary trick</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-10"><span class="title">Hash Tables &mdash; the dictionary trick</span> <span class="badge basic">basic</span></a></li>
   </ol>
 
   <div class="toc-section">C. Searching &amp; sorting</div>
@@ -104,15 +105,15 @@
   <ol start="14">
     <li><a href="#lesson-14"><span class="title">Trees &amp; Binary Search Trees</span> <span class="badge intermediate">intermediate</span></a></li>
     <li><a href="#lesson-15"><span class="title">Heaps / Priority Queues</span> <span class="badge intermediate">intermediate</span></a></li>
-    <li><a href="#lesson-16"><span class="title">Tries - prefix trees</span> <span class="badge intermediate">intermediate</span></a></li>
-    <li><a href="#lesson-17"><span class="title">Graphs - representations &amp; jargon</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-16"><span class="title">Tries &mdash; prefix trees</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-17"><span class="title">Graphs &mdash; representations &amp; jargon</span> <span class="badge intermediate">intermediate</span></a></li>
   </ol>
 
   <div class="toc-section">E. Algorithm techniques</div>
   <ol start="18">
-    <li><a href="#lesson-18"><span class="title">Greedy - always pick the local best</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-18"><span class="title">Greedy &mdash; always pick the local best</span> <span class="badge intermediate">intermediate</span></a></li>
     <li><a href="#lesson-19"><span class="title">Divide &amp; Conquer</span> <span class="badge intermediate">intermediate</span></a></li>
-    <li><a href="#lesson-20"><span class="title">Backtracking - draw the maze, erase wrong turns</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-20"><span class="title">Backtracking &mdash; draw the maze, erase wrong turns</span> <span class="badge intermediate">intermediate</span></a></li>
     <li><a href="#lesson-21"><span class="title">DP for beginners (Fibonacci &rarr; tabulation)</span> <span class="badge advanced">advanced</span></a></li>
     <li><a href="#lesson-22"><span class="title">DP patterns (Knapsack, LCS, LIS, Grid, Bitmask)</span> <span class="badge advanced">advanced</span></a></li>
   </ol>
@@ -213,7 +214,7 @@
       <li><strong>O(n) - linear:</strong> You stand in line and pay for each teammate one by one. 50 teammates = 50 payments.</li>
       <li><strong>O(n log n) - linearithmic:</strong> Each teammate pays, but they also help sort the team roster &mdash; a tiny extra log-n work per person. Still very acceptable.</li>
       <li><strong>O(n&sup2;) - quadratic:</strong> For every teammate, you check their coupon against every other teammate's coupon. 50 teammates = 2500 checks. Ouch.</li>
-      <li><strong>O(2&#710;n) - exponential:</strong> You try every possible subset of the team. 30 people &rarr; a billion subsets. The cafeteria closes before you finish.</li>
+      <li><strong>O(2<sup>n</sup>) - exponential:</strong> You try every possible subset of the team. 30 people &rarr; a billion subsets. The cafeteria closes before you finish.</li>
     </ul>
 
     <div class="illustration">
@@ -230,7 +231,7 @@
         <tr><td><code>O(n)</code></td>       <td class="good">linear</td>    <td>one pass over data</td>              <td class="good">~1M steps</td></tr>
         <tr><td><code>O(n log n)</code></td> <td class="good">very good</td> <td>good sorts, heap ops</td>           <td class="good">~20M steps</td></tr>
         <tr><td><code>O(n&sup2;)</code></td>    <td class="meh">ok if n &lt; 10<sup>4</sup></td><td>two nested loops</td>     <td class="bad">~10<sup>12</sup> &mdash; TLE</td></tr>
-        <tr><td><code>O(2&#710;n)</code></td>   <td class="bad">brute subsets</td><td>backtracking</td>                <td class="bad">won't finish</td></tr>
+        <tr><td><code>O(2<sup>n</sup>)</code></td>   <td class="bad">brute subsets</td><td>backtracking</td>                <td class="bad">won't finish</td></tr>
         <tr><td><code>O(n!)</code></td>      <td class="bad">brute permute</td><td>brute TSP</td>                     <td class="bad">won't finish</td></tr>
       </tbody>
     </table></div>
@@ -238,7 +239,7 @@
     <h3>How to compute Big-O in 30 seconds</h3>
     <ol>
       <li>Find every loop. One loop over <code>n</code> is O(n). Two nested loops = O(n&times;n) = O(n&sup2;).</li>
-      <li>Recursive calls: count the call tree. Each call spawns 2 sub-calls and depth is <code>n</code>? O(2&#710;n).</li>
+      <li>Recursive calls: count the call tree. Each call spawns 2 sub-calls and depth is <code>n</code>? O(2<sup>n</sup>).</li>
       <li>Drop the constants: <code>5n + 100</code> is just <code>O(n)</code>. <code>n&sup2; + n</code> is <code>O(n&sup2;)</code>.</li>
       <li>Space = the biggest extra memory you allocate (helper array, hash map, recursion stack).</li>
     </ol>
@@ -256,7 +257,7 @@
       <thead><tr><th>If n is at most&hellip;</th><th>Aim for</th></tr></thead>
       <tbody>
         <tr><td>10</td>              <td>O(n!) backtracking</td></tr>
-        <tr><td>20</td>              <td>O(2&#710;n) bitmask</td></tr>
+        <tr><td>20</td>              <td>O(2<sup>n</sup>) bitmask</td></tr>
         <tr><td>500</td>             <td>O(n&sup3;)</td></tr>
         <tr><td>5,000</td>            <td>O(n&sup2;)</td></tr>
         <tr><td>10<sup>5</sup></td>  <td>O(n log n)</td></tr>
@@ -274,7 +275,7 @@
   <summary>
     <span class="num">03</span>
     <span class="heading">
-      <span class="title">Recursion - thinking in dolls</span>
+      <span class="title">Recursion &mdash; thinking in dolls</span>
       <span class="subtitle">A function that politely asks itself for help.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">8 min</span></span>
@@ -311,7 +312,7 @@
     return combine(sub, args)</code></pre>
     </div>
 
-    <h3>Worked example 1 - Factorial</h3>
+    <h3>Worked example 1 &mdash; Factorial</h3>
     <p><code>5! = 5 &times; 4 &times; 3 &times; 2 &times; 1 = 120</code>. The trick: <code>n! = n &times; (n-1)!</code>. The base case: <code>0! = 1</code>.</p>
     <div class="code-tabs" data-snippet="factorial">
       <div class="tab-strip">
@@ -333,7 +334,7 @@
     return n * fact(n - 1)</code></pre>
     </div>
 
-    <h3>Worked example 2 - Fibonacci (and a warning)</h3>
+    <h3>Worked example 2 &mdash; Fibonacci (and a warning)</h3>
     <p><code>fib(n) = fib(n-1) + fib(n-2)</code>, base cases <code>fib(0)=0, fib(1)=1</code>. Beautifully short. <strong>Also disastrously slow</strong> &mdash; <code>fib(40)</code> takes seconds because the same sub-call is repeated millions of times.</p>
     <div class="code-tabs" data-snippet="fib-naive">
       <div class="tab-strip">
@@ -392,7 +393,7 @@
     <span class="num">04</span>
     <span class="heading">
       <span class="title">Math you actually need</span>
-      <span class="subtitle">GCD, primes, modular arithmetic, fast power - the rest is optional.</span>
+      <span class="subtitle">GCD, primes, modular arithmetic, fast power &mdash; the rest is optional.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">8 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -400,7 +401,7 @@
   <div class="lesson-body">
     <div class="tldr"><strong>TL;DR</strong> Interviews use less math than you fear. Master four mini-recipes: <strong>GCD</strong> (Euclid), <strong>primes</strong> (Sieve of Eratosthenes), <strong>modular arithmetic</strong> (mod under +, &minus;, &times;), and <strong>fast exponentiation</strong> (a^b in log b time). That's 90% of what shows up.</p></div>
 
-    <h3>1. GCD - Euclid's algorithm</h3>
+    <h3>1. GCD &mdash; Euclid's algorithm</h3>
     <p>"What is the largest number that divides both 24 and 36?" Answer: 12. Doing this for huge numbers is fast: <code>gcd(a, b) = gcd(b, a mod b)</code>, until <code>b == 0</code>. Time: O(log min(a, b)).</p>
     <div class="code-tabs" data-snippet="gcd">
       <div class="tab-strip">
@@ -426,7 +427,7 @@ def my_gcd(a, b):
     </div>
     <p><strong>LCM</strong> ("smallest common multiple") follows for free: <code>lcm(a, b) = a / gcd(a, b) * b</code>. Divide <em>before</em> multiply to avoid overflow.</p>
 
-    <h3>2. Primes - Sieve of Eratosthenes</h3>
+    <h3>2. Primes &mdash; Sieve of Eratosthenes</h3>
     <p>Need every prime up to <code>N</code>? Don't test each number for divisibility (too slow). Instead, write 2..N on a board, circle 2, cross out all multiples of 2, circle the next uncircled number (3), cross out its multiples, repeat. What survives is prime. Time: O(N log log N).</p>
     <div class="code-tabs" data-snippet="sieve">
       <div class="tab-strip">
@@ -491,7 +492,7 @@ def my_gcd(a, b):
     return True</code></pre>
     </div>
 
-    <h3>3. Modular arithmetic - the % operator</h3>
+    <h3>3. Modular arithmetic &mdash; the % operator</h3>
     <p>Problems often say "answer modulo 10<sup>9</sup>+7". This stops huge numbers from overflowing. The rules:</p>
     <ul>
       <li><code>(a + b) % m = ((a % m) + (b % m)) % m</code></li>
@@ -560,7 +561,7 @@ ans = pow(a, b, m)        # exactly the same idea, log b time</code></pre>
   <summary>
     <span class="num">05</span>
     <span class="heading">
-      <span class="title">Arrays - the row of lockers</span>
+      <span class="title">Arrays &mdash; the row of lockers</span>
       <span class="subtitle">The most-used data structure in the universe.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">7 min</span></span>
@@ -632,7 +633,7 @@ rev = a[::-1]     # reversed copy</code></pre>
       <li><strong>Two pointers</strong> &mdash; for sorted arrays seeking a pair or partition.</li>
     </ul>
 
-    <h3>Prefix sum - the cheap trick</h3>
+    <h3>Prefix sum &mdash; the cheap trick</h3>
     <div class="code-tabs" data-snippet="prefix-sum">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -677,7 +678,7 @@ for i, x in enumerate(a):
   <summary>
     <span class="num">06</span>
     <span class="heading">
-      <span class="title">Strings - text as a special array</span>
+      <span class="title">Strings &mdash; text as a special array</span>
       <span class="subtitle">Just an array of characters, but with a few sharp edges.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">7 min</span></span>
@@ -837,7 +838,7 @@ def anagram(a, b):
   <summary>
     <span class="num">07</span>
     <span class="heading">
-      <span class="title">Linked Lists - singly, doubly, circular</span>
+      <span class="title">Linked Lists &mdash; singly, doubly, circular</span>
       <span class="subtitle">Each box knows where the next box is. No row needed.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">9 min</span></span>
@@ -1009,7 +1010,7 @@ def anagram(a, b):
   <summary>
     <span class="num">08</span>
     <span class="heading">
-      <span class="title">Stacks - plates in a kitchen</span>
+      <span class="title">Stacks &mdash; plates in a kitchen</span>
       <span class="subtitle">Last in, first out (LIFO).</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">7 min</span></span>
@@ -1056,7 +1057,7 @@ st.pop()
 print(st[-1])                    # 2</code></pre>
     </div>
 
-    <h3>Killer use #1 - Balanced brackets</h3>
+    <h3>Killer use #1 &mdash; Balanced brackets</h3>
     <p>Push every opening bracket. When you see a closing bracket, pop and check it matches.</p>
     <div class="code-tabs" data-snippet="balanced-brackets">
       <div class="tab-strip">
@@ -1098,7 +1099,7 @@ print(st[-1])                    # 2</code></pre>
     return not st</code></pre>
     </div>
 
-    <h3>Killer use #2 - Monotonic stack ("next greater element")</h3>
+    <h3>Killer use #2 &mdash; Monotonic stack ("next greater element")</h3>
     <p>For each item, find the next item to its right that is greater. Brute force is O(n&sup2;). A stack that stays in decreasing order from bottom to top gives you O(n).</p>
     <div class="code-tabs" data-snippet="next-greater">
       <div class="tab-strip">
@@ -1172,7 +1173,7 @@ print(st[-1])                    # 2</code></pre>
     <span class="num">09</span>
     <span class="heading">
       <span class="title">Queues, Deques &amp; Priority Queues</span>
-      <span class="subtitle">A line at the canteen - FIFO, two-sided, or VIP-skip.</span>
+      <span class="subtitle">A line at the canteen &mdash; FIFO, two-sided, or VIP-skip.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">8 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -1332,7 +1333,7 @@ print(-mx[0])                      # 7</code></pre>
   <summary>
     <span class="num">10</span>
     <span class="heading">
-      <span class="title">Hash Tables - the dictionary trick</span>
+      <span class="title">Hash Tables &mdash; the dictionary trick</span>
       <span class="subtitle">Look anything up in (almost) constant time.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">8 min</span></span>
@@ -1577,7 +1578,7 @@ cnt = Counter(words)            # done!</code></pre>
     <span class="num">12</span>
     <span class="heading">
       <span class="title">Simple sorts: Bubble, Selection, Insertion</span>
-      <span class="subtitle">The training-wheel sorts - learn the mechanics here.</span>
+      <span class="subtitle">The training-wheel sorts &mdash; learn the mechanics here.</span>
     </span>
     <span class="meta"><span class="badge basic">basic</span><span class="reading-time">9 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -1935,7 +1936,7 @@ def quick_sort(a, l=0, r=None):
     <span class="num">14</span>
     <span class="heading">
       <span class="title">Trees &amp; Binary Search Trees</span>
-      <span class="subtitle">A family tree, but only the kids - and at most two each.</span>
+      <span class="subtitle">A family tree, but only the kids &mdash; and at most two each.</span>
     </span>
     <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">11 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -2337,7 +2338,7 @@ public:
   <summary>
     <span class="num">16</span>
     <span class="heading">
-      <span class="title">Tries - prefix trees</span>
+      <span class="title">Tries &mdash; prefix trees</span>
       <span class="subtitle">A tree where each path spells a word.</span>
     </span>
     <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">7 min</span></span>
@@ -2479,8 +2480,8 @@ private:
   <summary>
     <span class="num">17</span>
     <span class="heading">
-      <span class="title">Graphs - representations &amp; jargon</span>
-      <span class="subtitle">Dots and lines - the most flexible data structure.</span>
+      <span class="title">Graphs &mdash; representations &amp; jargon</span>
+      <span class="subtitle">Dots and lines &mdash; the most flexible data structure.</span>
     </span>
     <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">10 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -2606,7 +2607,7 @@ g[1].append((0, 5))</code></pre>
   <summary>
     <span class="num">18</span>
     <span class="heading">
-      <span class="title">Greedy - always pick the local best</span>
+      <span class="title">Greedy &mdash; always pick the local best</span>
       <span class="subtitle">Don't plan ahead. Just take the obviously best move now.</span>
     </span>
     <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">8 min</span></span>
@@ -2841,7 +2842,7 @@ int maxSub(int[] a, int l, int r) {
   <summary>
     <span class="num">20</span>
     <span class="heading">
-      <span class="title">Backtracking - draw the maze, erase wrong turns</span>
+      <span class="title">Backtracking &mdash; draw the maze, erase wrong turns</span>
       <span class="subtitle">Try a path. If it fails, undo and try the next.</span>
     </span>
     <span class="meta"><span class="badge intermediate">intermediate</span><span class="reading-time">10 min</span></span>
@@ -2894,7 +2895,7 @@ int maxSub(int[] a, int l, int r) {
     </div>
 
     <h3>Classic 1 &mdash; Subsets (LC 78)</h3>
-    <p>For each element, two choices: include it or skip it. The decision tree has 2&#710;n leaves &mdash; one per subset.</p>
+    <p>For each element, two choices: include it or skip it. The decision tree has 2<sup>n</sup> leaves &mdash; one per subset.</p>
     <div class="code-tabs" data-snippet="subsets">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -3082,7 +3083,7 @@ public int totalNQueens(int n) {
 
     <h3>Worked example &mdash; Fibonacci, four ways</h3>
 
-    <h4>Way 1 &mdash; pure recursion (O(2&#710;n) &mdash; bad)</h4>
+    <h4>Way 1 &mdash; pure recursion (O(2<sup>n</sup>) &mdash; bad)</h4>
     <div class="code-tabs" data-snippet="fib-naive2">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -3527,7 +3528,7 @@ int tsp(vector&lt;vector&lt;int&gt;&gt;&amp; dist) {
     <span class="num">23</span>
     <span class="heading">
       <span class="title">BFS &amp; DFS in depth</span>
-      <span class="subtitle">Two ways to walk every reachable node - and why each matters.</span>
+      <span class="subtitle">Two ways to walk every reachable node &mdash; and why each matters.</span>
     </span>
     <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">11 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -3701,7 +3702,7 @@ void dfs(int u, List&lt;List&lt;Integer&gt;&gt; g) {
     <span class="num">24</span>
     <span class="heading">
       <span class="title">Shortest path (Dijkstra, 0-1 BFS, Bellman-Ford, Floyd-Warshall)</span>
-      <span class="subtitle">Four algorithms - pick by edge weights, not by your favourite.</span>
+      <span class="subtitle">Four algorithms &mdash; pick by edge weights, not by your favourite.</span>
     </span>
     <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">12 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -4135,7 +4136,7 @@ def topo_sort(n, g):
     <span class="num">27</span>
     <span class="heading">
       <span class="title">Disjoint Set Union (Union-Find)</span>
-      <span class="subtitle">"Are these two things in the same group?" - answered in ~O(1).</span>
+      <span class="subtitle">"Are these two things in the same group?" &mdash; answered in ~O(1).</span>
     </span>
     <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">8 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -4268,7 +4269,7 @@ def topo_sort(n, g):
       </tbody>
     </table></div>
 
-    <h3>XOR cancellation - Single Number (LC 136)</h3>
+    <h3>XOR cancellation &mdash; Single Number (LC 136)</h3>
     <p>Every number appears twice except one. <code>a ^ a = 0</code>, <code>a ^ 0 = a</code>. XOR the whole array; the duplicates cancel, the loner survives.</p>
     <div class="code-tabs" data-snippet="single-number-2">
       <div class="tab-strip">
@@ -4322,7 +4323,7 @@ def topo_sort(n, g):
     </div>
 
     <h3>Subsets via bitmasks</h3>
-    <p>For <code>n &le; 20</code>, enumerate every subset with <code>mask</code> from 0 to 2&#710;n - 1. Bit <code>i</code> of <code>mask</code> says whether element <code>i</code> is included. The basis of bitmask DP (Lesson 22).</p>
+    <p>For <code>n &le; 20</code>, enumerate every subset with <code>mask</code> from 0 to 2<sup>n</sup> - 1. Bit <code>i</code> of <code>mask</code> says whether element <code>i</code> is included. The basis of bitmask DP (Lesson 22).</p>
     <div class="code-tabs" data-snippet="subset-bits">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -4348,7 +4349,7 @@ for mask in range(1 &lt;&lt; n):
     # process sub</code></pre>
     </div>
 
-    <h3>Sum of two integers without + or - (LC 371)</h3>
+    <h3>Sum of two integers without <code>+</code> or <code>-</code> (LC 371)</h3>
     <p>Use XOR for sum-without-carry and AND-then-shift for the carry. Repeat until no carry.</p>
     <div class="code-tabs" data-snippet="sum-no-plus">
       <div class="tab-strip">
@@ -4599,7 +4600,7 @@ def kmp(t, p):
     <span class="num">30</span>
     <span class="heading">
       <span class="title">Range queries (Prefix Sum, Fenwick Tree, Segment Tree)</span>
-      <span class="subtitle">Answer "sum / min / max from index L to R" in O(log n) - even with updates.</span>
+      <span class="subtitle">Answer "sum / min / max from index L to R" in O(log n) &mdash; even with updates.</span>
     </span>
     <span class="meta"><span class="badge advanced">advanced</span><span class="reading-time">11 min</span></span>
     <span class="chevron">&#9662;</span>
@@ -4815,5 +4816,6 @@ def kmp(t, p):
 </footer>
 
 <script src="dsa.js"></script>
+<script src="coffee.js" defer></script>
 </body>
 </html>

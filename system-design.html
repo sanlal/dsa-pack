@@ -33,6 +33,7 @@
       <a class="nav-tab"             href="top-50-problems.html">Top 50</a>
       <a class="nav-tab active"      href="system-design.html">System Design</a>
       <a class="nav-tab"             href="interview-playbook.html">Playbook</a>
+      <a class="nav-tab"             href="oop-notes.html">OOP</a>
     </nav>
 
     <div class="topbar-actions">
@@ -105,16 +106,157 @@
     <span class="num">01</span>
     <span class="heading">
       <span class="title">OOP foundations</span>
-      <span class="subtitle">Encapsulation, inheritance, polymorphism, abstraction &mdash; in one tiny example each.</span>
+      <span class="subtitle">Classes, objects, the four pillars, and everything an interviewer can ask &mdash; explained from scratch.</span>
     </span>
-    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">6 min</span></span>
+    <span class="meta"><span class="badge basic">basic</span><span class="reading-time">18 min</span></span>
     <span class="chevron">&#9662;</span>
   </summary>
   <div class="lesson-body">
-    <div class="tldr"><strong>TL;DR</strong> The 4 pillars of OOP exist to hide complexity behind clean boundaries. Interviewers don't want definitions &mdash; they want to see you <em>use</em> them in your class design.</div>
+    <div class="tldr"><strong>TL;DR</strong> OOP turns code from "loose variables and far-away functions" into <strong>objects that own their data and the rules to change it</strong>. The four pillars &mdash; <em>encapsulation, inheritance, polymorphism, abstraction</em> &mdash; are the four habits that keep those objects safe, reusable and swappable. Interviewers don't want textbook definitions; they want to see you <em>use</em> them when you design a class.</div>
 
-    <h3>1. Encapsulation - hide state, expose behaviour</h3>
-    <p>Fields are private. The outside world calls methods. The class is free to change how it stores things without breaking callers.</p>
+    <h3>The scenario &mdash; why OOP had to be invented</h3>
+    <p>Imagine you're writing a banking app the old way, with just variables and functions. To track 1,000 customers you carry 1,000 sets of loose variables: <code>balance1, name1, type1, balance2, name2, type2 &hellip;</code> Every deposit, every withdrawal, every interest run lives in a helper function that takes all those variables as arguments.</p>
+    <p>Now your manager says <em>"add a currency field"</em>. You go edit fifty functions. Then <em>"validate that deposit amounts are positive"</em> &mdash; fifty more edits. One forgotten edit and someone deposits <code>-100</code> and steals money from the bank.</p>
+    <p>OOP's answer is simple: <strong>put the balance, the validation, and the operations inside one box called an <em>object</em></strong>. The outside world just says <code>account.deposit(100)</code> and the object enforces its own rules. The data lives next to the code that owns it. Change the rule once, every caller is protected.</p>
+
+    <h3>What OOP actually is &mdash; three angles</h3>
+    <div class="cols-3">
+      <div class="col-card">
+        <h4>Textbook</h4>
+        <p>"A programming paradigm built around <em>objects</em>: bundles of data (fields) and behaviour (methods) that interact by sending messages."</p>
+      </div>
+      <div class="col-card">
+        <h4>Engineer</h4>
+        <p>"A way of organising code so that <strong>data and the rules that protect it travel together</strong>. The outside world calls methods; the object decides how to do them."</p>
+      </div>
+      <div class="col-card">
+        <h4>Interviewer</h4>
+        <p>"When I ask you to design a parking lot or a chess game, how do you decompose it into classes? OOP is the toolkit; SOLID (next lesson) is the discipline."</p>
+      </div>
+    </div>
+
+    <h3>Class vs Object &mdash; the cookie-cutter analogy</h3>
+    <p>A <strong>class</strong> is the cookie cutter &mdash; the blueprint. It says <em>"every cookie has a shape and a flavour."</em> An <strong>object</strong> (also called an <em>instance</em>) is one actual cookie &mdash; chocolate, star-shaped, baked at 3 pm. You write one class once; you create as many objects from it as you like, and each object carries its own copy of the fields.</p>
+
+    <div class="code-tabs" data-snippet="class-vs-object">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class Cookie {                              // the cutter (blueprint)
+public:
+    string flavour;
+    string shape;
+    Cookie(string f, string s) : flavour(f), shape(s) {}
+};
+
+Cookie a("chocolate", "star");              // object #1
+Cookie b("vanilla",   "heart");             // object #2
+// a and b are independent. a.flavour does not affect b.flavour.</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>class Cookie {                              // blueprint
+    String flavour, shape;
+    Cookie(String f, String s) { flavour = f; shape = s; }
+}
+
+Cookie a = new Cookie("chocolate", "star");
+Cookie b = new Cookie("vanilla",   "heart");</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class Cookie:                               # blueprint
+    def __init__(self, flavour, shape):
+        self.flavour = flavour
+        self.shape   = shape
+
+a = Cookie("chocolate", "star")
+b = Cookie("vanilla",   "heart")</code></pre>
+    </div>
+
+    <h3>The anatomy of a class</h3>
+    <p>Every class is made of the same handful of parts. Learn the vocabulary once.</p>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Part</th><th>What it is</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Field</strong> (attribute, property)</td><td>A variable that each object owns.</td><td><code>balance</code> on a <code>BankAccount</code>.</td></tr>
+        <tr><td><strong>Method</strong></td><td>A function that operates on the object's fields.</td><td><code>deposit(amt)</code>, <code>withdraw(amt)</code>.</td></tr>
+        <tr><td><strong>Constructor</strong></td><td>Special method that runs <em>once</em>, when the object is created. Sets initial state.</td><td><code>BankAccount(owner, openingBalance)</code>.</td></tr>
+        <tr><td><strong>Destructor</strong> (C++)</td><td>Runs when the object is destroyed. Releases files, sockets, memory. Java and Python use a garbage collector instead.</td><td><code>~BankAccount()</code>.</td></tr>
+        <tr><td><code>this</code> / <code>self</code></td><td>Reference to "the current object" inside a method. Lets a method read or write its own fields.</td><td><code>this.balance += amt;</code></td></tr>
+        <tr><td><strong>Static member</strong></td><td>Belongs to the class itself, not to any single object. Shared by everyone.</td><td><code>BankAccount.TAX_RATE</code>.</td></tr>
+        <tr><td><strong>Instance</strong></td><td>One concrete object created from a class.</td><td><code>new BankAccount(&hellip;)</code>.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Access modifiers &mdash; who is allowed in?</h3>
+    <p>Modifiers control which code can touch which member. They are how OOP enforces boundaries.</p>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Modifier</th><th>Visible to</th><th>Use for</th></tr></thead>
+      <tbody>
+        <tr><td><code>public</code></td><td>Everyone.</td><td>Methods that form the class's <em>contract</em>.</td></tr>
+        <tr><td><code>private</code></td><td>Only this class.</td><td>Fields and helper methods. Default for state.</td></tr>
+        <tr><td><code>protected</code></td><td>This class + subclasses.</td><td>State that subclasses legitimately need.</td></tr>
+        <tr><td><code>package</code> / <code>internal</code></td><td>Same package / module.</td><td>Java's default. Use for collaborators that ship together.</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:0.88rem;color:var(--muted)">Python doesn't enforce these &mdash; a leading <code>_</code> means "treat as private", and <code>__</code> triggers name-mangling. C++ has all three; Java has all four; Python relies on convention.</p>
+
+    <h3>Static vs instance members &mdash; the "one per class" rule</h3>
+    <p><strong>Instance</strong> members live inside each object (one balance <em>per</em> account). <strong>Static</strong> members live on the class itself (one bank-wide tax rate, shared by everyone). Use static for constants, counters, utility functions, and factories.</p>
+    <div class="code-tabs" data-snippet="static-vs-instance">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class BankAccount {
+public:
+    static double TAX_RATE;                 // one for everyone
+    double balance;                         // one per object
+    static int count() { return total_; }   // utility
+private:
+    static int total_;
+};
+double BankAccount::TAX_RATE = 0.05;
+int    BankAccount::total_   = 0;</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>class BankAccount {
+    public static final double TAX_RATE = 0.05;   // shared constant
+    private double balance;                       // per object
+    private static int total = 0;                 // shared counter
+    public static int count() { return total; }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class BankAccount:
+    TAX_RATE = 0.05                # class attribute (shared)
+    _total   = 0
+    def __init__(self, b):
+        self.balance = b           # instance attribute (per object)
+    @classmethod
+    def count(cls):
+        return cls._total</code></pre>
+    </div>
+
+    <h3>Constructors in depth</h3>
+    <p>The constructor is the only place where an object goes from "doesn't exist" to "ready to use". A few flavours show up in interviews.</p>
+    <ul>
+      <li><strong>Default constructor</strong> &mdash; takes no arguments. Most languages generate one for free <em>if you write none yourself</em>.</li>
+      <li><strong>Parameterised constructor</strong> &mdash; takes arguments to set initial state.</li>
+      <li><strong>Copy constructor</strong> (mostly C++) &mdash; takes another object of the same type and clones it. Crucial when your class owns raw pointers.</li>
+      <li><strong>Constructor chaining</strong> &mdash; one constructor calls another (<code>this(&hellip;)</code> in Java, delegating constructors in C++11+, default arguments in Python). Removes duplicate setup.</li>
+      <li><strong>Constructor calling its parent</strong> &mdash; <code>super(&hellip;)</code> in Java/Python, base initialiser list in C++. <em>Must</em> be the first thing the child constructor does.</li>
+      <li><strong>Static factory method</strong> &mdash; a named static method that creates and returns an instance. Reads better than a long constructor: <code>User.fromEmail("a@b.com")</code>.</li>
+    </ul>
+
+    <h3>Object lifecycle &mdash; from <code>new</code> to gone</h3>
+    <ol class="steps">
+      <li><strong>Allocation.</strong> Memory is reserved for the object's fields.</li>
+      <li><strong>Construction.</strong> The constructor runs &mdash; parent first, then child. Fields get their initial values.</li>
+      <li><strong>Use.</strong> Callers send messages (call methods). The object reads and updates its own state.</li>
+      <li><strong>Destruction.</strong> In C++ the destructor runs deterministically when the object goes out of scope (RAII). In Java and Python a garbage collector reclaims memory whenever it likes &mdash; so close files, sockets and DB connections <em>explicitly</em> (<code>try-with-resources</code>, <code>with</code> statement). Never rely on a finaliser.</li>
+    </ol>
+
+    <div class="section-break" style="margin: 28px auto 14px;"><span class="label">The four pillars</span> <span class="sub">deep enough to defend in an interview</span></div>
+
+    <h3>Pillar 1 &mdash; Encapsulation</h3>
+    <p><strong>What it is.</strong> Hide the fields. Expose methods. Inside those methods, <em>validate</em> every change so the object never enters an invalid state. Encapsulation is the difference between "a balance" (just data) and "a bank account" (data that polices itself).</p>
+    <p><strong>Real-life analogy.</strong> An ATM. You can't reach inside and change the cash drawer directly &mdash; you press buttons (methods). The ATM checks your PIN, your balance, the daily limit (validation), and only then performs the action.</p>
+
     <div class="code-tabs" data-snippet="encapsulation">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
@@ -122,80 +264,306 @@
         <button class="tab" data-lang="python">Python</button>
       </div>
       <pre class="tab-pane active" data-lang="cpp"><code>class BankAccount {
-    double balance_;                       // hidden
+    double balance_;                          // hidden
 public:
+    explicit BankAccount(double opening) : balance_(opening) {
+        if (opening &lt; 0) throw runtime_error("opening must be &gt;= 0");
+    }
     void deposit(double amt) {
-        if (amt &lt;= 0) throw runtime_error("bad");
+        if (amt &lt;= 0) throw runtime_error("deposit must be positive");
         balance_ += amt;
     }
-    double balance() const { return balance_; }
+    void withdraw(double amt) {
+        if (amt &lt;= 0)           throw runtime_error("bad amount");
+        if (amt &gt; balance_)     throw runtime_error("insufficient funds");
+        balance_ -= amt;
+    }
+    double balance() const { return balance_; }   // read-only getter
 };</code></pre>
       <pre class="tab-pane" data-lang="java"><code>public class BankAccount {
-    private double balance;                // hidden
+    private double balance;                       // hidden
+    public BankAccount(double opening) {
+        if (opening &lt; 0) throw new IllegalArgumentException("opening &lt; 0");
+        this.balance = opening;
+    }
     public void deposit(double amt) {
-        if (amt &lt;= 0) throw new IllegalArgumentException("bad");
+        if (amt &lt;= 0) throw new IllegalArgumentException("amt &lt;= 0");
         balance += amt;
     }
-    public double getBalance() { return balance; }
+    public void withdraw(double amt) {
+        if (amt &lt;= 0)         throw new IllegalArgumentException("amt &lt;= 0");
+        if (amt &gt; balance)    throw new IllegalStateException("no funds");
+        balance -= amt;
+    }
+    public double getBalance() { return balance; }   // no setter
 }</code></pre>
       <pre class="tab-pane" data-lang="python"><code>class BankAccount:
-    def __init__(self):
-        self._balance = 0                  # _ = "hands off"
-    def deposit(self, amt):
-        if amt &lt;= 0:
-            raise ValueError("bad")
+    def __init__(self, opening: float):
+        if opening &lt; 0:
+            raise ValueError("opening &lt; 0")
+        self._balance = opening                   # _ = hands off
+
+    def deposit(self, amt: float):
+        if amt &lt;= 0: raise ValueError("amt &lt;= 0")
         self._balance += amt
+
+    def withdraw(self, amt: float):
+        if amt &lt;= 0:                raise ValueError("amt &lt;= 0")
+        if amt &gt; self._balance:     raise ValueError("no funds")
+        self._balance -= amt
+
     @property
-    def balance(self):
+    def balance(self):                            # read-only
         return self._balance</code></pre>
     </div>
 
-    <h3>2. Inheritance - share, don't duplicate</h3>
-    <p>A subclass gets the parent's fields and methods. Good for "is-a" relationships (a <code>SavingsAccount</code> <em>is a</em> <code>BankAccount</code>). Prefer composition ("has-a") if the relationship is fuzzy.</p>
+    <div class="callout tip"><strong>Getter / Setter rules</strong> Expose a <em>getter</em> if the outside world genuinely needs to read the field. Expose a <em>setter</em> only if it makes sense to change after construction &mdash; and even then, validate inside it. Better still: expose behaviour (<code>deposit</code>, <code>withdraw</code>), not raw setters. A class that's all getters and setters has no encapsulation; it's just a struct in disguise.</div>
 
-    <h3>3. Polymorphism - one call, many forms</h3>
-    <p>Same method name behaves differently depending on the actual runtime type. Lets your code work with abstractions instead of concrete classes.</p>
+    <div class="callout takeaway"><strong>Bonus: immutability</strong> An object whose fields can never change after construction is <em>immutable</em>. Strings in Java and Python are immutable. Immutable objects are thread-safe for free and impossible to corrupt &mdash; use them whenever you can (configs, value objects, money amounts).</div>
+
+    <h3>Pillar 2 &mdash; Inheritance</h3>
+    <p><strong>What it is.</strong> A child class reuses the fields and methods of a parent class and adds or overrides what it needs. Models the "is-a" relationship.</p>
+    <p><strong>Real-life analogy.</strong> A <em>SavingsAccount</em> <em>is a</em> <em>BankAccount</em> &mdash; it has everything a BankAccount has, plus the extra concept of an interest rate. You don't rewrite <code>deposit</code> and <code>withdraw</code>; you inherit them.</p>
+
+    <div class="code-tabs" data-snippet="inheritance">
+      <div class="tab-strip">
+        <button class="tab active" data-lang="cpp">C++</button>
+        <button class="tab" data-lang="java">Java</button>
+        <button class="tab" data-lang="python">Python</button>
+      </div>
+      <pre class="tab-pane active" data-lang="cpp"><code>class SavingsAccount : public BankAccount {
+    double rate_;
+public:
+    SavingsAccount(double opening, double rate)
+        : BankAccount(opening), rate_(rate) {}       // base ctor first
+    void addInterest() { deposit(balance() * rate_); }
+};</code></pre>
+      <pre class="tab-pane" data-lang="java"><code>public class SavingsAccount extends BankAccount {
+    private final double rate;
+    public SavingsAccount(double opening, double rate) {
+        super(opening);                              // must be first line
+        this.rate = rate;
+    }
+    public void addInterest() { deposit(getBalance() * rate); }
+}</code></pre>
+      <pre class="tab-pane" data-lang="python"><code>class SavingsAccount(BankAccount):
+    def __init__(self, opening, rate):
+        super().__init__(opening)
+        self.rate = rate
+    def add_interest(self):
+        self.deposit(self.balance * self.rate)</code></pre>
+    </div>
+
+    <h4>Types of inheritance</h4>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Type</th><th>Shape</th><th>Supported in</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Single</strong></td><td>One parent, one child. <code>A &rarr; B</code></td><td>C++, Java, Python &mdash; all.</td></tr>
+        <tr><td><strong>Multilevel</strong></td><td>Chain: <code>A &rarr; B &rarr; C</code></td><td>All.</td></tr>
+        <tr><td><strong>Hierarchical</strong></td><td>One parent, many children. <code>A &rarr; (B, C, D)</code></td><td>All.</td></tr>
+        <tr><td><strong>Multiple</strong></td><td>Two parents, one child. <code>(A, B) &rarr; C</code></td><td>C++ and Python yes. <strong>Java no</strong> for classes &mdash; only via multiple <code>interface</code>s.</td></tr>
+        <tr><td><strong>Hybrid</strong></td><td>Mix of the above (e.g. diamond).</td><td>C++ (with virtual inheritance), Python (with MRO). Java uses interfaces.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>The diamond problem</h4>
+    <p>If <code>B</code> and <code>C</code> both inherit from <code>A</code>, and <code>D</code> inherits from both <code>B</code> and <code>C</code>, then <code>D</code> seemingly has <em>two</em> copies of <code>A</code>'s fields. Which one wins?</p>
+    <ul>
+      <li><strong>C++</strong> &mdash; you must mark <code>A</code> as a <em>virtual base</em> (<code>class B : virtual public A</code>) to get a single shared copy.</li>
+      <li><strong>Java</strong> &mdash; sidesteps it by banning multiple <em>class</em> inheritance. You can implement many interfaces, and if two interfaces have a default method with the same signature the compiler forces you to override it.</li>
+      <li><strong>Python</strong> &mdash; resolves it using the <strong>MRO</strong> (Method Resolution Order, C3 linearisation). Inspect with <code>D.__mro__</code>. Predictable, but worth understanding before you stack multiple inheritance.</li>
+    </ul>
+
+    <h4>Sealing the chain</h4>
+    <p>You can stop further inheritance with <code>final class</code> (Java), <code>sealed</code> (modern Java / Kotlin), or just by convention in C++/Python. Sealing is useful when subclassing would break invariants (e.g. <code>String</code> is <code>final</code> in Java).</p>
+
+    <div class="callout warn"><strong>Don't reach for inheritance first</strong> Inheritance is the tightest possible coupling: the child knows the parent's internals. If the relationship isn't a clean, permanent <em>"is-a"</em>, prefer <strong>composition</strong> (hold a reference to a collaborator). The mantra is <em>"favour composition over inheritance"</em> &mdash; the moment you find yourself overriding methods to <em>undo</em> the parent's behaviour, you've picked the wrong tool.</div>
+
+    <h3>Pillar 3 &mdash; Polymorphism</h3>
+    <p><strong>What it is.</strong> One name, many forms. The same call (<code>shape.area()</code>) dispatches to a different implementation depending on the actual object's type at runtime. Lets you write code against an abstraction and have it work with any concrete subclass &mdash; including ones written years later.</p>
+
+    <h4>Two flavours</h4>
+    <div class="cols-2">
+      <div class="col-card">
+        <h4>Compile-time (static)</h4>
+        <p><strong>Method overloading</strong> &mdash; same name, different parameter lists. The compiler picks which one to call based on the arguments you pass.</p>
+        <pre><code>int   sum(int a, int b);
+double sum(double a, double b);
+int   sum(int a, int b, int c);</code></pre>
+        <p>Also includes <strong>operator overloading</strong> in C++ and Python (<code>__add__</code>, <code>__eq__</code>). Java does not allow operator overloading.</p>
+      </div>
+      <div class="col-card">
+        <h4>Runtime (dynamic)</h4>
+        <p><strong>Method overriding</strong> &mdash; a child class redefines a method declared in the parent. The actual call is resolved <em>at runtime</em> based on the object's real type, not the variable's declared type.</p>
+        <p>This is the polymorphism that powers plugin systems, the Strategy pattern, and most of the GoF design patterns. Achieved via <code>virtual</code> functions in C++, all non-static methods in Java/Python by default.</p>
+      </div>
+    </div>
+
     <div class="code-tabs" data-snippet="polymorphism">
       <div class="tab-strip">
         <button class="tab active" data-lang="cpp">C++</button>
         <button class="tab" data-lang="java">Java</button>
         <button class="tab" data-lang="python">Python</button>
       </div>
-      <pre class="tab-pane active" data-lang="cpp"><code>struct Shape { virtual double area() const = 0; };
-struct Circle : Shape { double r; double area() const { return 3.14159 * r * r; } };
-struct Square : Shape { double s; double area() const { return s * s; } };
+      <pre class="tab-pane active" data-lang="cpp"><code>struct Shape {
+    virtual double area() const = 0;          // pure virtual
+    virtual ~Shape() = default;               // virtual dtor!
+};
+struct Circle : Shape {
+    double r;
+    explicit Circle(double r) : r(r) {}
+    double area() const override { return 3.14159 * r * r; }
+};
+struct Square : Shape {
+    double s;
+    explicit Square(double s) : s(s) {}
+    double area() const override { return s * s; }
+};
 
-double totalArea(vector&lt;Shape*&gt;&amp; shapes) {
+double totalArea(const vector&lt;Shape*&gt;&amp; shapes) {
     double t = 0;
-    for (auto* s : shapes) t += s-&gt;area();   // works for any Shape
+    for (auto* s : shapes) t += s-&gt;area();   // dispatch decided at runtime
     return t;
 }</code></pre>
       <pre class="tab-pane" data-lang="java"><code>abstract class Shape { abstract double area(); }
-class Circle extends Shape { double r; double area() { return Math.PI * r * r; } }
-class Square extends Shape { double s; double area() { return s * s; } }
+
+class Circle extends Shape {
+    private final double r;
+    Circle(double r) { this.r = r; }
+    @Override double area() { return Math.PI * r * r; }
+}
+class Square extends Shape {
+    private final double s;
+    Square(double s) { this.s = s; }
+    @Override double area() { return s * s; }
+}
 
 double totalArea(List&lt;Shape&gt; shapes) {
     double t = 0;
-    for (Shape s : shapes) t += s.area();
+    for (Shape s : shapes) t += s.area();   // virtual call
     return t;
 }</code></pre>
-      <pre class="tab-pane" data-lang="python"><code>class Shape:
-    def area(self): raise NotImplementedError
+      <pre class="tab-pane" data-lang="python"><code>from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self): ...
+
 class Circle(Shape):
     def __init__(self, r): self.r = r
     def area(self): return 3.14159 * self.r * self.r
+
 class Square(Shape):
     def __init__(self, s): self.s = s
     def area(self): return self.s * self.s
 
 def total_area(shapes):
-    return sum(s.area() for s in shapes)</code></pre>
+    return sum(s.area() for s in shapes)    # duck typing + dispatch</code></pre>
     </div>
 
-    <h3>4. Abstraction - program to interfaces, not implementations</h3>
-    <p>Define <em>what</em> something does, defer <em>how</em>. <code>List</code> is an interface; <code>ArrayList</code>, <code>LinkedList</code> are implementations. Callers depend on <code>List</code> &mdash; you can swap the implementation without breaking them.</p>
+    <div class="callout tip"><strong>How runtime dispatch actually works</strong> Most compilers implement runtime polymorphism with a <strong>vtable</strong> &mdash; each class has a hidden table of function pointers, and every object carries a pointer to its class's table. Calling <code>shape.area()</code> looks up the correct function via the vtable. In Python the lookup walks the object's class chain (the MRO). The cost is one pointer indirection &mdash; cheap, but not free, which is why C++ asks you to opt in via <code>virtual</code>.</div>
 
-    <div class="callout takeaway"><strong>Takeaway</strong> In LLD interviews, every class should be small, hide its fields, and depend on abstractions. If you find yourself writing one giant <code>God</code> class, stop and decompose.</div>
+    <div class="callout warn"><strong>Always make destructors virtual when you have virtual methods (C++)</strong> Otherwise <code>delete basePtr</code> only runs the base destructor and leaks the derived part. Java and Python don't have this trap because they don't have destructors.</div>
+
+    <h3>Pillar 4 &mdash; Abstraction</h3>
+    <p><strong>What it is.</strong> Define <em>what</em> something does; defer <em>how</em>. Callers depend on a stable interface and remain unaware of (and unaffected by) implementation choices.</p>
+    <p><strong>Real-life analogy.</strong> A car's steering wheel. You turn it left, the car goes left. You don't know &mdash; or care &mdash; whether the car uses hydraulic, electric, or steer-by-wire underneath. Replace the engine; the wheel still works.</p>
+
+    <h4>Abstract class vs Interface &mdash; the eternal interview question</h4>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th></th><th>Abstract class</th><th>Interface</th></tr></thead>
+      <tbody>
+        <tr><td>Can have fields?</td><td>Yes (state).</td><td>Only constants (and in modern Java, default methods).</td></tr>
+        <tr><td>Can have implementation?</td><td>Yes &mdash; concrete methods alongside abstract ones.</td><td>Mostly no. Java 8+ allows <code>default</code> methods.</td></tr>
+        <tr><td>How many can a class extend / implement?</td><td>One (in Java).</td><td>Many.</td></tr>
+        <tr><td>Constructor?</td><td>Yes &mdash; called by subclass via <code>super</code>.</td><td>No.</td></tr>
+        <tr><td>Use when&hellip;</td><td>Subclasses share state and partial behaviour. <em>"is-a"</em>.</td><td>Subclasses only need to honour a contract. <em>"can-do"</em>.</td></tr>
+        <tr><td>In C++ / Python</td><td>Class with at least one pure-virtual method (C++) / <code>ABC</code> with <code>@abstractmethod</code> (Python).</td><td>No separate keyword. Use a class with only pure-virtual methods (C++) or a <code>Protocol</code> / ABC (Python).</td></tr>
+      </tbody>
+    </table></div>
+
+    <p><strong>Rule of thumb:</strong> if you'd describe the relationship as "X <em>is a</em> Y" and they share data, use an <em>abstract class</em>. If you'd describe it as "X <em>can do</em> Y", use an <em>interface</em>. <code>Bird</code> is a <code>Animal</code> (abstract class). <code>Bird</code> can do <code>Flyable</code> (interface). A <code>Penguin</code> is a <code>Bird</code> that does <em>not</em> implement <code>Flyable</code>.</p>
+
+    <div class="section-break" style="margin: 28px auto 14px;"><span class="label">Object relationships</span> <span class="sub">how classes connect to each other</span></div>
+
+    <h3>The five ways objects can relate</h3>
+    <p>Knowing the difference is what separates a junior LLD answer from a senior one.</p>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Relationship</th><th>Phrase</th><th>Lifetime</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Inheritance</strong></td><td>"is-a"</td><td>Tightly bound; child can't exist without parent's definition.</td><td><code>SavingsAccount</code> is a <code>BankAccount</code>.</td></tr>
+        <tr><td><strong>Composition</strong></td><td>"part-of" (strong has-a)</td><td>Part dies <em>with</em> the whole.</td><td>A <code>Car</code> owns its <code>Engine</code>. Destroy the car, the engine is gone.</td></tr>
+        <tr><td><strong>Aggregation</strong></td><td>"has-a" (weak)</td><td>Part can outlive the whole.</td><td>A <code>Team</code> has <code>Player</code>s, but a player exists even if the team disbands.</td></tr>
+        <tr><td><strong>Association</strong></td><td>"uses-a"</td><td>Two peers know about each other.</td><td><code>Driver</code> and <code>Car</code> &mdash; loosely linked.</td></tr>
+        <tr><td><strong>Dependency</strong></td><td>"knows-of"</td><td>Temporary; one passes through the other.</td><td><code>OrderService.place(order, paymentGw)</code> &mdash; the gateway is just a parameter.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout takeaway"><strong>Favour composition over inheritance</strong> The Gang of Four said it forty years ago and it still wins interviews. Composition gives you the same code reuse <em>without</em> coupling your class to the parent's internals. Almost every "use the Strategy pattern" answer is a polite way of saying "compose, don't inherit".</div>
+
+    <div class="section-break" style="margin: 28px auto 14px;"><span class="label">The plumbing</span> <span class="sub">small habits that mark a senior</span></div>
+
+    <h3>Equality, hashing, and string form</h3>
+    <p>Every value-like object should answer three questions correctly.</p>
+    <ul>
+      <li><strong>Equality.</strong> Are these two objects "the same"? Override <code>equals</code> (Java), <code>operator==</code> (C++), <code>__eq__</code> (Python). Default equality compares <em>references</em>, not contents &mdash; almost never what you want.</li>
+      <li><strong>Hashing.</strong> If two objects are equal, their hash codes <strong>must</strong> match. Override <code>hashCode</code> (Java) / <code>__hash__</code> (Python) every time you override equality, or your objects break inside <code>HashMap</code>/<code>HashSet</code>.</li>
+      <li><strong>String form.</strong> Override <code>toString</code> (Java) / <code>__str__</code> + <code>__repr__</code> (Python) / <code>operator&lt;&lt;</code> (C++) so logs and debuggers show something useful.</li>
+    </ul>
+
+    <h3>Shallow vs deep copy</h3>
+    <p>A <strong>shallow copy</strong> duplicates the object's top-level fields; references inside still point to the same shared things. A <strong>deep copy</strong> recursively duplicates everything. In Python, <code>copy.copy()</code> vs <code>copy.deepcopy()</code>; in Java, override <code>clone()</code> (or use a copy constructor &mdash; usually cleaner); in C++, write a copy constructor and copy-assignment operator that follow the rule of three / five.</p>
+
+    <h3>Pitfalls that show up in interviews</h3>
+    <div class="cols-2">
+      <div class="col-card dont">
+        <h4>Avoid</h4>
+        <p><strong>God class</strong> &mdash; one class that does everything. Always smell, always wrong.</p>
+        <p><strong>Public fields</strong> &mdash; no encapsulation, no validation, breaking change risk.</p>
+        <p><strong>Inheriting just to reuse code</strong> &mdash; if it's not "is-a", compose.</p>
+        <p><strong>Overriding to remove behaviour</strong> &mdash; classic LSP violation (next lesson).</p>
+        <p><strong>Calling overridable methods from a constructor</strong> &mdash; the child's override may run before the child's fields are initialised. Subtle bug.</p>
+        <p><strong>Forgetting <code>virtual ~Base()</code> in C++</strong> when you have virtual methods.</p>
+      </div>
+      <div class="col-card do">
+        <h4>Do</h4>
+        <p><strong>Small classes</strong> &mdash; one reason to exist.</p>
+        <p><strong>Private fields, behaviour-style methods</strong> &mdash; <code>deposit()</code>, not <code>setBalance()</code>.</p>
+        <p><strong>Program to interfaces</strong> &mdash; depend on <code>List</code>, not <code>ArrayList</code>.</p>
+        <p><strong>Make value objects immutable</strong> &mdash; money, dates, coordinates.</p>
+        <p><strong>Prefer composition</strong> &mdash; reach for inheritance only when the "is-a" is permanent and clean.</p>
+        <p><strong>Honour the equals/hashCode contract</strong> whenever you store objects in hash-based collections.</p>
+      </div>
+    </div>
+
+    <h3>The 3-language cheat sheet</h3>
+    <div class="table-wrap"><table class="dsa-table">
+      <thead><tr><th>Concept</th><th>C++</th><th>Java</th><th>Python</th></tr></thead>
+      <tbody>
+        <tr><td>Class keyword</td><td><code>class</code> / <code>struct</code></td><td><code>class</code></td><td><code>class</code></td></tr>
+        <tr><td>Self reference</td><td><code>this</code> (pointer)</td><td><code>this</code></td><td><code>self</code> (first parameter)</td></tr>
+        <tr><td>Constructor</td><td>Same name as class</td><td>Same name as class</td><td><code>__init__</code></td></tr>
+        <tr><td>Destructor</td><td><code>~Class()</code></td><td>GC (use <code>try-with-resources</code>)</td><td>GC (use <code>with</code> + <code>__del__</code>)</td></tr>
+        <tr><td>Inherit</td><td><code>class B : public A</code></td><td><code>class B extends A</code></td><td><code>class B(A)</code></td></tr>
+        <tr><td>Multiple inheritance</td><td>Yes (use <code>virtual</code> bases)</td><td>No for classes; many interfaces</td><td>Yes (MRO)</td></tr>
+        <tr><td>Override marker</td><td><code>override</code> (C++11+)</td><td><code>@Override</code></td><td>Convention only</td></tr>
+        <tr><td>Abstract method</td><td><code>virtual f() = 0;</code></td><td><code>abstract f();</code></td><td><code>@abstractmethod</code></td></tr>
+        <tr><td>Interface</td><td>Class of pure-virtuals</td><td><code>interface</code></td><td><code>Protocol</code> or <code>ABC</code></td></tr>
+        <tr><td>Call parent</td><td><code>Base::method()</code></td><td><code>super.method()</code></td><td><code>super().method()</code></td></tr>
+        <tr><td>Static member</td><td><code>static</code></td><td><code>static</code></td><td>class attribute or <code>@classmethod</code></td></tr>
+        <tr><td>Final / sealed</td><td><code>final</code> (C++11+)</td><td><code>final</code></td><td><em>n/a</em> (convention)</td></tr>
+        <tr><td>Operator overload</td><td>Yes</td><td>No</td><td>Yes (<code>__add__</code> &hellip;)</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Quick recap &mdash; three lines</h3>
+    <ol class="steps">
+      <li><strong>Object = data + the rules to change it.</strong> Hide fields, expose behaviour, validate on every change.</li>
+      <li><strong>The four pillars are habits, not theory.</strong> Encapsulation hides, inheritance reuses, polymorphism swaps, abstraction stabilises the contract.</li>
+      <li><strong>Favour composition over inheritance.</strong> If the relationship isn't a clean, permanent "is-a", hold a reference instead of subclassing.</li>
+    </ol>
+
+    <div class="callout takeaway"><strong>How to answer "what is OOP?" in 30 seconds</strong> "OOP organises code around objects &mdash; bundles of data and the methods that operate on them. The four pillars are encapsulation (hide state, expose behaviour), inheritance (model is-a, but use sparingly), polymorphism (one call, many implementations &mdash; swap behaviour at runtime), and abstraction (program against contracts, not concretes). The whole point is to keep change local: when a requirement shifts, only one class should need to change." &mdash; then pivot to a concrete example from your design.</div>
   </div>
 </details>
 
@@ -213,7 +581,7 @@ def total_area(shapes):
   <div class="lesson-body">
     <div class="tldr"><strong>TL;DR</strong> SOLID = SRP, OCP, LSP, ISP, DIP. Each one prevents a specific kind of pain. Memorise the pain, not just the acronym.</div>
 
-    <h3>S - Single Responsibility Principle</h3>
+    <h3>S &mdash; Single Responsibility Principle</h3>
     <p>"A class should have one reason to change." A <code>User</code> class that holds data, saves to DB, <em>and</em> sends emails has three reasons to change &mdash; split it.</p>
     <div class="cols-2">
       <div class="col-card dont"><h4>Bad</h4><pre><code>class User {
@@ -227,7 +595,7 @@ class WelcomeMailer { send(u) {...} }
 class UserCsv { format(u) {...} }</code></pre></div>
     </div>
 
-    <h3>O - Open/Closed</h3>
+    <h3>O &mdash; Open/Closed</h3>
     <p>"Open for extension, closed for modification." Adding a new payment method shouldn't require editing the <code>PaymentProcessor</code>. Use polymorphism (Strategy pattern).</p>
     <div class="cols-2">
       <div class="col-card dont"><h4>Bad</h4><pre><code>switch(method) {
@@ -241,13 +609,13 @@ class Upi  implements PaymentMethod {...}
 // add PayPal class without touching old code</code></pre></div>
     </div>
 
-    <h3>L - Liskov Substitution</h3>
+    <h3>L &mdash; Liskov Substitution</h3>
     <p>A subclass should be usable wherever its parent is &mdash; without surprises. The classic violation: <code>Square extends Rectangle</code> and overrides <code>setWidth</code> to also change height. Now any code expecting a <code>Rectangle</code> behaves wrong with a <code>Square</code>.</p>
 
-    <h3>I - Interface Segregation</h3>
+    <h3>I &mdash; Interface Segregation</h3>
     <p>"Many small interfaces beat one giant one." A printer-scanner shouldn't force a plain printer to implement <code>scan()</code>. Split into <code>Printer</code> and <code>Scanner</code>, and let the multi-function device implement both.</p>
 
-    <h3>D - Dependency Inversion</h3>
+    <h3>D &mdash; Dependency Inversion</h3>
     <p>"Depend on abstractions, not concrete classes." High-level <code>OrderService</code> should depend on a <code>PaymentGateway</code> interface, not on <code>StripeClient</code>. Inject the concrete implementation at construction time. Now testing with a fake gateway is trivial.</p>
 
     <div class="code-tabs" data-snippet="dip-injection">
@@ -300,7 +668,7 @@ class OrderService:
   <div class="lesson-body">
     <div class="tldr"><strong>TL;DR</strong> Design patterns are names for solutions you'd discover anyway. Learn the 7 below and you'll spot them &mdash; and apply them &mdash; in any LLD round.</div>
 
-    <h3>Singleton - exactly one instance</h3>
+    <h3>Singleton &mdash; exactly one instance</h3>
     <p>Use for shared config, loggers, connection pools. Make the constructor private; expose a static <code>getInstance()</code>. Beware: untestable, hides dependencies, hard to scale to multi-threaded.</p>
     <div class="code-tabs" data-snippet="singleton">
       <div class="tab-strip">
@@ -337,13 +705,13 @@ public:
         return cls._inst</code></pre>
     </div>
 
-    <h3>Factory - create without naming the class</h3>
+    <h3>Factory &mdash; create without naming the class</h3>
     <p>Callers ask the factory for "a parser for JSON"; factory returns the right concrete type. Adding a new format = one new class + one line in the factory.</p>
 
-    <h3>Builder - fluent construction of complex objects</h3>
+    <h3>Builder &mdash; fluent construction of complex objects</h3>
     <p>When a constructor would take 10 parameters, replace it with a builder. <code>new Pizza.Builder().crust(THIN).cheese().pepperoni().build()</code>.</p>
 
-    <h3>Observer - publish/subscribe</h3>
+    <h3>Observer &mdash; publish/subscribe</h3>
     <p>Subject keeps a list of observers; on state change, notifies them all. Backbone of UI event handlers, Kafka consumers, the Redux store.</p>
     <div class="code-tabs" data-snippet="observer">
       <div class="tab-strip">
@@ -374,13 +742,13 @@ class Subject {
             fn(ev)</code></pre>
     </div>
 
-    <h3>Strategy - swap the algorithm at runtime</h3>
+    <h3>Strategy &mdash; swap the algorithm at runtime</h3>
     <p>Sort with comparator, payment with PaymentMethod, compression with Compressor. Strategy is OCP in code form.</p>
 
-    <h3>Decorator - wrap to add behaviour</h3>
+    <h3>Decorator &mdash; wrap to add behaviour</h3>
     <p>Coffee &rarr; MilkDecorator(Coffee) &rarr; SugarDecorator(MilkDecorator(Coffee)). Each wrapper adds price/description without modifying the original.</p>
 
-    <h3>Adapter - bridge incompatible interfaces</h3>
+    <h3>Adapter &mdash; bridge incompatible interfaces</h3>
     <p>Your app expects a <code>Logger.log(s)</code>; the third-party library exposes <code>RemoteLogger.send(msg, level)</code>. An adapter class translates the call.</p>
 
     <div class="callout tip"><strong>How to use patterns in interviews</strong> Don't shout "Observer pattern!". <em>Describe</em> the design ("the cart will notify subscribers when totals change") and the interviewer will recognise the pattern. Naming feels show-off; describing feels confident.</div>
@@ -412,7 +780,7 @@ class Subject {
       <li><strong>Discuss concurrency &amp; extensions.</strong> Two cars enter at the same time. Multi-floor lots. EV-only spots.</li>
     </ol>
 
-    <h3>Walkthrough 1 - Parking Lot</h3>
+    <h3>Walkthrough 1 &mdash; Parking Lot</h3>
     <p>Clarify: "Multi-level? Vehicle types? Pricing model? Reservation?". Assume: multi-floor, 3 vehicle types (bike/car/truck), pay-on-exit.</p>
 
     <p><strong>Classes</strong></p>
@@ -431,7 +799,7 @@ class Subject {
 
     <p><strong>Extension scenario:</strong> "Now we support EV charging spots." Add <code>EvSpot extends Spot</code> + a new <code>VehicleType.EV</code>. <code>findFreeSpot(EV)</code> can fall back to a regular CAR spot if no EV spot is free &mdash; document the policy.</p>
 
-    <h3>Walkthrough 2 - Splitwise (expense splitter)</h3>
+    <h3>Walkthrough 2 &mdash; Splitwise (expense splitter)</h3>
     <p>Clarify: "Group expenses? Equal split / percentage / exact / shares? Settlement suggestions?"</p>
 
     <p><strong>Classes</strong></p>
@@ -446,7 +814,7 @@ class Subject {
 
     <p><strong>Concurrency:</strong> two members add expenses to the same group simultaneously &rarr; serialise updates to the BalanceSheet (lock per group).</p>
 
-    <h3>Walkthrough 3 - BookMyShow (movie ticket)</h3>
+    <h3>Walkthrough 3 &mdash; BookMyShow (movie ticket)</h3>
     <p>Clarify: "Single city / multi-city? Concurrent seat selection? Refunds?"</p>
 
     <p><strong>Classes</strong></p>
@@ -646,7 +1014,7 @@ class Subject {
       <li><strong>TTL</strong> &mdash; expire after N seconds. Simple, predictable staleness.</li>
     </ul>
 
-    <h3>Cache invalidation - "two hard problems"</h3>
+    <h3>Cache invalidation &mdash; "two hard problems"</h3>
     <ul>
       <li><strong>Write-through</strong> updates the cache on every write &rarr; never stale, slower writes.</li>
       <li><strong>Cache-aside + TTL.</strong> Read populates cache; writes only invalidate (or delete) the key. The TTL caps how stale a missed invalidation can stay.</li>
@@ -930,7 +1298,7 @@ class TokenBucket:
       <li><strong>Bottlenecks &amp; trade-offs.</strong> What breaks at 10x? Consistency choices. SPOFs.</li>
     </ol>
 
-    <h3>Walkthrough A - URL shortener (bit.ly)</h3>
+    <h3>Walkthrough A &mdash; URL shortener (bit.ly)</h3>
 
     <p><strong>Clarify:</strong> "Custom aliases? Expiry? Analytics? How long are URLs (read-heavy clearly)?"</p>
 
@@ -958,7 +1326,7 @@ class TokenBucket:
 
     <p><strong>Bottlenecks:</strong> hot reads &rarr; CDN + Redis. Sharded KV store keyed by short_key. Analytics? Drop click events into Kafka &rarr; ClickHouse for queries.</p>
 
-    <h3>Walkthrough B - Chat (WhatsApp-lite)</h3>
+    <h3>Walkthrough B &mdash; Chat (WhatsApp-lite)</h3>
 
     <p><strong>Clarify:</strong> "1-1 only or groups? Message delivery semantics? Online status?"</p>
 
@@ -975,7 +1343,7 @@ class TokenBucket:
 
     <p><strong>Hardest part - delivery guarantees.</strong> WebSocket can drop. Use a per-message ID; client ACKs on receipt; server keeps unacked for &lt; N seconds; resend on reconnect. End-to-end encryption (E2EE) means server never sees plaintext &mdash; complicates search, simplifies privacy.</p>
 
-    <h3>Walkthrough C - News feed (Instagram-lite)</h3>
+    <h3>Walkthrough C &mdash; News feed (Instagram-lite)</h3>
 
     <p><strong>Clarify:</strong> "Chronological or ranked? Followers can be in millions (celebrities)?"</p>
 
@@ -1058,5 +1426,6 @@ class TokenBucket:
 </footer>
 
 <script src="dsa.js"></script>
+<script src="coffee.js" defer></script>
 </body>
 </html>

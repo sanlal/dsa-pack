@@ -224,4 +224,78 @@
   }
   wireYouTubeLinks();
 
+  /* ==============================================================
+     MODERN THEME ENHANCEMENTS
+     Injects the animated blob background + floating scroll buttons
+     so every dsa-pack page gets the polished look without HTML edits.
+     ============================================================== */
+
+  // ---- 1. Inject animated blob background (once, behind content) ----
+  if (!document.querySelector('.bg-blobs')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'bg-blobs';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = '<div class="blob blob-1"></div>'
+                   + '<div class="blob blob-2"></div>'
+                   + '<div class="blob blob-3"></div>'
+                   + '<div class="blob blob-4"></div>';
+    // Insert as the very first element of body so everything stacks above it
+    if (document.body) document.body.insertBefore(wrap, document.body.firstChild);
+  }
+
+  // ---- 2. Mouse parallax on the blobs ----
+  (function () {
+    const blobs = document.querySelectorAll('.blob');
+    if (!blobs.length) return;
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    document.addEventListener('mousemove', (e) => {
+      mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+      my = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+    (function frame() {
+      tx += (mx - tx) * 0.05;
+      ty += (my - ty) * 0.05;
+      blobs.forEach((b, i) => {
+        const f = (i + 1) * 12;
+        b.style.translate = (tx * f) + 'px ' + (ty * f) + 'px';
+      });
+      requestAnimationFrame(frame);
+    })();
+  })();
+
+  // ---- 3. Floating scroll-top / scroll-bottom buttons ----
+  if (!document.querySelector('.float-ctrls')) {
+    const ctrls = document.createElement('div');
+    ctrls.className = 'float-ctrls';
+    ctrls.setAttribute('aria-hidden', 'true');
+    ctrls.innerHTML = ''
+      + '<button type="button" data-act="top" title="Scroll to top (T)">\u2191</button>'
+      + '<button type="button" data-act="bottom" title="Scroll to bottom (B)">\u2193</button>';
+    document.body.appendChild(ctrls);
+
+    function scrollTopFn()    { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function scrollBottomFn() { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
+
+    ctrls.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => {
+        if (b.dataset.act === 'top') scrollTopFn(); else scrollBottomFn();
+      });
+    });
+
+    function updateVisibility() {
+      ctrls.classList.toggle('visible', window.scrollY > 240);
+    }
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
+
+    // Keyboard shortcuts: T = scroll top, B = scroll bottom
+    document.addEventListener('keydown', (e) => {
+      const t = e.target;
+      if (t && /input|textarea|select/i.test(t.tagName)) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === 't' || e.key === 'T') scrollTopFn();
+      else if (e.key === 'b' || e.key === 'B') scrollBottomFn();
+    });
+  }
+
 })();
