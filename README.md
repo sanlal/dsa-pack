@@ -1,3 +1,4 @@
+## Link: https://sanlal.github.io/dsa-pack/index.html
 # DSA Pack &mdash; Home + Fundamentals + Patterns + Top 50 + System Design + Interview Playbook
 
 A 6-page, self-hosted interactive study pack for **campus placements** and **software engineering interviews**.
